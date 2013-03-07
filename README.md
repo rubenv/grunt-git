@@ -43,7 +43,7 @@ Each git task accepts a different set of options. All targets require that you s
 
 #### options.command
 Type: `String`
-Default value: `'commit`'
+Default value: `'commit'`
 
 The git command you wish to execute.
 
