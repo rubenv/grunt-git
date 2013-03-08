@@ -28,19 +28,25 @@ module.exports = function (grunt) {
             case 'commit':
                 done = this.async();
 
-                var addFile = function (file, cb) {
+                var addFile = function (file, callback) {
                     grunt.util.spawn({
                         cmd: 'git',
                         args: ['add', file.src]
-                    }, cb);
+                    }, callback);
                 };
 
-                grunt.util.async.forEach(this.files, addFile, function (err) {
+                grunt.util.async.forEach(this.files, addFile, function (error) {
                     grunt.util.spawn({
                         cmd: 'git',
                         args: ['commit', '-m', options.message]
-                    }, function (err) {
-                        done(!err);
+                    }, function (error) {
+
+                        if (error) {
+                            grunt.log.error(error);
+                            done(false);
+                        } else {
+                            done();
+                        }
                     });
                 });
                 break;
@@ -54,8 +60,14 @@ module.exports = function (grunt) {
                 grunt.util.spawn({
                     cmd: 'git',
                     args: ['tag', '-a', options.tag, '-m', options.message]
-                }, function (err) {
-                    done(!err);
+                }, function (error) {
+
+                    if (error) {
+                        grunt.log.error(error);
+                        done(false);
+                    } else {
+                        done();
+                    }
                 });
                 break;
 
