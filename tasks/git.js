@@ -6,9 +6,10 @@
  * Licensed under the MIT license.
  */
 
-'use strict';
 
 module.exports = function (grunt) {
+    'use strict';
+
     grunt.registerMultiTask('git', 'Execute git commands.', function () {
         grunt.log.error('The git task is deprecated, use gitcommit instead');
     });
@@ -46,6 +47,14 @@ module.exports = function (grunt) {
             grunt.log.error('gittag requires a tag parameter.');
             return;
         }
+        var logError = function (error, result, code) {
+            if (error) {
+                grunt.log.error(error.text || result.stdout);
+                done(false);
+            } else {
+                done();
+            }
+        };
 
         var done = this.async();
 
@@ -78,16 +87,9 @@ module.exports = function (grunt) {
                     grunt.util.spawn({
                         cmd: 'git',
                         args: ['commit', '-m', options.message]
-                    }, function (error, result, code) {
-
-                        if (error) {
-                            grunt.log.error(result.stdout);
-                            done(false);
-                        } else {
-                            done();
-                        }
-                    });
+                    }, logError);
                 });
+
                 break;
 
         if (!options.branch) {
@@ -106,15 +108,8 @@ module.exports = function (grunt) {
                 grunt.util.spawn({
                     cmd: 'git',
                     args: ['tag', '-a', options.tag, '-m', options.message]
-                }, function (error, result, code) {
+                }, logError);
 
-                    if (error) {
-                        grunt.log.error(result.stdout);
-                        done(false);
-                    } else {
-                        done();
-                    }
-                });
                 break;
 
     grunt.registerMultiTask('gitstash', 'Stash and apply code changes', function () {
