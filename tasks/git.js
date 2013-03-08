@@ -78,10 +78,10 @@ module.exports = function (grunt) {
                     grunt.util.spawn({
                         cmd: 'git',
                         args: ['commit', '-m', options.message]
-                    }, function (error) {
+                    }, function (error, result, code) {
 
                         if (error) {
-                            grunt.log.error(error);
+                            grunt.log.error(result.stdout);
                             done(false);
                         } else {
                             done();
@@ -106,10 +106,10 @@ module.exports = function (grunt) {
                 grunt.util.spawn({
                     cmd: 'git',
                     args: ['tag', '-a', options.tag, '-m', options.message]
-                }, function (error) {
+                }, function (error, result, code) {
 
                     if (error) {
-                        grunt.log.error(error);
+                        grunt.log.error(result.stdout);
                         done(false);
                     } else {
                         done();
