@@ -6,9 +6,10 @@
  * Licensed under the MIT license.
  */
 
-'use strict';
 
 module.exports = function (grunt) {
+    'use strict';
+
     grunt.registerMultiTask('git', 'Execute git commands.', function () {
 
         // Merge task-specific and/or target-specific options with these defaults.
@@ -19,6 +20,15 @@ module.exports = function (grunt) {
         });
 
         var done;
+
+        var logError = function (error, result, code) {
+            if (error) {
+                grunt.log.error(error.text || result.stdout);
+                done(false);
+            } else {
+                done();
+            }
+        };
 
 
         switch (options.command) {
@@ -39,16 +49,9 @@ module.exports = function (grunt) {
                     grunt.util.spawn({
                         cmd: 'git',
                         args: ['commit', '-m', options.message]
-                    }, function (error, result, code) {
-
-                        if (error) {
-                            grunt.log.error(result.stdout);
-                            done(false);
-                        } else {
-                            done();
-                        }
-                    });
+                    }, logError);
                 });
+
                 break;
 
 
@@ -60,15 +63,8 @@ module.exports = function (grunt) {
                 grunt.util.spawn({
                     cmd: 'git',
                     args: ['tag', '-a', options.tag, '-m', options.message]
-                }, function (error, result, code) {
+                }, logError);
 
-                    if (error) {
-                        grunt.log.error(result.stdout);
-                        done(false);
-                    } else {
-                        done();
-                    }
-                });
                 break;
 
 
