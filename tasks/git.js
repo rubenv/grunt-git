@@ -17,6 +17,10 @@ module.exports = function (grunt) {
     grunt.registerMultiTask('gitcommit', 'Commit a git repository.', function () {
         var options = this.options({
             message: 'Commit'
+        },
+        {
+            command: 'push',
+            message: ''
         });
 
         var done = this.async();
@@ -120,6 +124,39 @@ module.exports = function (grunt) {
         if (!options.command && !options.create) {
             grunt.log.error('gitstash requires a command parameter.');
             return;
+
+            var addFile = function (file, cb) {
+                grunt.util.spawn({
+                    cmd: "git",
+                    args: ["add", file.src]
+                }, cb);
+            };
+
+
+            grunt.util.async.forEach(this.files, addFile, function (err) {
+                grunt.util.spawn({
+                    cmd: "git",
+                    args: ["commit", "-m", options.message]
+                }, function (err) {
+                    done(!err);
+                });
+
+
+            });
+        } else if (options.command === 'push') {
+            var done = this.async();
+
+
+            grunt.util.spawn({
+                    cmd: "git",
+                    args: ["push","-all"]
+                }, function (err) {
+                    done(!err);
+            });
+
+
+        } else {
+            grunt.log.error('No or unknown command specified: ' + options.command);
         }
 
         var done = this.async();

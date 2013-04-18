@@ -36,7 +36,6 @@ grunt.initConfig({
       files: {
           // Specify the files you want to commit
       }
-    }
   },
 })
 ```
