@@ -14,11 +14,16 @@ module.exports = function (grunt) {
         var options = this.options({
             command: 'commit',
             message: 'Commit'
+        },
+        {
+            command: 'push',
+            message: ''
         });
 
 
         if (options.command === 'commit') {
             var done = this.async();
+
 
             var addFile = function (file, cb) {
                 grunt.util.spawn({
@@ -27,6 +32,7 @@ module.exports = function (grunt) {
                 }, cb);
             };
 
+
             grunt.util.async.forEach(this.files, addFile, function (err) {
                 grunt.util.spawn({
                     cmd: "git",
@@ -34,7 +40,21 @@ module.exports = function (grunt) {
                 }, function (err) {
                     done(!err);
                 });
+
+
             });
+        } else if (options.command === 'push') {
+            var done = this.async();
+
+
+            grunt.util.spawn({
+                    cmd: "git",
+                    args: ["push","-all"]
+                }, function (err) {
+                    done(!err);
+            });
+
+
         } else {
             grunt.log.error('No or unknown command specified: ' + options.command);
         }

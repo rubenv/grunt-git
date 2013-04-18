@@ -25,12 +25,21 @@ In your project's Gruntfile, add a section named `git` to the data object passed
 ```js
 grunt.initConfig({
   git: {
-    your_target: {
-      options: {
-        command: 'commit'
-        // Target-specific options go here.
+      commit: {
+          options: {
+              command: 'commit',
+              message: 'grunt testing'
+          }
+          ,files: {
+              //src: ['test.txt']
+              src: grunt.file.expand({cwd: cwd},['**/*'])
+          }
+      },
+      push: {
+          options: {
+              command: 'push'
+          }
       }
-    }
   },
 })
 ```
