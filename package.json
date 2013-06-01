@@ -1,24 +1,31 @@
 {
   "name": "grunt-git",
   "description": "Git commands for grunt.",
-  "version": "0.0.1",
-  "homepage": "https://github.com/rubenv/grunt-git",
+  "version": "0.0.2",
+  "homepage": "https://github.com/nyfagel/grunt-git",
   "author": {
     "name": "Ruben Vermeersch",
     "email": "ruben@savanne.be",
     "url": "http://savanne.be/"
   },
+  "contributors": [
+    {
+      "name": "Jan Lindblom",
+      "email": "jan@nyfagel.se",
+      "url": "http://www.nyfagel.se/"
+    }
+  ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/rubenv/grunt-git.git"
+    "url": "git://github.com/nyfagel/grunt-git.git"
   },
   "bugs": {
-    "url": "https://github.com/rubenv/grunt-git/issues"
+    "url": "https://github.com/nyfagel/grunt-git/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/rubenv/grunt-git/blob/master/LICENSE"
+      "url": "https://github.com/nyfagel/grunt-git/blob/master/LICENSE"
     }
   ],
   "main": "Gruntfile.js",
@@ -38,6 +45,7 @@
     "grunt": "~0.4.0"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
+    "git"
   ]
 }
