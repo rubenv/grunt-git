@@ -13,7 +13,14 @@
       "name": "Jan Lindblom",
       "email": "jan@nyfagel.se",
       "url": "http://www.nyfagel.se/"
-    }
+    },
+  {
+	  "name": "Chris Blazek",
+	  "email": "chris.blazek@gmail.com"
+  },
+  {
+	  "name": "Jamie Rolfs",
+	  "email": "jamie.rolfs@gmail.com"
   ],
   "repository": {
     "type": "git",
