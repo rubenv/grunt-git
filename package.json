@@ -14,10 +14,9 @@
       "email": "drewii2ii@gmail.com"
     },
     {
-	  "name": "Jan Lindblom",
-	  "email": "jan@nyfagel.se",
-	  "url": "http://www.nyfagel.se/"
-  }
+      "name": "Jan Lindblom",
+      "email": "jan@nyfagel.se"
+    }
   ],
   "repository": {
     "type": "git",
