@@ -9,11 +9,11 @@
     "url": "http://savanne.be/"
   },
   "contributors": [
-  {
-	  "name": "Jan Lindblom",
-	  "email": "jan@nyfagel.se",
-	  "url": "http://www.nyfagel.se/"
-  }
+    {
+      "name": "Jan Lindblom",
+      "email": "jan@nyfagel.se",
+      "url": "http://www.nyfagel.se/"
+    }
   ],
   "repository": {
     "type": "git",
