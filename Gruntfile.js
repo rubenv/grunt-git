@@ -1,8 +1,8 @@
 /*
  * grunt-git
- * https://github.com/nyfagel/grunt-git
+ * https://github.com/rubenv/grunt-git
  *
- * Copyright (c) 2013 Jan Lindblom
+ * Copyright (c) 2013 Ruben Vermeersch
  * Licensed under the MIT license.
  */
 
