@@ -90,5 +90,5 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-* 2013-06-01   v0.0.1   Extended with push and tag commands.
+* 2013-06-03   v0.0.2   Extended with push and tag commands.
 * 2013-03-07   v0.0.1   Initial version, which commits files. No API stability or anything promised yet.
