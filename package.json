@@ -1,58 +1,53 @@
 {
-  "name": "grunt-git",
-  "description": "Git commands for grunt.",
-  "version": "0.0.2",
-  "homepage": "https://github.com/nyfagel/grunt-git",
-  "author": {
-    "name": "Ruben Vermeersch",
-    "email": "ruben@savanne.be",
-    "url": "http://savanne.be/"
-  },
-  "contributors": [
-    {
-      "name": "Jan Lindblom",
-      "email": "jan@nyfagel.se",
-      "url": "http://www.nyfagel.se/"
-    },
-  {
-	  "name": "Chris Blazek",
-	  "email": "chris.blazek@gmail.com"
-  },
-  {
-	  "name": "Jamie Rolfs",
-	  "email": "jamie.rolfs@gmail.com"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/nyfagel/grunt-git.git"
-  },
-  "bugs": {
-    "url": "https://github.com/nyfagel/grunt-git/issues"
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/nyfagel/grunt-git/blob/master/LICENSE"
-    }
-  ],
-  "main": "Gruntfile.js",
-  "engines": {
-    "node": ">= 0.8.0"
-  },
-  "scripts": {
-    "test": "grunt test"
-  },
-  "devDependencies": {
-    "grunt-contrib-jshint": "~0.1.1",
-    "grunt-contrib-clean": "~0.4.0",
-    "grunt": "~0.4.0",
-    "grunt-mocha-cli": "~1.0.1"
-  },
-  "peerDependencies": {
-    "grunt": "~0.4.0"
-  },
-  "keywords": [
-    "gruntplugin",
-    "git"
-  ]
+	"name": "grunt-git",
+	"description": "Git commands for grunt.",
+	"version": "0.0.2",
+	"homepage": "https://github.com/rubenv/grunt-git",
+	"author": {
+		"name": "Ruben Vermeersch",
+		"email": "ruben@savanne.be",
+		"url": "http://savanne.be/"
+	},
+	"contributors": [
+		{
+			"name": "Jan Lindblom",
+			"email": "jan@nyfagel.se"
+		}, {
+			"name": "Chris Blazek",
+			"email": "chris.blazek@gmail.com"
+		}, {
+			"name": "Jamie Rolfs",
+			"email": "jamie.rolfs@gmail.com"
+		}
+	],
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/rubenv/grunt-git.git"
+	},
+	"bugs": {
+		"url": "https://github.com/rubenv/grunt-git/issues"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "https://github.com/rubenv/grunt-git/blob/master/LICENSE"
+		}
+	],
+	"main": "Gruntfile.js",
+	"engines": {
+		"node": ">= 0.8.0"
+	},
+	"scripts": {
+		"test": "grunt test"
+	},
+	"devDependencies": {
+		"grunt-contrib-jshint": "~0.1.1",
+		"grunt-contrib-clean": "~0.4.0",
+		"grunt": "~0.4.0",
+		"grunt-mocha-cli": "~1.0.1"
+	},
+	"peerDependencies": {
+		"grunt": "~0.4.0"
+	},
+	"keywords": ["gruntplugin", "git"]
 }
