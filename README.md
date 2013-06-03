@@ -25,12 +25,21 @@ In your project's Gruntfile, add a section named `git` to the data object passed
 ```js
 grunt.initConfig({
   git: {
-    your_target: {
-      options: {
-        command: 'commit'
-        // Target-specific options go here.
+      commit: {
+          options: {
+              command: 'commit',
+              message: 'grunt testing'
+          }
+          ,files: {
+              //src: ['test.txt']
+              src: grunt.file.expand({cwd: cwd},['**/*'])
+          }
+      },
+      push: {
+          options: {
+              command: 'push'
+          }
       }
-    }
   },
 })
 ```
@@ -81,5 +90,5 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-
+* 2013-06-03   v0.0.2   Extended with push and tag commands.
 * 2013-03-07   v0.0.1   Initial version, which commits files. No API stability or anything promised yet.
