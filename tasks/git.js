@@ -50,6 +50,10 @@ module.exports = function (grunt) {
         var done = this.async();
 
         var args = ["tag"];
+        if (options.message && options.message.trim() !== '') {
+            args.push("-m");
+            args.push(options.message);
+        }
         args.push(options.tag);
 
         grunt.util.spawn({
