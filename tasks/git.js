@@ -6,9 +6,9 @@
  * Licensed under the MIT license.
  */
 
-'use strict';
-
 module.exports = function (grunt) {
+    'use strict';
+
     grunt.registerMultiTask('git', 'Execute git commands.', function () {
         grunt.log.error('The git task is deprecated, use gitcommit instead');
     });
@@ -39,7 +39,7 @@ module.exports = function (grunt) {
 
     grunt.registerMultiTask('gittag', 'Create a git tag.', function () {
         var options = this.options({
-            message: ''
+            message: 'Tag'
         });
 
         if (!options.tag) {
@@ -63,4 +63,42 @@ module.exports = function (grunt) {
             done(!err);
         });
     });
+    
+	grunt.registerMultiTask('gitpush', 'Push to remote.', function() {
+		var options = this.options({
+			branch : '',
+			remote : '',
+			all : false,
+			tags : false
+		});
+
+		var done = this.async();
+
+		var args = ['push'];
+
+		if (options.all) {
+			args.push("--all");
+		}
+
+		if (options.tags && !options.all) {
+			args.push("--tags");
+		}
+
+		if (options.remote && options.remote.trim() !== '') {
+			args.push(options.remote);
+		} else {
+			args.push("origin");
+		}
+
+		if (options.branch && options.branch.trim() !== '') {
+			args.push(options.branch);
+		}
+
+		grunt.util.spawn({
+			cmd : "git",
+			args : args
+		}, function(err) {
+			done(!err);
+		});
+	});
 };
