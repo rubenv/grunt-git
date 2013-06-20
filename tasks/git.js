@@ -6,7 +6,6 @@
  * Licensed under the MIT license.
  */
 
-
 module.exports = function (grunt) {
     'use strict';
 
@@ -18,15 +17,6 @@ module.exports = function (grunt) {
         var options = this.options({
             command: 'commit',
             message: 'Commit'
-        },
-        {
-            command: 'push',
-            message: ''
-        },
-        {
-            command: 'tag',
-            message: 'Tag',
-            tag: 'Tag'
         });
 
         var done = this.async();
@@ -50,7 +40,7 @@ module.exports = function (grunt) {
 
     grunt.registerMultiTask('gittag', 'Create a git tag.', function () {
         var options = this.options({
-            message: ''
+            message: 'Tag'
         });
 
         if (!options.tag) {
@@ -252,4 +242,42 @@ module.exports = function (grunt) {
             done(!err);
         });
     });
+    
+	grunt.registerMultiTask('gitpush', 'Push to remote.', function() {
+		var options = this.options({
+			branch : '',
+			remote : '',
+			all : false,
+			tags : false
+		});
+
+		var done = this.async();
+
+		var args = ['push'];
+
+		if (options.all) {
+			args.push("--all");
+		}
+
+		if (options.tags && !options.all) {
+			args.push("--tags");
+		}
+
+		if (options.remote && options.remote.trim() !== '') {
+			args.push(options.remote);
+		} else {
+			args.push("origin");
+		}
+
+		if (options.branch && options.branch.trim() !== '') {
+			args.push(options.branch);
+		}
+
+		grunt.util.spawn({
+			cmd : "git",
+			args : args
+		}, function(err) {
+			done(!err);
+		});
+	});
 };
