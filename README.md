@@ -17,17 +17,72 @@ One the plugin has been installed, it may be enabled inside your Gruntfile with 
 grunt.loadNpmTasks('grunt-git');
 ```
 
-## The "git" task
+## The "gitcommit" task
+
+Commits the working directory.
 
 ### Overview
-In your project's Gruntfile, add a section named `git` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `gitcommit` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-  git: {
+  gitcommit: {
     your_target: {
       options: {
-        command: 'commit'
+        // Target-specific options go here.
+      },
+      files: {
+          // Specify the files you want to commit
+      }
+    }
+  },
+})
+```
+
+Each target defines a specific git task that can be run. The different available tasks are listed below.
+
+### Options
+
+#### options.message
+Type: `String`
+Default value: `'Commit'`
+
+The commit message.
+
+### Usage Examples
+
+Commit options:
+
+* `message`: Commit message
+* `files`: Files to commit
+
+```js
+grunt.initConfig({
+    gitcommit: {
+        task: {
+            options: {
+                message: 'Testing'
+            },
+            files: {
+                src: ['test.txt']
+            }
+        }
+    },
+});
+```
+
+## The "gittag" task
+
+Creates a git tag.
+
+### Overview
+In your project's Gruntfile, add a section named `gittag` to the data object passed into `grunt.initConfig()`.
+
+```js
+grunt.initConfig({
+  gittag: {
+    your_target: {
+      options: {
         // Target-specific options go here.
       }
     }
@@ -39,38 +94,27 @@ Each target defines a specific git task that can be run. The different available
 
 ### Options
 
-Each git task accepts a different set of options. All targets require that you specify the `command` option.
-
-#### options.command
+#### options.tag
 Type: `String`
-Default value: `'commit'`
+Default value: `''`
 
-The git command you wish to execute.
+The name of the tag. E.g.: `0.0.1`.
 
-Available commands are:
+#### options.message
+Type: `String`
+Default value: `''`
 
-* `commit`
+The tag message (optional).
 
 ### Usage Examples
 
-#### The `commit` command
-This command commits the current working tree to git.
-
-Commit options:
-
-* `message`: Commit message
-* `files`: Files to commit
-
 ```js
 grunt.initConfig({
-    git: {
+    gittag: {
         task: {
             options: {
-                command: 'commit',
+                tag: '0.0.1',
                 message: 'Testing'
-            },
-            files: {
-                src: ['test.txt']
             }
         }
     },
