@@ -2,10 +2,9 @@
 
 module.exports = function (grunt) {
     grunt.initConfig({
-        git: {
+        gitcommit: {
             task: {
                 options: {
-                    command: 'commit',
                     message: 'Testing'
                 },
                 files: {
@@ -20,5 +19,5 @@ module.exports = function (grunt) {
     });
 
     grunt.loadTasks('../../tasks');
-    grunt.registerTask('default', ['change', 'git']);
+    grunt.registerTask('default', ['change', 'gitcommit']);
 };

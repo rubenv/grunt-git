@@ -7,7 +7,7 @@ function handleSpawnOutput(cb) {
         if (!err) {
             cb();
         } else {
-            cb(result.stdout);
+            cb(new Error(result.stdout));
         }
     };
 }
@@ -50,7 +50,12 @@ function Repo(path) {
 }
 
 module.exports = {
-    setupAndRun: function (fixture, done) {
+    setupAndRun: function (fixture, before, done) {
+        if (!done) {
+            done = before;
+            before = function (repo, cb) { cb(); };
+        }
+
         grunt.file.mkdir('tmp');
 
         var repo = new Repo('tmp/' + fixture);
@@ -66,6 +71,7 @@ module.exports = {
                 repo.initialRef = grunt.file.read(repo.path + '/.git/refs/heads/master').trim();
                 cb();
             },
+            function (cb) { before(repo, cb); },
             genCommand(repo.path, 'grunt'),
             function (cb) {
                 repo.currentRef = grunt.file.read(repo.path + '/.git/refs/heads/master').trim();
