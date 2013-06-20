@@ -17,28 +17,22 @@ One the plugin has been installed, it may be enabled inside your Gruntfile with 
 grunt.loadNpmTasks('grunt-git');
 ```
 
-## The "git" task
+## The "gitcommit" task
+
+Commits the working directory.
 
 ### Overview
-In your project's Gruntfile, add a section named `git` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `gitcommit` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-  git: {
-      commit: {
-          options: {
-              command: 'commit',
-              message: 'grunt testing'
-          }
-          ,files: {
-              //src: ['test.txt']
-              src: grunt.file.expand({cwd: cwd},['**/*'])
-          }
+  gitcommit: {
+    your_target: {
+      options: {
+        // Target-specific options go here.
       },
-      push: {
-          options: {
-              command: 'push'
-          }
+      files: {
+          // Specify the files you want to commit
       }
   },
 })
@@ -48,22 +42,13 @@ Each target defines a specific git task that can be run. The different available
 
 ### Options
 
-Each git task accepts a different set of options. All targets require that you specify the `command` option.
-
-#### options.command
+#### options.message
 Type: `String`
-Default value: `'commit'`
+Default value: `'Commit'`
 
-The git command you wish to execute.
-
-Available commands are:
-
-* `commit`
+The commit message.
 
 ### Usage Examples
-
-#### The `commit` command
-This command commits the current working tree to git.
 
 Commit options:
 
@@ -72,14 +57,63 @@ Commit options:
 
 ```js
 grunt.initConfig({
-    git: {
+    gitcommit: {
         task: {
             options: {
-                command: 'commit',
                 message: 'Testing'
             },
             files: {
                 src: ['test.txt']
+            }
+        }
+    },
+});
+```
+
+## The "gittag" task
+
+Creates a git tag.
+
+### Overview
+In your project's Gruntfile, add a section named `gittag` to the data object passed into `grunt.initConfig()`.
+
+```js
+grunt.initConfig({
+  gittag: {
+    your_target: {
+      options: {
+        // Target-specific options go here.
+      }
+    }
+  },
+})
+```
+
+Each target defines a specific git task that can be run. The different available tasks are listed below.
+
+### Options
+
+#### options.tag
+Type: `String`
+Default value: `''`
+
+The name of the tag. E.g.: `0.0.1`.
+
+#### options.message
+Type: `String`
+Default value: `''`
+
+The tag message (optional).
+
+### Usage Examples
+
+```js
+grunt.initConfig({
+    gittag: {
+        task: {
+            options: {
+                tag: '0.0.1',
+                message: 'Testing'
             }
         }
     },
