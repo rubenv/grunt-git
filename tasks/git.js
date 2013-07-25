@@ -63,4 +63,31 @@ module.exports = function (grunt) {
             done(!err);
         });
     });
+
+    grunt.registerMultiTask('gitcheckout', 'Checkout a git branch.', function () {
+        var options = this.options({
+            message: ''
+        });
+
+        if (!options.branch) {
+            grunt.log.error('gittag requires a branch parameter.');
+            return;
+        }
+
+        var done = this.async();
+
+        var args = ["branch"];
+        if (options.message && options.message.trim() !== '') {
+            args.push("-m");
+            args.push(options.message);
+        }
+        args.push(options.branch);
+
+        grunt.util.spawn({
+            cmd: "git",
+            args: args
+        }, function (err) {
+            done(!err);
+        });
+    });
 };
