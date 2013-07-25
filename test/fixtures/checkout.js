@@ -2,15 +2,16 @@
 
 module.exports = function (grunt) {
     grunt.initConfig({
-        gitbranch: {
+        gitcheckout: {
             task: {
                 options: {
-                    branch: 'testing'
+                    branch: 'testing',
+                    create: true
                 }
             }
         },
     });
 
     grunt.loadTasks('../../tasks');
-    grunt.registerTask('default', ['gitbranch']);
+    grunt.registerTask('default', ['gitcheckout']);
 };

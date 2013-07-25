@@ -70,16 +70,15 @@ module.exports = function (grunt) {
         });
 
         if (!options.branch) {
-            grunt.log.error('gittag requires a branch parameter.');
+            grunt.log.error('gitcheckout requires a branch parameter.');
             return;
         }
 
         var done = this.async();
 
-        var args = ["branch"];
-        if (options.message && options.message.trim() !== '') {
-            args.push("-m");
-            args.push(options.message);
+        var args = ["checkout"];
+        if (options.create) {
+            args.push("-b");
         }
         args.push(options.branch);
 
