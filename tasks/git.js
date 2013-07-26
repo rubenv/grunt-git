@@ -66,7 +66,6 @@ module.exports = function (grunt) {
 
     grunt.registerMultiTask('gitcheckout', 'Checkout a git branch.', function () {
         var options = this.options({
-            message: ''
         });
 
         if (!options.branch) {
