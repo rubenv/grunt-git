@@ -123,6 +123,56 @@ grunt.initConfig({
 });
 ```
 
+## The "gitcheckout" task
+
+Creates a git branch using checkout -b, or checks out a given branch.
+
+### Overview
+In your project's Gruntfile, add a section named `gitcheckout` to the data object passed into `grunt.initConfig()`.
+
+```js
+grunt.initConfig({
+  gitcheckout: {
+    your_target: {
+      options: {
+        // Target-specific options go here.
+      }
+    }
+  },
+})
+```
+
+Each target defines a specific git task that can be run. The different available tasks are listed below.
+
+### Options
+
+#### options.branch
+Type: `String`
+Default value: `''`
+
+The name of the branch. E.g.: `testing`.
+
+#### options.create
+Type: `Boolean`
+Default value: `false`
+
+Whether the branch should be created (optional).
+
+### Usage Examples
+
+```js
+grunt.initConfig({
+    gittag: {
+        task: {
+            options: {
+                branch: 'testing',
+                create: true
+            }
+        }
+    },
+});
+```
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
