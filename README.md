@@ -2,6 +2,8 @@
 
 > Git commands for grunt.
 
+[![Build Status](https://travis-ci.org/rubenv/grunt-git.png?branch=master)](https://travis-ci.org/rubenv/grunt-git)
+
 ## Getting Started
 This plugin requires Grunt `~0.4.0`
 
