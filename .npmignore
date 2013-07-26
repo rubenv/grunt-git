@@ -1,0 +1,5 @@
+.jshintrc
+.npmignore
+Gruntfile.js
+test
+tmp
