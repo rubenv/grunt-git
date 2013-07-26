@@ -126,4 +126,5 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+* 2013-07-26   v0.0.2   New version, with split commands per task.
 * 2013-03-07   v0.0.1   Initial version, which commits files. No API stability or anything promised yet.
