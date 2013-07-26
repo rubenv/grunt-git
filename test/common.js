@@ -7,7 +7,7 @@ function handleSpawnOutput(command, cb) {
         if (!err) {
             cb();
         } else {
-            cb(new Error(command ':' + result.stdout));
+            cb(new Error(command  + ': ' + result.stdout));
         }
     };
 }
