@@ -2,12 +2,12 @@
 
 var grunt = require('grunt');
 
-function handleSpawnOutput(cb) {
+function handleSpawnOutput(command, cb) {
     return function (err, result) {
         if (!err) {
             cb();
         } else {
-            cb(new Error(result.stdout));
+            cb(new Error(command ':' + result.stdout));
         }
     };
 }
@@ -19,7 +19,7 @@ function runCommand(folder, command, args, cb) {
         opts: {
             cwd: folder
         }
-    }, handleSpawnOutput(cb));
+    }, handleSpawnOutput(command, cb));
 }
 
 function genCommand(folder, command, args) {
