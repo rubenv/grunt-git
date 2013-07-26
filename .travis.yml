@@ -5,3 +5,5 @@ node_js:
   - "0.11"
 before_script:
   - npm install -g grunt-cli
+  - git config --global user.name 'Travis CI'
+  - git config --global user.email 'test@travis-ci.org'
