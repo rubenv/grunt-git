@@ -22,15 +22,17 @@ module.exports = function (grunt) {
         grunt.file.write('test.txt', 'test');
     });
 
-    grunt.registerTask('stage', 'Stages the changed file', function (cb) {
+    grunt.registerTask('stage', 'Stages the changed file', function () {
         var addFile = function (file, cb) {
             grunt.util.spawn({
                 cmd: "git",
                 args: ["add", file]
-            }, function (err, res, code) {});
+            }, function (err, res, code) { cb(); });
         };
 
-        addFile('test.txt');
+        var cb = this.async();
+
+        addFile('test.txt', cb);
     });
 
     grunt.loadTasks('../../tasks');
