@@ -173,6 +173,74 @@ grunt.initConfig({
 });
 ```
 
+## The "gitstash" task
+
+Creates a git branch using checkout -b, or checks out a given branch.
+
+### Overview
+In your project's Gruntfile, add a section named `gitstash` to the data object passed into `grunt.initConfig()`.
+
+```js
+grunt.initConfig({
+  gitstash: {
+    your_target: {
+      options: {
+        // Target-specific options go here.
+      }
+    }
+  },
+})
+```
+
+Each target defines a specific git task that can be run. The different available tasks are listed below.
+
+### Options
+
+#### options.command
+Type: `String`
+Default value: `''`
+
+The stash command to run. E.g.: `apply`.
+
+#### options.create
+Type: `Boolean`
+Default value: `false`
+
+Whether the stash should be created (optional).
+
+#### options.stash
+Type: `Integer`
+Default value: `''`
+
+The stash to applt. E.g.: `0` (optional).
+
+#### options.staged
+Type: `Boolean`
+Default value: `false`
+
+Whether the staged changes should be reapplied (optional).
+
+### Usage Examples
+
+```js
+grunt.initConfig({
+    gittag: {
+        stash: {
+            options: {
+                create: true
+            }
+        },
+        apply: {
+            options: {
+                command: 'apply',
+                staged: true,
+                stash: '0'
+            }
+        }
+    },
+});
+```
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
