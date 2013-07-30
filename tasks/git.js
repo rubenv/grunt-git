@@ -91,6 +91,7 @@ module.exports = function (grunt) {
 
     grunt.registerMultiTask('gitstash', 'Stash and apply code changes', function () {
         var options = this.options({
+            command: 'save'
         });
 
         if (!options.command && !options.create) {
@@ -101,14 +102,12 @@ module.exports = function (grunt) {
         var done = this.async();
 
         var args = ["stash"];
-        if (!options.create) {
-            args.push(options.command);
-            if (options.stash) {
-                args.push("stash@{" + options.stash + "}");
-            }
-            if (options.staged) {
-                args.push("--index");
-            }
+        args.push(options.command);
+        if (options.stash) {
+            args.push("stash@{" + options.stash + "}");
+        }
+        if (options.staged) {
+            args.push("--index");
         }
 
         grunt.util.spawn({

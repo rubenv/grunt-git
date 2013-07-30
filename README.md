@@ -198,15 +198,9 @@ Each target defines a specific git task that can be run. The different available
 
 #### options.command
 Type: `String`
-Default value: `''`
+Default value: `'save'`
 
-The stash command to run. E.g.: `apply`.
-
-#### options.create
-Type: `Boolean`
-Default value: `false`
-
-Whether the stash should be created (optional).
+The stash command to run. E.g.: `save`, `apply`.
 
 #### options.stash
 Type: `Integer`
