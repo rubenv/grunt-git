@@ -120,6 +120,7 @@ module.exports = function (grunt) {
 
     grunt.registerMultiTask('gitreset', 'Reset to the branch HEAD', function () {
         var options = this.options({
+            commit: 'HEAD'
         });
 
         var done = this.async();
@@ -128,9 +129,7 @@ module.exports = function (grunt) {
         if (options.mode) {
             args.push("--" + options.mode);
         }
-        if (options.commit) {
-            args.push(options.commit);
-        }
+        args.push(options.commit);
         if (!options.mode) {
             this.files.forEach(function (files) {
                 for (var i = 0; i < files.src.length; i++) {

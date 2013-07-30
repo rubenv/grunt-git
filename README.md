@@ -235,6 +235,59 @@ grunt.initConfig({
 });
 ```
 
+## The "gitreset" task
+
+Creates a git branch using checkout -b, or checks out a given branch.
+
+### Overview
+In your project's Gruntfile, add a section named `gitreset` to the data object passed into `grunt.initConfig()`.
+
+```js
+grunt.initConfig({
+  gitreset: {
+    your_target: {
+      options: {
+        // Target-specific options go here.
+      },
+      files: {
+        src: // Target-specific files go here.
+      }
+    }
+  },
+})
+```
+
+Each target defines a specific git task that can be run. The different available tasks are listed below.
+
+### Options
+
+#### options.mode
+Type: `String`
+Default value: `''`
+
+The reset mode to run. E.g.: `hard`, `merge`.
+
+#### options.commit
+Type: `String`
+Default value: `'HEAD'`
+
+Which commit to reset to (optional).
+
+### Usage Examples
+
+```js
+grunt.initConfig({
+    gitreset: {
+        task: {
+            options: {
+                mode: 'hard',
+                commit: 'HEAD~1'
+            }
+        }
+    },
+});
+```
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
