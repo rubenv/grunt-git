@@ -88,4 +88,33 @@ module.exports = function (grunt) {
             done(!err);
         });
     });
+
+    grunt.registerMultiTask('gitstash', 'Stash and apply code changes', function () {
+        var options = this.options({
+            command: 'save'
+        });
+
+        if (!options.command && !options.create) {
+            grunt.log.error('gitstash requires a command parameter.');
+            return;
+        }
+
+        var done = this.async();
+
+        var args = ["stash"];
+        args.push(options.command);
+        if (options.stash) {
+            args.push("stash@{" + options.stash + "}");
+        }
+        if (options.staged) {
+            args.push("--index");
+        }
+
+        grunt.util.spawn({
+            cmd: "git",
+            args: args
+        }, function (err) {
+            done(!err);
+        });
+    });
 };
