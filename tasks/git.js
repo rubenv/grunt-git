@@ -117,4 +117,33 @@ module.exports = function (grunt) {
             done(!err);
         });
     });
+
+    grunt.registerMultiTask('gitreset', 'Reset to the branch HEAD', function () {
+        var options = this.options({
+        });
+
+        var done = this.async();
+
+        var args = ["reset"];
+        if (options.mode) {
+            args.push("--" + options.mode);
+        }
+        if (options.commit) {
+            args.push(options.commit);
+        }
+        if (!options.mode) {
+            this.files.forEach(function (files) {
+                for (var i = 0; i < files.src.length; i++) {
+                    args.push(files.src[i]);
+                }
+            });
+        }
+
+        grunt.util.spawn({
+            cmd: "git",
+            args: args
+        }, function (err) {
+            done(!err);
+        });
+    });
 };
