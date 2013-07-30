@@ -206,7 +206,7 @@ The stash command to run. E.g.: `save`, `apply`.
 Type: `Integer`
 Default value: `''`
 
-The stash to applt. E.g.: `0` (optional).
+The stash to apply. E.g.: `0` (optional).
 
 #### options.staged
 Type: `Boolean`
