@@ -25,7 +25,7 @@ describe('reset', function () {
 
     it('should remove all files', function (done) {
         fs.readdir(repo.path, function (err, files) {
-            assert.deepEqual(files, ['.git', 'Gruntfile.js', 'test', 'test.txt']);
+            assert.deepEqual(files.sort(), ['.git', 'Gruntfile.js', 'test', 'test.txt']);
             done();
         });
     });
