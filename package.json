@@ -8,6 +8,12 @@
     "email": "ruben@savanne.be",
     "url": "http://savanne.be/"
   },
+  "contributors": [
+    {
+      "name": "Andrew Pope",
+      "email": "drewii2ii@gmail.com"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/rubenv/grunt-git.git"
