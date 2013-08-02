@@ -125,7 +125,7 @@ module.exports = function (grunt) {
                 repository: false,
                 directory: false
             }),
-            done = this.async();,
+            done = this.async(),
             args = ['clone'];
 
         if (options.bare) {
@@ -136,8 +136,8 @@ module.exports = function (grunt) {
             args.push('--branch ' + options.branch);
         }
 
-        if (options.repository) {
-            args.push(options.branch);
+        if (options.repo || options.repository) {
+            args.push(options.repo || options.repository);
         }
 
         if (options.directory) {
