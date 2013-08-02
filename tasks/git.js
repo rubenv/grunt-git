@@ -128,18 +128,23 @@ module.exports = function (grunt) {
             done = this.async(),
             args = ['clone'];
 
+        // repo is the sole required option, allow shorthand
+        if (!options.repo || !options.repository) {
+            grunt.log.error('gitclone tasks requires that you specify a "repository"');
+        }
+
         if (options.bare) {
             args.push('--bare');
         }
 
-        if (options.branch) {
+        if (options.branch && !options.bare) {
             args.push('--branch ' + options.branch);
         }
 
-        if (options.repo || options.repository) {
-            args.push(options.repo || options.repository);
-        }
+        // repo comes after the options
+        args.push(options.repo || options.repository);
 
+        // final argument is checkout directory (optional)
         if (options.directory) {
             args.push(options.directory);
         }
