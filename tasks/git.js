@@ -117,4 +117,38 @@ module.exports = function (grunt) {
             done(!err);
         });
     });
+
+    grunt.registerMultiTask('gitclone', 'Clone repositories.', function () {
+        var options = this.options({
+                bare: false,
+                branch: false,
+                repository: false,
+                directory: false
+            }),
+            done = this.async();,
+            args = ['clone'];
+
+        if (options.bare) {
+            args.push('--bare');
+        }
+
+        if (options.branch) {
+            args.push('--branch ' + options.branch);
+        }
+
+        if (options.repository) {
+            args.push(options.branch);
+        }
+
+        if (options.directory) {
+            args.push(options.directory);
+        }
+
+        grunt.util.spawn({
+            cmd: 'git',
+            args: args
+        }, function (err) {
+            done(!err);
+        });
+    });
 };
