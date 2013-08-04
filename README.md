@@ -235,7 +235,6 @@ grunt.initConfig({
 });
 ```
 
-<<<<<<< HEAD
 ## The "gitclone" task
 
 Clones a git repo.
@@ -326,7 +325,6 @@ grunt.initConfig({
   },
 })
 ```
->>>>>>> upstream/master
 
 Each target defines a specific git task that can be run. The different available tasks are listed below.
 
