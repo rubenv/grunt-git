@@ -235,6 +235,69 @@ grunt.initConfig({
 });
 ```
 
+## The "gitclone" task
+
+Clones a git repo.
+
+### Overview
+In your project's Gruntfile, add a section named `gitclone` to the data object passed into `grunt.initConfig()`.
+
+```js
+grunt.initConfig({
+  gitclone: {
+    your_target: {
+      options: {
+        // Target-specific options go here.
+      }
+    }
+  },
+})
+```
+
+Each target defines a specific git task that can be run. The different available tasks are listed below.
+
+### Options
+
+#### options.bare
+Type: `Boolean`
+Default value: none
+
+Run git clone with the `--bare` option applied.
+
+#### options.branch
+Type: `String`
+Default value: none
+
+Clone the repo with a specific branch checked out. (Cannot be used in conjunction with 'bare')
+
+#### options.repository (required)
+Type: `String`
+Default value: none
+
+The path to the repository you want to clone.
+
+#### options.directory
+Type: `String`
+Default value: none
+
+Clone the repo into a specific directory instead of the one git decides.
+
+### Usage Examples
+
+```js
+grunt.initConfig({
+    gitclone: {
+        clone: {
+            options: {
+                repo: 'https://github.com/you/your-git-repo.git',
+                branch: 'my-branch',
+                directory: 'repo'
+            }
+        }
+    },
+});
+```
+
 ## The "gitreset" task
 
 Creates a git branch using checkout -b, or checks out a given branch.

@@ -118,6 +118,45 @@ module.exports = function (grunt) {
         });
     });
 
+    grunt.registerMultiTask('gitclone', 'Clone repositories.', function () {
+        var options = this.options({
+                bare: false,
+                branch: false,
+                repository: false,
+                directory: false
+            }),
+            done = this.async(),
+            args = ['clone'];
+
+        // repo is the sole required option, allow shorthand
+        if (!options.repository) {
+            grunt.log.error('gitclone tasks requires that you specify a "repository"');
+        }
+
+        if (options.bare) {
+            args.push('--bare');
+        }
+
+        if (options.branch && !options.bare) {
+            args.push('--branch ' + options.branch);
+        }
+
+        // repo comes after the options
+        args.push(options.repo || options.repository);
+
+        // final argument is checkout directory (optional)
+        if (options.directory) {
+            args.push(options.directory);
+        }
+
+        grunt.util.spawn({
+            cmd: 'git',
+            args: args
+        }, function (err) {
+            done(!err);
+        });
+    });
+
     grunt.registerMultiTask('gitreset', 'Reset to the branch HEAD', function () {
         var options = this.options({
             commit: 'HEAD'
