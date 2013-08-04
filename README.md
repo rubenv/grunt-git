@@ -270,7 +270,7 @@ Default value: none
 
 Clone the repo with a specific branch checked out. (Cannot be used in conjunction with 'bare')
 
-#### options.repository
+#### options.repository (required)
 Type: `String`
 Default value: none
 

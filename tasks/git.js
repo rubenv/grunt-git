@@ -129,7 +129,7 @@ module.exports = function (grunt) {
             args = ['clone'];
 
         // repo is the sole required option, allow shorthand
-        if (!options.repo || !options.repository) {
+        if (!options.repository) {
             grunt.log.error('gitclone tasks requires that you specify a "repository"');
         }
 
