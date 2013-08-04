@@ -1,13 +1,19 @@
 {
   "name": "grunt-git",
   "description": "Git commands for grunt.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/rubenv/grunt-git",
   "author": {
     "name": "Ruben Vermeersch",
     "email": "ruben@savanne.be",
     "url": "http://savanne.be/"
   },
+  "contributors": [
+    {
+      "name": "Andrew Pope",
+      "email": "drewii2ii@gmail.com"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/rubenv/grunt-git.git"

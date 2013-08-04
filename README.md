@@ -235,6 +235,7 @@ grunt.initConfig({
 });
 ```
 
+<<<<<<< HEAD
 ## The "gitclone" task
 
 Clones a git repo.
@@ -300,8 +301,63 @@ grunt.initConfig({
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+||||||| merged common ancestors
+## Contributing
+In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+=======
+## The "gitreset" task
 
-## Release History
+Creates a git branch using checkout -b, or checks out a given branch.
 
-* 2013-07-26   v0.1.0   New version, with split commands per task. Bumping minor version due to API breakage.
-* 2013-03-07   v0.0.1   Initial version, which commits files. No API stability or anything promised yet.
+### Overview
+In your project's Gruntfile, add a section named `gitreset` to the data object passed into `grunt.initConfig()`.
+
+```js
+grunt.initConfig({
+  gitreset: {
+    your_target: {
+      options: {
+        // Target-specific options go here.
+      },
+      files: {
+        src: // Target-specific files go here.
+      }
+    }
+  },
+})
+```
+>>>>>>> upstream/master
+
+Each target defines a specific git task that can be run. The different available tasks are listed below.
+
+### Options
+
+#### options.mode
+Type: `String`
+Default value: `''`
+
+The reset mode to run. E.g.: `hard`, `merge`.
+
+#### options.commit
+Type: `String`
+Default value: `'HEAD'`
+
+Which commit to reset to (optional).
+
+### Usage Examples
+
+```js
+grunt.initConfig({
+    gitreset: {
+        task: {
+            options: {
+                mode: 'hard',
+                commit: 'HEAD~1'
+            }
+        }
+    },
+});
+```
+
+## Contributing
+In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
