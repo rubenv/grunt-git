@@ -63,42 +63,125 @@ module.exports = function (grunt) {
             done(!err);
         });
     });
-    
-	grunt.registerMultiTask('gitpush', 'Push to remote.', function() {
-		var options = this.options({
-			branch : '',
-			remote : '',
-			all : false,
-			tags : false
-		});
 
-		var done = this.async();
+    grunt.registerMultiTask('gitcheckout', 'Checkout a git branch.', function () {
+        var options = this.options({
+        });
 
-		var args = ['push'];
+        if (!options.branch) {
+            grunt.log.error('gitcheckout requires a branch parameter.');
+            return;
+        }
 
-		if (options.all) {
-			args.push("--all");
-		}
+        var done = this.async();
 
-		if (options.tags && !options.all) {
-			args.push("--tags");
-		}
+        var args = ["checkout"];
+        if (options.create) {
+            args.push("-b");
+        }
+        args.push(options.branch);
 
-		if (options.remote && options.remote.trim() !== '') {
-			args.push(options.remote);
-		} else {
-			args.push("origin");
-		}
+        grunt.util.spawn({
+            cmd: "git",
+            args: args
+        }, function (err) {
+            done(!err);
+        });
+    });
 
-		if (options.branch && options.branch.trim() !== '') {
-			args.push(options.branch);
-		}
+    grunt.registerMultiTask('gitstash', 'Stash and apply code changes', function () {
+        var options = this.options({
+            command: 'save'
+        });
 
-		grunt.util.spawn({
-			cmd : "git",
-			args : args
-		}, function(err) {
-			done(!err);
-		});
-	});
+        if (!options.command && !options.create) {
+            grunt.log.error('gitstash requires a command parameter.');
+            return;
+        }
+
+        var done = this.async();
+
+        var args = ["stash"];
+        args.push(options.command);
+        if (options.stash) {
+            args.push("stash@{" + options.stash + "}");
+        }
+        if (options.staged) {
+            args.push("--index");
+        }
+
+        grunt.util.spawn({
+            cmd: "git",
+            args: args
+        }, function (err) {
+            done(!err);
+        });
+    });
+
+    grunt.registerMultiTask('gitclone', 'Clone repositories.', function () {
+        var options = this.options({
+                bare: false,
+                branch: false,
+                repository: false,
+                directory: false
+            }),
+            done = this.async(),
+            args = ['clone'];
+
+        // repo is the sole required option, allow shorthand
+        if (!options.repository) {
+            grunt.log.error('gitclone tasks requires that you specify a "repository"');
+        }
+
+        if (options.bare) {
+            args.push('--bare');
+        }
+
+        if (options.branch && !options.bare) {
+            args.push('--branch ' + options.branch);
+        }
+
+        // repo comes after the options
+        args.push(options.repo || options.repository);
+
+        // final argument is checkout directory (optional)
+        if (options.directory) {
+            args.push(options.directory);
+        }
+
+        grunt.util.spawn({
+            cmd: 'git',
+            args: args
+        }, function (err) {
+            done(!err);
+        });
+    });
+
+    grunt.registerMultiTask('gitreset', 'Reset to the branch HEAD', function () {
+        var options = this.options({
+            commit: 'HEAD'
+        });
+
+        var done = this.async();
+
+        var args = ["reset"];
+        if (options.mode) {
+            args.push("--" + options.mode);
+        }
+        args.push(options.commit);
+        if (!options.mode) {
+            this.files.forEach(function (files) {
+                for (var i = 0; i < files.src.length; i++) {
+                    args.push(files.src[i]);
+                }
+            });
+        }
+
+        grunt.util.spawn({
+            cmd: "git",
+            args: args
+        }, function (err) {
+            done(!err);
+        });
+    });
 };
