@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+  - "0.8"
+  - "0.10"
+before_script:
+  - npm install -g grunt-cli
+  - git config --global user.name 'Travis CI'
+  - git config --global user.email 'test@travis-ci.org'
