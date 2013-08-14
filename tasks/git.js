@@ -138,7 +138,8 @@ module.exports = function (grunt) {
         }
 
         if (options.branch && !options.bare) {
-            args.push('--branch ' + options.branch);
+            args.push('--branch');
+            args.push(options.branch);
         }
 
         // repo comes after the options
