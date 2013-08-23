@@ -6,15 +6,16 @@
  * Licensed under the MIT license.
  */
 
-'use strict';
-
 module.exports = function (grunt) {
+    'use strict';
+
     grunt.registerMultiTask('git', 'Execute git commands.', function () {
         grunt.log.error('The git task is deprecated, use gitcommit instead');
     });
 
     grunt.registerMultiTask('gitcommit', 'Commit a git repository.', function () {
         var options = this.options({
+            command: 'commit',
             message: 'Commit'
         });
 
@@ -39,13 +40,21 @@ module.exports = function (grunt) {
 
     grunt.registerMultiTask('gittag', 'Create a git tag.', function () {
         var options = this.options({
-            message: ''
+            message: 'Tag'
         });
 
         if (!options.tag) {
             grunt.log.error('gittag requires a tag parameter.');
             return;
         }
+        var logError = function (error, result, code) {
+            if (error) {
+                grunt.log.error(error.text || result.stdout);
+                done(false);
+            } else {
+                done();
+            }
+        };
 
         var done = this.async();
 
@@ -64,9 +73,61 @@ module.exports = function (grunt) {
         });
     });
 
+    grunt.registerMultiTask('gitpush', 'Push to remote.', function() {
+      var options = this.options({
+        branch : '',
+        remote : '',
+        all : false,
+        tags : false
+      });
+
+      var done = this.async();
+
+      var args = ['push'];
+
+      if (options.all) {
+        args.push("--all");
+      }
+
+      if (options.tags && !options.all) {
+        args.push("--tags");
+      }
+
+      if (options.remote && options.remote.trim() == '') {
+        options.remote = "origin";
+      }
+      args.push(options.remote);
+
+      if (options.branch && options.branch.trim() !== '') {
+        args.push(options.branch);
+      }
+
+      grunt.util.spawn({
+        cmd : "git",
+        args : args
+      }, function(err) {
+        done(!err);
+      });
+    });
+
     grunt.registerMultiTask('gitcheckout', 'Checkout a git branch.', function () {
         var options = this.options({
         });
+                var addFile = function (file, callback) {
+                    grunt.util.spawn({
+                        cmd: 'git',
+                        args: ['add', file.src]
+                    }, callback);
+                };
+
+                grunt.util.async.forEach(this.files, addFile, function (error) {
+                    grunt.util.spawn({
+                        cmd: 'git',
+                        args: ['commit', '-m', options.message]
+                    }, logError);
+                });
+
+                break;
 
         if (!options.branch) {
             grunt.log.error('gitcheckout requires a branch parameter.');
@@ -81,13 +142,12 @@ module.exports = function (grunt) {
         }
         args.push(options.branch);
 
-        grunt.util.spawn({
-            cmd: "git",
-            args: args
-        }, function (err) {
-            done(!err);
-        });
-    });
+                grunt.util.spawn({
+                    cmd: 'git',
+                    args: ['tag', '-a', options.tag, '-m', options.message]
+                }, logError);
+
+                break;
 
     grunt.registerMultiTask('gitstash', 'Stash and apply code changes', function () {
         var options = this.options({
@@ -97,6 +157,40 @@ module.exports = function (grunt) {
         if (!options.command && !options.create) {
             grunt.log.error('gitstash requires a command parameter.');
             return;
+
+            var addFile = function (file, cb) {
+                grunt.util.spawn({
+                    cmd: "git",
+                    args: ["add", file.src]
+                }, cb);
+            };
+
+            grunt.util.async.forEach(this.files, addFile, function (err) {
+                grunt.util.spawn({
+                    cmd: "git",
+                    args: ["commit", "-m", options.message]
+                }, function (err) {
+                    done(!err);
+                });
+            }, logError);
+        } else if (options.command === 'push') {
+            done = this.async();
+            
+            grunt.util.spawn({
+                cmd: "git",
+                args: ["push", "--all"]
+            }, function (err) {
+                done(!err);
+            }, logError);
+        } else if (options.command === 'tag') {
+            done = this.async();
+            
+            grunt.util.spawn({
+                cmd: 'git',
+                args: ['tag', '-a', options.tag, '-m', options.message]
+            }, logError);
+        } else {
+            grunt.log.error('No or unknown command specified: ' + options.command);
         }
 
         var done = this.async();
@@ -185,4 +279,42 @@ module.exports = function (grunt) {
             done(!err);
         });
     });
+    
+	grunt.registerMultiTask('gitpush', 'Push to remote.', function() {
+		var options = this.options({
+			branch : '',
+			remote : '',
+			all : false,
+			tags : false
+		});
+
+		var done = this.async();
+
+		var args = ['push'];
+
+		if (options.all) {
+			args.push("--all");
+		}
+
+		if (options.tags && !options.all) {
+			args.push("--tags");
+		}
+
+		if (options.remote && options.remote.trim() !== '') {
+			args.push(options.remote);
+		} else {
+			args.push("origin");
+		}
+
+		if (options.branch && options.branch.trim() !== '') {
+			args.push(options.branch);
+		}
+
+		grunt.util.spawn({
+			cmd : "git",
+			args : args
+		}, function(err) {
+			done(!err);
+		});
+	});
 };
