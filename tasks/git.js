@@ -64,6 +64,43 @@ module.exports = function (grunt) {
         });
     });
 
+    grunt.registerMultiTask('gitpush', 'Push to remote.', function() {
+      var options = this.options({
+        branch : '',
+        remote : '',
+        all : false,
+        tags : false
+      });
+
+      var done = this.async();
+
+      var args = ['push'];
+
+      if (options.all) {
+        args.push("--all");
+      }
+
+      if (options.tags && !options.all) {
+        args.push("--tags");
+      }
+
+      if (options.remote && options.remote.trim() == '') {
+        options.remote = "origin";
+      }
+      args.push(options.remote);
+
+      if (options.branch && options.branch.trim() !== '') {
+        args.push(options.branch);
+      }
+
+      grunt.util.spawn({
+        cmd : "git",
+        args : args
+      }, function(err) {
+        done(!err);
+      });
+    });
+
     grunt.registerMultiTask('gitcheckout', 'Checkout a git branch.', function () {
         var options = this.options({
         });
