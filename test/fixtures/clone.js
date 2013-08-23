@@ -5,7 +5,14 @@ module.exports = function (grunt) {
         gitclone: {
             clone: {
                 options: {
-                    repo: 'https://github.com/mattacular/gitclone-test.git'
+                    repo: 'https://github.com/rubenv/gitclone-test.git'
+                }
+            },
+            branch: {
+                options: {
+                    repo: 'https://github.com/rubenv/gitclone-test.git',
+                    branch: 'test',
+                    directory: 'gitclone-branch'
                 }
             }
         },

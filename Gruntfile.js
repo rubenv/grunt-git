@@ -30,7 +30,8 @@ module.exports = function (grunt) {
             },
             spec: {
                 options: {
-                    reporter: 'spec'
+                    reporter: 'spec',
+                    timeout: 10000
                 }
             }
         },
