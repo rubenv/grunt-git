@@ -26,6 +26,14 @@ describe('clone', function () {
     it('should have cloned the repo', function (done) {
         fs.readFile('tmp/clone/gitclone-test/README.md', 'utf8', function (err, data) {
             assert.equal(data.substring(0, 13), 'gitclone-test');
+            assert(!data.match(/This is the test branch/));
+            done();
+        });
+    });
+
+    it('should have checked out the branch', function (done) {
+        fs.readFile('tmp/clone/gitclone-branch/README.md', 'utf8', function (err, data) {
+            assert(data.match(/This is the test branch/));
             done();
         });
     });
