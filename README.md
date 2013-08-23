@@ -350,5 +350,50 @@ grunt.initConfig({
 });
 ```
 
+## The "gitpush" task
+
+Pushes to a remote.
+
+### Overview
+In your project's Gruntfile, add a section named `gitcommit` to the data object passed into `grunt.initConfig()`.
+
+```js
+grunt.initConfig({
+  gitpush: {
+    your_target: {
+      options: {
+        // Target-specific options go here.
+      }
+  },
+})
+```
+
+### Options
+
+#### options.remote
+Type: `String`
+Default value: `''`
+
+The remote where to push. E.g.: `origin`, `heroku`. The task will push to `origin` if left unset.
+
+#### options.branch
+Type: `String`
+Default value: `''`
+
+The remote branch to push to. E.g.: `master`, `develop`. The task will push to the tracked branch if left unset.
+
+#### options.all
+Type: `Boolean`
+Default value: `false`
+
+Will add the `--all` flag to the push.
+
+#### options.tags
+Type: `Boolean`
+Default value: `false`
+
+Will add the `--tags` flag to the push. Cannot be used together with `options.all`.
+
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
