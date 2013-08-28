@@ -15,7 +15,8 @@ module.exports = function (grunt) {
 
     grunt.registerMultiTask('gitcommit', 'Commit a git repository.', function () {
         var options = this.options({
-            message: 'Commit'
+            message: 'Commit',
+            ignoreEmpty: false
         });
 
         var done = this.async();
@@ -27,12 +28,31 @@ module.exports = function (grunt) {
             }, cb);
         };
 
-        grunt.util.async.forEach(this.files, addFile, function (err) {
+        var checkStaged = function (cb) {
+            grunt.util.spawn({
+                cmd: "git",
+                args: ["diff", "--cached", "--exit-code"]
+            }, function (err, result, code) {
+                cb(code);
+            });
+        };
+
+        var commit = function (cb) {
             grunt.util.spawn({
                 cmd: "git",
                 args: ["commit", "-m", options.message]
             }, function (err) {
-                done(!err);
+                cb(!err);
+            });
+        };
+
+        grunt.util.async.forEach(this.files, addFile, function (err) {
+            checkStaged(function (staged) {
+                if (!options.ignoreEmpty || staged) {
+                    commit(function (err) {
+                        done(err);
+                    });
+                }
             });
         });
     });
