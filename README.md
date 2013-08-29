@@ -51,6 +51,12 @@ Default value: `'Commit'`
 
 The commit message.
 
+#### options.ignoreEmpty
+Type: `Boolean`
+Default value: `false`
+
+When `true`, the task will not fail when there are no staged changes (optional).
+
 ### Usage Examples
 
 Commit options:
