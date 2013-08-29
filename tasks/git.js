@@ -49,11 +49,8 @@ module.exports = function (grunt) {
         grunt.util.async.forEach(this.files, addFile, function (err) {
             checkStaged(function (staged) {
                 if (!options.ignoreEmpty || staged) {
-                    commit(function (err) {
-                        done(err);
-                    });
-                }
-                else {
+                    commit(done);
+                } else {
                     done();
                 }
             });
