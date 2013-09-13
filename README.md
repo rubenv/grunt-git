@@ -295,7 +295,7 @@ grunt.initConfig({
     gitclone: {
         clone: {
             options: {
-                repo: 'https://github.com/you/your-git-repo.git',
+                repository: 'https://github.com/you/your-git-repo.git',
                 branch: 'my-branch',
                 directory: 'repo'
             }
