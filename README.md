@@ -181,7 +181,7 @@ grunt.initConfig({
 
 ## The "gitstash" task
 
-Creates a git branch using checkout -b, or checks out a given branch.
+Stash the changes in a dirty working directory away.
 
 ### Overview
 In your project's Gruntfile, add a section named `gitstash` to the data object passed into `grunt.initConfig()`.
