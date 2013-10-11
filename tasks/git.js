@@ -70,16 +70,24 @@ module.exports = function (grunt) {
         var done = this.async();
 
         var args = ["tag"];
+
+        if (this.flags.force || options.force) {
+            args.push("-f");
+        }
+
         if (options.message && options.message.trim() !== '') {
             args.push("-m");
             args.push(options.message);
         }
         args.push(options.tag);
 
+        grunt.log.writeln('Tagging ' + options.tag + ' : ' + (options.message || '[blank]'));
+
         grunt.util.spawn({
             cmd: "git",
             args: args
         }, function (err) {
+            if (err) grunt.log.error(err);
             done(!err);
         });
     });
