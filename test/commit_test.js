@@ -37,4 +37,17 @@ describe('commit', function () {
             done();
         });
     });
+
+    describe('prompt', function () {
+        before(function (done) {
+            common.setupAndRun('commit_prompt_message', function (err, r) {
+                repo = r;
+                done(err);
+            });
+        });
+
+        it('should not fail when there are no unstaged changes', function (done) {
+            done();
+        });
+    });
 });
