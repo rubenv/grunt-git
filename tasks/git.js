@@ -7,6 +7,7 @@
  */
 
 'use strict';
+var prompt = require('prompt');
 
 module.exports = function (grunt) {
     grunt.registerMultiTask('git', 'Execute git commands.', function () {
@@ -15,9 +16,11 @@ module.exports = function (grunt) {
 
     grunt.registerMultiTask('gitcommit', 'Commit a git repository.', function () {
         var options = this.options({
-            message: 'Commit',
             ignoreEmpty: false
         });
+        if (options.message !== 'PROMPT') {
+            options.message = 'Commit';
+        }
 
         var done = this.async();
 
@@ -49,7 +52,14 @@ module.exports = function (grunt) {
         grunt.util.async.forEach(this.files, addFile, function (err) {
             checkStaged(function (staged) {
                 if (!options.ignoreEmpty || staged) {
-                    commit(done);
+                    if (options.message !== 'PROMPT') {
+                        commit(done);
+                    } else {
+                        prompt.get(['message'], function (err, result) {
+                            options.message = result.message;
+                            commit(done);
+                        });
+                    }
                 } else {
                     done();
                 }

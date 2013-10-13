@@ -39,7 +39,8 @@
     "grunt-contrib-clean": "~0.4.0",
     "grunt": "~0.4.0",
     "grunt-mocha-cli": "~1.0.1",
-    "grunt-release": "~0.3.5"
+    "grunt-release": "~0.3.5",
+    "prompt": "~0.2.11"
   },
   "peerDependencies": {
     "grunt": "~0.4.0"
