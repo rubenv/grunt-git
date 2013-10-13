@@ -7,7 +7,10 @@ var child_process = require('child_process');
 
 describe('clone', function () {
     var repo = null;
-
+    after(function (done) {
+        grunt.file.delete('tmp/clone');
+        done();
+    });
     before(function (done) {
         grunt.file.mkdir('tmp');
         grunt.file.mkdir('tmp/clone');
@@ -18,7 +21,7 @@ describe('clone', function () {
             'opts': {
                 'cwd': 'tmp/clone'
             }
-        }, function () { 
+        }, function () {
             done();
         });
     });
