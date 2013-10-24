@@ -17,10 +17,10 @@ module.exports = function (grunt) {
      *  options:
      *    - branch : branch to be rebased onto
      *    - theirs : use --strategy=recursive -Xtheirs
-     *      defaults to true
      */
     grunt.registerMultiTask('gitrebase', 'Rebase a branch onto another branch.', function () {
         var options = this.options({
+            theirs : false
         });
 
         if (!options.branch) {
@@ -31,7 +31,7 @@ module.exports = function (grunt) {
         var done = this.async();
         var args = ["rebase"];
 
-        if (options.theirs === undefined || options.theirs === true) {
+        if (options.theirs === true) {
             args.push('--strategy=recursive', '-Xtheirs');
         }
 

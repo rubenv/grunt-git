@@ -91,7 +91,7 @@ the name of the branch you want to rebase **on to**.  For example if the current
 
 #### options.theirs
 Type: `Boolean`
-	Default value: `true`
+	Default value: `false`
 
 When true, use the git equivalent of svn's `theirs-conflict` (`--strategy=recursive -Xtheirs`).
 
