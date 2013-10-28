@@ -12,10 +12,18 @@ module.exports = function (grunt) {
 
     // Project configuration.
     grunt.initConfig({
+        watch: {
+            dev: {
+                files: ['tasks/*.js', 'lib/*.js', 'test/*.js'],
+                tasks: ['jshint', 'test']
+            }
+        },
+
         jshint: {
             all: [
                 'Gruntfile.js',
                 'tasks/*.js',
+                'lib/*.js',
                 'test/*.js',
                 'test/fixtures/*.js'
             ],
@@ -48,6 +56,7 @@ module.exports = function (grunt) {
     // These plugins provide necessary tasks.
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-mocha-cli');
     grunt.loadNpmTasks('grunt-release');
 
