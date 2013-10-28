@@ -8,54 +8,38 @@
 
 'use strict';
 
+var commands = require('../lib/commands');
+
 module.exports = function (grunt) {
+    function exec() {
+        var args = Array.prototype.slice.call(arguments);
+        var callback = args.pop();
+
+        grunt.util.spawn({
+            cmd: 'git',
+            args: args
+        }, function () {
+            console.log(args);
+            console.log(arguments);
+            callback.apply(this, arguments);
+        });
+    }
+
+    function wrapCommand(fn) {
+        return function () {
+            var done = this.async();
+            fn(this, exec, done);
+        };
+    }
+
     grunt.registerMultiTask('git', 'Execute git commands.', function () {
         grunt.log.error('The git task is deprecated, use gitcommit instead');
     });
 
-    grunt.registerMultiTask('gitcommit', 'Commit a git repository.', function () {
-        var options = this.options({
-            message: 'Commit',
-            ignoreEmpty: false
-        });
-
-        var done = this.async();
-
-        var addFile = function (file, cb) {
-            grunt.util.spawn({
-                cmd: "git",
-                args: ["add", file.src]
-            }, cb);
-        };
-
-        var checkStaged = function (cb) {
-            grunt.util.spawn({
-                cmd: "git",
-                args: ["diff", "--cached", "--exit-code"]
-            }, function (err, result, code) {
-                cb(code);
-            });
-        };
-
-        var commit = function (cb) {
-            grunt.util.spawn({
-                cmd: "git",
-                args: ["commit", "-m", options.message]
-            }, function (err) {
-                cb(!err);
-            });
-        };
-
-        grunt.util.async.forEach(this.files, addFile, function (err) {
-            checkStaged(function (staged) {
-                if (!options.ignoreEmpty || staged) {
-                    commit(done);
-                } else {
-                    done();
-                }
-            });
-        });
-    });
+    for (var command in commands) {
+        var fn = commands[command];
+        grunt.registerMultiTask("git" + command, fn.description || "", wrapCommand(fn));
+    }
 
     grunt.registerMultiTask('gittag', 'Create a git tag.', function () {
         var options = this.options({
@@ -132,46 +116,6 @@ module.exports = function (grunt) {
 
         grunt.util.spawn({
             cmd: "git",
-            args: args
-        }, function (err) {
-            done(!err);
-        });
-    });
-
-    grunt.registerMultiTask('gitclone', 'Clone repositories.', function () {
-        var options = this.options({
-                bare: false,
-                branch: false,
-                repository: false,
-                directory: false
-            }),
-            done = this.async(),
-            args = ['clone'];
-
-        // repo is the sole required option, allow shorthand
-        if (!options.repository) {
-            grunt.log.error('gitclone tasks requires that you specify a "repository"');
-        }
-
-        if (options.bare) {
-            args.push('--bare');
-        }
-
-        if (options.branch && !options.bare) {
-            args.push('--branch');
-            args.push(options.branch);
-        }
-
-        // repo comes after the options
-        args.push(options.repo || options.repository);
-
-        // final argument is checkout directory (optional)
-        if (options.directory) {
-            args.push(options.directory);
-        }
-
-        grunt.util.spawn({
-            cmd: 'git',
             args: args
         }, function (err) {
             done(!err);

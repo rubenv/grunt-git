@@ -1,40 +1,49 @@
 'use strict';
 
-var fs = require('fs');
-var grunt = require('grunt');
-var assert = require('assert');
-var child_process = require('child_process');
+var command = require('../lib/command_clone');
+var Test = require('./_common');
 
 describe('clone', function () {
-    var repo = null;
+    it('should clone the repo', function (done) {
+        var options = {
+            repository: 'https://github.com/rubenv/gitclone-test.git'
+        };
 
-    before(function (done) {
-        grunt.file.mkdir('tmp');
-        grunt.file.mkdir('tmp/clone');
-        grunt.file.copy('test/fixtures/clone.js', 'tmp/clone/Gruntfile.js');
-
-        grunt.util.spawn({
-            'cmd': 'grunt',
-            'opts': {
-                'cwd': 'tmp/clone'
-            }
-        }, function () { 
-            done();
-        });
-    });
-
-    it('should have cloned the repo', function (done) {
-        fs.readFile('tmp/clone/gitclone-test/README.md', 'utf8', function (err, data) {
-            assert.equal(data.substring(0, 13), 'gitclone-test');
-            assert(!data.match(/This is the test branch/));
-            done();
-        });
+        new Test(command, options)
+            .expect(["clone", "https://github.com/rubenv/gitclone-test.git"])
+            .run(done);
     });
 
     it('should have checked out the branch', function (done) {
-        fs.readFile('tmp/clone/gitclone-branch/README.md', 'utf8', function (err, data) {
-            assert(data.match(/This is the test branch/));
-            done();
-        });
+        var options = {
+            repository: 'https://github.com/rubenv/gitclone-test.git',
+            branch: 'test'
+        };
+
+        new Test(command, options)
+            .expect(["clone", "--branch", "test", "https://github.com/rubenv/gitclone-test.git"])
+            .run(done);
+    });
+
+    it('should clone in the chose directory', function (done) {
+        var options = {
+            repository: 'https://github.com/rubenv/gitclone-test.git',
+            directory: 'out'
+        };
+
+        new Test(command, options)
+            .expect(["clone", "https://github.com/rubenv/gitclone-test.git", "out"])
+            .run(done);
+    });
+
+    it('should make a bare copy', function (done) {
+        var options = {
+            repository: 'https://github.com/rubenv/gitclone-test.git',
+            bare: true
+        };
+
+        new Test(command, options)
+            .expect(["clone", "--bare", "https://github.com/rubenv/gitclone-test.git"])
+            .run(done);
     });
 });

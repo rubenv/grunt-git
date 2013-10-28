@@ -1,40 +1,62 @@
 'use strict';
 
-var grunt = require('grunt');
-var assert = require('assert');
-var common = require('./common');
+var command = require('../lib/command_commit');
+var Test = require('./_common');
+
 
 describe('commit', function () {
-    var repo = null;
+    it('should commit', function (done) {
+        var options = {
+            ignoreEmpty: true
+        };
 
-    before(function (done) {
-        common.setupAndRun('commit', function (err, r) {
-            repo = r;
-            done(err);
-        });
-    });
+        var files = [
+            "test.txt",
+            "test2.txt"
+        ];
 
-    it('should commit', function () {
-        assert.notEqual(repo.initialRef, repo.currentRef);
+        new Test(command, options, files)
+            .expect(["add", "test.txt"])
+            .expect(["add", "test2.txt"])
+            .expect(["diff", "--cached", "--exit-code"], [null, "diff", 1])
+            .expect(["commit", "-m", "Commit"])
+            .run(done);
     });
 
     it('should use the specified commit message', function (done) {
-        repo.readCommitMessage(function (err, message) {
-            assert.equal(message, 'Testing');
-            done();
-        });
+        var options = {
+            message: 'Testing!'
+        };
+
+        var files = [
+            "test.txt"
+        ];
+
+        new Test(command, options, files)
+            .expect(["add", "test.txt"])
+            .expect(["diff", "--cached", "--exit-code"], [null, "diff", 1])
+            .expect(["commit", "-m", "Testing!"])
+            .run(done);
     });
 
-    describe('ignore empty', function () {
-        before(function (done) {
-            common.setupAndRun('commit_ignore_empty', function (err, r) {
-                repo = r;
-                done(err);
-            });
-        });
+    it('should not fail when there are no unstaged changes', function (done) {
+        var options = {
+            ignoreEmpty: false
+        };
 
-        it('should not fail when there are no unstaged changes', function (done) {
-            done();
-        });
+        new Test(command, options)
+            .expect(["diff", "--cached", "--exit-code"], [null, "", 0])
+            .expect(["commit", "-m", "Commit"])
+            .run(done);
+    });
+
+    it('should not commit when there are no unstaged changes', function (done) {
+        var options = {
+            ignoreEmpty: true
+        };
+
+        new Test(command, options)
+            .expect(["diff", "--cached", "--exit-code"], [null, "", 0])
+            .run(done);
     });
 });
