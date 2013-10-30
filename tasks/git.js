@@ -19,8 +19,6 @@ module.exports = function (grunt) {
             cmd: 'git',
             args: args
         }, function () {
-            console.log(args);
-            console.log(arguments);
             callback.apply(this, arguments);
         });
     }
