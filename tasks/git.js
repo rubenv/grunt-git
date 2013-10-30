@@ -41,33 +41,6 @@ module.exports = function (grunt) {
         grunt.registerMultiTask("git" + command, fn.description || "", wrapCommand(fn));
     }
 
-    grunt.registerMultiTask('gittag', 'Create a git tag.', function () {
-        var options = this.options({
-            message: ''
-        });
-
-        if (!options.tag) {
-            grunt.log.error('gittag requires a tag parameter.');
-            return;
-        }
-
-        var done = this.async();
-
-        var args = ["tag"];
-        if (options.message && options.message.trim() !== '') {
-            args.push("-m");
-            args.push(options.message);
-        }
-        args.push(options.tag);
-
-        grunt.util.spawn({
-            cmd: "git",
-            args: args
-        }, function (err) {
-            done(!err);
-        });
-    });
-
     grunt.registerMultiTask('gitcheckout', 'Checkout a git branch.', function () {
         var options = this.options({
         });

@@ -1,34 +1,27 @@
 'use strict';
 
-var fs = require('fs');
-var grunt = require('grunt');
-var assert = require('assert');
-var common = require('./common');
+var command = require('../lib/command_tag');
+var Test = require('./_common');
 
 describe('tag', function () {
-    var repo = null;
-    var tagexists = null;
-    var tagref = null;
-
-    before(function (done) {
-        var fetchtag = function (repo, cb) {
-            fs.exists(repo.path + '/.git/refs/tags/0.0.1', function (e) {
-                tagexists = e;
-                assert.equal(tagexists, false);
-                cb();
-            });
+    it('should create tag', function (done) {
+        var options = {
+            tag: '0.0.1'
         };
 
-        common.setupAndRun('tag', fetchtag, function (err, r) {
-            repo = r;
-            done(err);
-        });
+        new Test(command, options)
+            .expect(["tag", "0.0.1"])
+            .run(done);
     });
 
-    it('should create tag', function (done) {
-        fs.exists(repo.path + '/.git/refs/tags/0.0.1', function (e) {
-            assert.equal(e, true);
-            done();
-        });
+    it('should tag with message', function (done) {
+        var options = {
+            tag: '0.0.1',
+            message: 'Test'
+        };
+
+        new Test(command, options)
+            .expect(["tag", "-m", "Test", "0.0.1"])
+            .run(done);
     });
 });
