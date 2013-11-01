@@ -13,6 +13,38 @@ module.exports = function (grunt) {
         grunt.log.error('The git task is deprecated, use gitcommit instead');
     });
 
+    /**
+     *  options:
+     *    - branch : branch to be rebased onto
+     *    - theirs : use --strategy=recursive -Xtheirs
+     */
+    grunt.registerMultiTask('gitrebase', 'Rebase a branch onto another branch.', function () {
+        var options = this.options({
+            theirs : false
+        });
+
+        if (!options.branch) {
+            grunt.log.error('gitrebase requires a branch parameter.');
+            return;
+        }
+
+        var done = this.async();
+        var args = ["rebase"];
+
+        if (options.theirs === true) {
+            args.push('--strategy=recursive', '-Xtheirs');
+        }
+
+        args.push(options.branch);
+
+        grunt.util.spawn({
+            cmd: "git",
+            args: args
+        }, function (err) {
+            done(!err);
+        });
+    });
+
     grunt.registerMultiTask('gitcommit', 'Commit a git repository.', function () {
         var options = this.options({
             message: 'Commit',
