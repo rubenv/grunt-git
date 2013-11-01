@@ -1,40 +1,17 @@
 'use strict';
 
 var grunt = require('grunt');
-
-function handleSpawnOutput(command, args, cb) {
-    return function (err, result) {
-        if (!err) {
-            cb();
-        } else {
-            cb(new Error(command  + JSON.stringify(args) + ': ' + JSON.stringify(result)));
-        }
-    };
-}
-
-function runCommand(folder, command, args, cb) {
-    grunt.util.spawn({
-        cmd: command,
-        args: args,
-        opts: {
-            cwd: folder
-        }
-    }, handleSpawnOutput(command, args, cb));
-}
-
-function genCommand(folder, command, args) {
-    return function (cb) {
-        runCommand(folder, command, args, cb);
-    };
-}
+var u = require('./utils');
 
 function Repo(path) {
     return {
         path: path,
-        readCommitMessage: function (cb) {
+        readCommitMessage: function (cb, o) {
+            //read `ref` option or default to commit
+            var ref = (o && o.ref) ? o.ref : "HEAD";
             grunt.util.spawn({
                 cmd: "git",
-                args: ["log", "--format=format:%s", "HEAD^.."],
+                args: ["show", "-s", "--format=format:%s", ref],
                 opts: {
                     cwd: this.path
                 }
@@ -64,15 +41,15 @@ module.exports = {
         grunt.file.copy('test/fixtures/' + fixture + '.js', repo.path + '/Gruntfile.js');
 
         grunt.util.async.series([
-            genCommand(repo.path, 'git', ['init']),
-            genCommand(repo.path, 'git', ['add', '.']),
-            genCommand(repo.path, 'git', ['commit', '-m', 'Initial commit']),
+            u.genCommand(repo.path, 'git', ['init']),
+            u.genCommand(repo.path, 'git', ['add', '.']),
+            u.genCommand(repo.path, 'git', ['commit', '-m', 'Initial commit']),
             function (cb) {
                 repo.initialRef = grunt.file.read(repo.path + '/.git/refs/heads/master').trim();
                 cb();
             },
             function (cb) { before(repo, cb); },
-            genCommand(repo.path, 'grunt'),
+            u.genCommand(repo.path, 'grunt'),
             function (cb) {
                 repo.currentRef = grunt.file.read(repo.path + '/.git/refs/heads/master').trim();
                 cb();
