@@ -39,31 +39,6 @@ module.exports = function (grunt) {
         grunt.registerMultiTask("git" + command, fn.description || "", wrapCommand(fn));
     }
 
-    grunt.registerMultiTask('gitcheckout', 'Checkout a git branch.', function () {
-        var options = this.options({
-        });
-
-        if (!options.branch) {
-            grunt.log.error('gitcheckout requires a branch parameter.');
-            return;
-        }
-
-        var done = this.async();
-
-        var args = ["checkout"];
-        if (options.create) {
-            args.push("-b");
-        }
-        args.push(options.branch);
-
-        grunt.util.spawn({
-            cmd: "git",
-            args: args
-        }, function (err) {
-            done(!err);
-        });
-    });
-
     grunt.registerMultiTask('gitstash', 'Stash and apply code changes', function () {
         var options = this.options({
             command: 'save'
