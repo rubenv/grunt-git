@@ -79,6 +79,36 @@ grunt.initConfig({
 });
 ```
 
+## The "gitrebase" task
+
+Rebases the current branch onto another branch
+
+### Options
+
+#### options.branch (required)
+Type: `String`
+the name of the branch you want to rebase **on to**.  For example if the current branch were `codfish` and you wanted to rebase it onto `master`, you would set this value to `master`.
+
+#### options.theirs
+Type: `Boolean`
+	Default value: `false`
+
+When true, use the git equivalent of svn's `theirs-conflict` (`--strategy=recursive -Xtheirs`).
+
+### Usage Examples
+
+```js
+grunt.initConfig({
+  gitrebase: {
+    task: {
+      options: {
+        branch: 'master'
+      }
+    }
+  },
+});
+```
+
 ## The "gittag" task
 
 Creates a git tag.
