@@ -30,10 +30,6 @@ module.exports = function (grunt) {
         };
     }
 
-    grunt.registerMultiTask('git', 'Execute git commands.', function () {
-        grunt.log.error('The git task is deprecated, use gitcommit instead');
-    });
-
     for (var command in commands) {
         var fn = commands[command];
         grunt.registerMultiTask("git" + command, fn.description || "", wrapCommand(fn));
