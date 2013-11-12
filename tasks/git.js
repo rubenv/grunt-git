@@ -35,34 +35,6 @@ module.exports = function (grunt) {
         grunt.registerMultiTask("git" + command, fn.description || "", wrapCommand(fn));
     }
 
-    grunt.registerMultiTask('gitreset', 'Reset to the branch HEAD', function () {
-        var options = this.options({
-            commit: 'HEAD'
-        });
-
-        var done = this.async();
-
-        var args = ["reset"];
-        if (options.mode) {
-            args.push("--" + options.mode);
-        }
-        args.push(options.commit);
-        if (!options.mode) {
-            this.files.forEach(function (files) {
-                for (var i = 0; i < files.src.length; i++) {
-                    args.push(files.src[i]);
-                }
-            });
-        }
-
-        grunt.util.spawn({
-            cmd: "git",
-            args: args
-        }, function (err) {
-            done(!err);
-        });
-    });
-
     /**
      *  options:
      *    - branch : branch to be rebased onto
