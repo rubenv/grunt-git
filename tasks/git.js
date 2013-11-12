@@ -35,35 +35,6 @@ module.exports = function (grunt) {
         grunt.registerMultiTask("git" + command, fn.description || "", wrapCommand(fn));
     }
 
-    grunt.registerMultiTask('gitstash', 'Stash and apply code changes', function () {
-        var options = this.options({
-            command: 'save'
-        });
-
-        if (!options.command && !options.create) {
-            grunt.log.error('gitstash requires a command parameter.');
-            return;
-        }
-
-        var done = this.async();
-
-        var args = ["stash"];
-        args.push(options.command);
-        if (options.stash) {
-            args.push("stash@{" + options.stash + "}");
-        }
-        if (options.staged) {
-            args.push("--index");
-        }
-
-        grunt.util.spawn({
-            cmd: "git",
-            args: args
-        }, function (err) {
-            done(!err);
-        });
-    });
-
     grunt.registerMultiTask('gitreset', 'Reset to the branch HEAD', function () {
         var options = this.options({
             commit: 'HEAD'
