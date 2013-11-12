@@ -23,4 +23,18 @@ describe('reset', function () {
             .expect(["reset", "--hard", "HEAD~1"])
             .run(done);
     });
+
+    it('should reset files', function (done) {
+        var options = {
+        };
+
+        var files = [
+            'a.txt',
+            'b.txt'
+        ];
+
+        new Test(command, options, files)
+            .expect(["reset", "HEAD", "a.txt", "b.txt"])
+            .run(done);
+    });
 });
