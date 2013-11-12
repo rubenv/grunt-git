@@ -34,36 +34,4 @@ module.exports = function (grunt) {
         var fn = commands[command];
         grunt.registerMultiTask("git" + command, fn.description || "", wrapCommand(fn));
     }
-
-    /**
-     *  options:
-     *    - branch : branch to be rebased onto
-     *    - theirs : use --strategy=recursive -Xtheirs
-     */
-    grunt.registerMultiTask('gitrebase', 'Rebase a branch onto another branch.', function () {
-        var options = this.options({
-            theirs : false
-        });
-
-        if (!options.branch) {
-            grunt.log.error('gitrebase requires a branch parameter.');
-            return;
-        }
-
-        var done = this.async();
-        var args = ["rebase"];
-
-        if (options.theirs === true) {
-            args.push('--strategy=recursive', '-Xtheirs');
-        }
-
-        args.push(options.branch);
-
-        grunt.util.spawn({
-            cmd: "git",
-            args: args
-        }, function (err) {
-            done(!err);
-        });
-    });
 };
