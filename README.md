@@ -198,7 +198,7 @@ Whether the branch should be created (optional).
 
 ```js
 grunt.initConfig({
-    gittag: {
+    gitcheckout: {
         task: {
             options: {
                 branch: 'testing',
