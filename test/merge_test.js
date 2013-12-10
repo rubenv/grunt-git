@@ -34,5 +34,5 @@ describe('merge', function () {
         new Test(command, options)
             .expect(["merge", "origin/master", "--squash"])
             .run(done);
-    })
+    });
 });
