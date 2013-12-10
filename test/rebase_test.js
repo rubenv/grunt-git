@@ -1,6 +1,6 @@
 'use strict';
 
-var command = require('../lib/command_rebase');
+var command = require('../lib/commands').rebase;
 var Test = require('./_common');
 
 describe('rebase', function () {

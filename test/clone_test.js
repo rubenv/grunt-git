@@ -1,6 +1,6 @@
 'use strict';
 
-var command = require('../lib/command_clone');
+var command = require('../lib/commands').clone;
 var Test = require('./_common');
 
 describe('clone', function () {

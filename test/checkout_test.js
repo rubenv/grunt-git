@@ -1,6 +1,6 @@
 'use strict';
 
-var command = require('../lib/command_checkout');
+var command = require('../lib/commands').checkout;
 var Test = require('./_common');
 
 describe('checkout', function () {

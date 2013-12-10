@@ -1,6 +1,6 @@
 'use strict';
 
-var command = require('../lib/command_stash');
+var command = require('../lib/commands').stash;
 var Test = require('./_common');
 
 describe('stash', function () {

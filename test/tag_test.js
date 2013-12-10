@@ -1,6 +1,6 @@
 'use strict';
 
-var command = require('../lib/command_tag');
+var command = require('../lib/commands').tag;
 var Test = require('./_common');
 
 describe('tag', function () {

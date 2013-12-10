@@ -1,6 +1,6 @@
 'use strict';
 
-var command = require('../lib/command_reset');
+var command = require('../lib/commands').reset;
 var Test = require('./_common');
 
 describe('reset', function () {

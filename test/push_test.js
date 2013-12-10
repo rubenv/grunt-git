@@ -1,6 +1,6 @@
 'use strict';
 
-var command = require('../lib/command_push');
+var command = require('../lib/commands').push;
 var Test = require('./_common');
 
 describe('push', function () {

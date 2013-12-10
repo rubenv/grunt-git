@@ -1,6 +1,6 @@
 'use strict';
 
-var command = require('../lib/command_commit');
+var command = require('../lib/commands').commit;
 var Test = require('./_common');
 
 

@@ -1,6 +1,6 @@
 'use strict';
 
-var command = require('../lib/command_merge');
+var command = require('../lib/commands').merge;
 var Test = require('./_common');
 
 describe('merge', function () {
