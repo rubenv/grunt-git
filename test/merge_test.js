@@ -1,27 +1,38 @@
 'use strict';
 
-var command = require('../lib/command_rebase');
+var command = require('../lib/command_merge');
 var Test = require('./_common');
 
-describe('rebase', function () {
-    it('should rebase', function (done) {
+describe('merge', function () {
+    it('should merge', function (done) {
         var options = {
             branch: 'origin/master'
         };
 
         new Test(command, options)
-            .expect(["rebase", "origin/master"])
+            .expect(["merge", "origin/master"])
             .run(done);
     });
 
-    it('should allow choosing strategy', function (done) {
+    it('should accept --ff-only option', function (done) {
         var options = {
-            branch: 'master',
-            theirs: true
+            branch: 'origin/master',
+            ffOnly: true
         };
 
         new Test(command, options)
-            .expect(["rebase", "--strategy=recursive", "-Xtheirs", "master"])
+            .expect(["merge", "origin/master", "--ff-only"])
             .run(done);
     });
+
+    it('should accept --squash option', function (done) {
+        var options = {
+            branch: 'origin/master',
+            squash: true
+        };
+
+        new Test(command, options)
+            .expect(["merge", "origin/master", "--squash"])
+            .run(done);
+    })
 });
