@@ -437,6 +437,43 @@ Default value: `false`
 
 Will add the `--set-upstream` flag to the push.
 
+## The "gitmerge" task
+
+Merges another branch into the current branch.
+
+### Overview
+In your project's Gruntfile, add a section named `gitmerge` to the data object passed into `grunt.initConfig()`.
+
+```js
+grunt.initConfig({
+  gitmerge: {
+    your_target: {
+      options: {
+        // Target-specific options go here.
+      }
+  },
+})
+```
+
+### Options
+
+#### options.branch
+Type: `String`
+Default value: `null`
+
+The branch to merge from. E.g.: `master`, `develop`. The task will fail if the branch if left unset.
+
+#### options.ffOnly
+Type: `Boolean`
+Default value: `false`
+
+Will add the `--ff-only` flag to the merge.
+
+#### options.squash
+Type: `Boolean`
+Default value: `false`
+
+Will add the `--squash` flag to the merge.
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
