@@ -502,15 +502,15 @@ grunt.initConfig({
 
 #### options.treeIsh
 Type: `String`
-Default value: none. This option is mandatory.
+Default value: `'master'`.
 
 The tree or commit to produce an archive for. E.g.: `'master'` or a commit hash.
 
 #### options.format
 Type: `String`
-Default value: `'tar'`
+Default value: `'tar'`.
 
-Format of the resulting archive: `'tar'` or `'zip'`. If this option is not given, and the output file is specified, the format is inferred from the filename if possible (e.g. writing to "foo.zip" makes the output to be in the zip format). Otherwise the output format is tar.
+Format of the resulting archive: `'tar'`, `'tar.gz'`, `'zip'`. If this option is not given, and the output file is specified, the format is inferred from the filename if possible (e.g. writing to "foo.zip" makes the output to be in the zip format). Otherwise the output format is tar.
 
 #### options.prefix
 Type: `String`
@@ -529,12 +529,6 @@ Type: `String`
 Default value: none.
 
 Adds the `--remote` flag. Instead of making a tar archive from the local repository, retrieve a tar archive from a remote repository.
-
-#### options.exec
-Type: `String`
-Default value: none.
-
-Adds the `--exec` flag. Used with `remote` to specify the path to the archive on the remote side.
 
 #### options.path
 Type: `String`
