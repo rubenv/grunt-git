@@ -387,6 +387,91 @@ grunt.initConfig({
 });
 ```
 
+## The "gitclean" task
+
+Remove untracked files from the working tree.
+
+### Overview
+In your project's Gruntfile, add a section named `gitclean` to the data object passed into `grunt.initConfig()`.
+
+```js
+grunt.initConfig({
+  gitclean: {
+    your_target: {
+      options: {
+        // Target-specific options go here.
+      },
+      files: {
+        src: // Target-specific paths go here.
+      }
+    }
+  },
+})
+```
+
+### Options
+
+#### options.force
+Type: `Boolean`
+Default value: `true`
+
+Force a run of the clean (optional).
+
+#### options.dry
+Type: `Boolean`
+Default value: `false`
+
+Don't actually remove anything, just show what would be done (optional).
+
+#### options.quiet
+Type: `Boolean`
+Default value: `false`
+
+Be quiet, only report errors, but not the files that are successfully removed (optional).
+
+#### options.exclude
+Type: `String`
+Default value: `false`
+
+In addition to those found in .gitignore (per directory) and $GIT_DIR/info/exclude, also consider the given patterns to be in the set of the ignore rules in effect (optional).
+
+#### options.onlyignorefiles
+Type: `Boolean`
+Default value: `false`
+
+Remove only files ignored by Git. This may be useful to rebuild everything from scratch, but keep manually created files (optional).
+
+#### options.nonstandard
+Type: `Boolean`
+Default value: `false`
+
+Don't use the standard ignore rules read from .gitignore (per directory) and $GIT_DIR/info/exclude, but do still use the ignore rules given with this option. This allows removing all untracked files, including build products. This can be used (possibly in conjunction with git reset) to create a pristine working directory to test a clean build (optional).
+
+#### options.directories
+Type: `Boolean`
+Default value: `false`
+
+Remove untracked directories in addition to untracked files. If an untracked directory is managed by a different Git repository, it is not removed by default (optional).
+
+### Usage Examples
+
+```js
+grunt.initConfig({
+    gitreset: {
+        task: {
+            options: {
+                onlyignoredfiles: true,
+                nonstandard: true,
+                directories: true
+            },
+            files: {
+              src: // Target-specific paths go here.
+            }
+          }
+        }
+    },
+});
+```
 ## The "gitpush" task
 
 Pushes to a remote.
