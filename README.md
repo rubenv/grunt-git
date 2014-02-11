@@ -402,7 +402,7 @@ grunt.initConfig({
         // Target-specific options go here.
       },
       files: {
-        src: // Target-specific paths go here.
+        src: // Target-specific paths go here (optional).
       }
     }
   },
@@ -415,7 +415,7 @@ grunt.initConfig({
 Type: `Boolean`
 Default value: `true`
 
-Force a run of the clean (optional).
+Force a run of the clean command (optional).
 
 #### options.dry
 Type: `Boolean`
@@ -453,25 +453,6 @@ Default value: `false`
 
 Remove untracked directories in addition to untracked files. If an untracked directory is managed by a different Git repository, it is not removed by default (optional).
 
-### Usage Examples
-
-```js
-grunt.initConfig({
-    gitreset: {
-        task: {
-            options: {
-                onlyignoredfiles: true,
-                nonstandard: true,
-                directories: true
-            },
-            files: {
-              src: // Target-specific paths go here.
-            }
-          }
-        }
-    },
-});
-```
 ## The "gitpush" task
 
 Pushes to a remote.

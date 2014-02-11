@@ -28,7 +28,7 @@ describe('clean', function () {
         };
 
         new Test(command, options)
-            .expect(['clean', '-f', '-n'])
+            .expect(['clean', '-n'])
             .run(done);
     });
 
@@ -73,14 +73,16 @@ describe('clean', function () {
     });
 
     it('should only remove files from the given path', function (done) {
-        var options = {};
+        var options = {
+            directories: true
+        };
         var files = [
             'test.txt',
             'build'
         ];
 
         new Test(command, options, files)
-            .expect(['clean', '-f', 'test.txt', 'build'])
+            .expect(['clean', '-f', '-d', 'test.txt', 'build'])
             .run(done);
     });
 });
