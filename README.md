@@ -57,6 +57,13 @@ Default value: `false`
 
 When `true`, the task will not fail when there are no staged changes (optional).
 
+#### options.cwd
+Type: `String`
+Default value: `./`
+
+When set, the task will invoked in directory specified by this option.
+**Note**: this option can be applied to any task below.
+
 ### Usage Examples
 
 Commit options:
