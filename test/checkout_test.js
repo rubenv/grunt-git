@@ -11,7 +11,7 @@ describe('checkout', function () {
         };
 
         new Test(command, options)
-            .expect(["checkout", "-b", "test"])
+            .expect([void(0), "checkout", "-b", "test"])
             .run(done);
     });
 
@@ -21,7 +21,7 @@ describe('checkout', function () {
         };
 
         new Test(command, options)
-            .expect(["checkout", "test"])
+            .expect([void(0), "checkout", "test"])
             .run(done);
     });
 });

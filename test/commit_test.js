@@ -16,10 +16,10 @@ describe('commit', function () {
         ];
 
         new Test(command, options, files)
-            .expect(["add", "test.txt"])
-            .expect(["add", "test2.txt"])
-            .expect(["diff", "--cached", "--exit-code"], [null, "diff", 1])
-            .expect(["commit", "-m", "Commit"])
+            .expect([void(0), "add", "test.txt"])
+            .expect([void(0), "add", "test2.txt"])
+            .expect([void(0), "diff", "--cached", "--exit-code"], [null, "diff", 1])
+            .expect([void(0), "commit", "-m", "Commit"])
             .run(done);
     });
 
@@ -33,9 +33,9 @@ describe('commit', function () {
         ];
 
         new Test(command, options, files)
-            .expect(["add", "test.txt"])
-            .expect(["diff", "--cached", "--exit-code"], [null, "diff", 1])
-            .expect(["commit", "-m", "Testing!"])
+            .expect([void(0), "add", "test.txt"])
+            .expect([void(0), "diff", "--cached", "--exit-code"], [null, "diff", 1])
+            .expect([void(0), "commit", "-m", "Testing!"])
             .run(done);
     });
 
@@ -45,8 +45,8 @@ describe('commit', function () {
         };
 
         new Test(command, options)
-            .expect(["diff", "--cached", "--exit-code"], [null, "", 0])
-            .expect(["commit", "-m", "Commit"])
+            .expect([void(0), "diff", "--cached", "--exit-code"], [null, "", 0])
+            .expect([void(0), "commit", "-m", "Commit"])
             .run(done);
     });
 
@@ -56,7 +56,7 @@ describe('commit', function () {
         };
 
         new Test(command, options)
-            .expect(["diff", "--cached", "--exit-code"], [null, "", 0])
+            .expect([void(0), "diff", "--cached", "--exit-code"], [null, "", 0])
             .run(done);
     });
 });

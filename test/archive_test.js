@@ -8,7 +8,7 @@ describe('archive', function () {
     it('should by default archive the master branch', function (done) {
         var options = {};
         new Test(command, options)
-            .expect(["archive", "master"])
+            .expect([void(0), "archive", "master"])
             .run(done);
     });
 
@@ -18,7 +18,7 @@ describe('archive', function () {
         };
 
         new Test(command, options)
-            .expect(["archive", "abcd123"])
+            .expect([void(0), "archive", "abcd123"])
             .run(done);
     });
 
@@ -29,7 +29,7 @@ describe('archive', function () {
         };
 
         new Test(command, options)
-            .expect(["archive", "--format", "tar.gz", "master"])
+            .expect([void(0), "archive", "--format", "tar.gz", "master"])
             .run(done);
     });
 
@@ -40,7 +40,7 @@ describe('archive', function () {
         };
 
         new Test(command, options)
-            .expect(["archive", "--prefix", "my-project/", "master"])
+            .expect([void(0), "archive", "--prefix", "my-project/", "master"])
             .run(done);
     });
 
@@ -51,7 +51,7 @@ describe('archive', function () {
         };
 
         new Test(command, options)
-            .expect(["archive", "--output", "/tmp/my-project.tar", "master"])
+            .expect([void(0), "archive", "--output", "/tmp/my-project.tar", "master"])
             .run(done);
     });
 
@@ -62,7 +62,7 @@ describe('archive', function () {
         };
 
         new Test(command, options)
-            .expect(["archive", "--remote", "https://github.com/rubenv/grunt-git.git", "master"])
+            .expect([void(0), "archive", "--remote", "https://github.com/rubenv/grunt-git.git", "master"])
             .run(done);
     });
 

@@ -9,7 +9,7 @@ describe('stash', function () {
         };
 
         new Test(command, options)
-            .expect(["stash", "save"])
+            .expect([void(0), "stash", "save"])
             .run(done);
     });
 
@@ -21,7 +21,7 @@ describe('stash', function () {
         };
 
         new Test(command, options)
-            .expect(["stash", "apply", "stash@{0}", "--index"])
+            .expect([void(0), "stash", "apply", "stash@{0}", "--index"])
             .run(done);
     });
 });
