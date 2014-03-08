@@ -194,6 +194,12 @@ Default value: `false`
 
 Whether the branch should be created (optional).
 
+#### options.force
+Type: `Boolean`
+Default value: `false`
+
+Whether the local unstaged changes will wiped or not (optional).
+
 ### Usage Examples
 
 ```js
