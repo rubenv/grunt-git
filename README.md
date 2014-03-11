@@ -471,6 +471,26 @@ grunt.initConfig({
 })
 ```
 
+## The "gitpull" task
+
+Pushes to a remote.
+
+### Overview
+In your project's Gruntfile, add a section named `gitpull` to the data object passed into `grunt.initConfig()`.
+You can change the remote (origin is by default), and you can add a branch you want to pull from.
+
+```js
+grunt.initConfig({
+  gitpull: {
+    your_target: {
+      options: {
+        remote: 'origin' // default
+        branch: 'master'
+      }
+  },
+})
+```
+
 ### Options
 
 #### options.remote
