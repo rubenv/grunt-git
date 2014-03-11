@@ -473,7 +473,7 @@ grunt.initConfig({
 
 ## The "gitpull" task
 
-Pushes to a remote.
+Pulls from a remote.
 
 ### Overview
 In your project's Gruntfile, add a section named `gitpull` to the data object passed into `grunt.initConfig()`.
