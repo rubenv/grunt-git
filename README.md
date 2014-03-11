@@ -471,26 +471,6 @@ grunt.initConfig({
 })
 ```
 
-## The "gitpull" task
-
-Pulls from a remote.
-
-### Overview
-In your project's Gruntfile, add a section named `gitpull` to the data object passed into `grunt.initConfig()`.
-You can change the remote (origin is by default), and you can add a branch you want to pull from.
-
-```js
-grunt.initConfig({
-  gitpull: {
-    your_target: {
-      options: {
-        remote: 'origin' // default
-        branch: 'master'
-      }
-  },
-})
-```
-
 ### Options
 
 #### options.remote
@@ -522,6 +502,40 @@ Type: `Boolean`
 Default value: `false`
 
 Will add the `--set-upstream` flag to the push.
+
+## The "gitpull" task
+
+Pulls from a remote.
+
+### Overview
+In your project's Gruntfile, add a section named `gitpull` to the data object passed into `grunt.initConfig()`.
+You can change the remote (origin is by default), and you can add a branch you want to pull from.
+
+```js
+grunt.initConfig({
+  gitpull: {
+    your_target: {
+      options: {
+
+      }
+  },
+})
+```
+
+### Options
+
+#### options.remote
+Type: `String`
+Default value: `origin`
+
+The remote to pull from. The task will not fail if the origin is left unset and pull the default remote git origin.
+
+#### options.branch
+Type: `String`
+Default value: `master`
+
+The branch to pull from. E.g.: `master`, `develop`. The task will not fail if the branch is left unset and pull the default git branch master.
+
 
 ## The "gitmerge" task
 
