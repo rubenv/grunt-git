@@ -35,12 +35,12 @@
     "test": "grunt test"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.1.1",
-    "grunt-contrib-clean": "~0.4.0",
     "grunt": "~0.4.0",
-    "grunt-mocha-cli": "~1.0.1",
-    "grunt-release": "~0.3.5",
-    "grunt-contrib-watch": "~0.5.3"
+    "grunt-bump": "0.0.13",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-jshint": "~0.1.1",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-mocha-cli": "~1.0.1"
   },
   "peerDependencies": {
     "grunt": "~0.4.0"
