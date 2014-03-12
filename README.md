@@ -534,7 +534,7 @@ The remote to pull from. The task will not fail if the origin is left unset and 
 Type: `String`
 Default value: `master`
 
-The branch to pull from. E.g.: `master`, `develop`. The task will not fail if the branch is left unset and pull the default git branch master.
+The branch to pull from. E.g.: `master`, `develop` (optional).
 
 
 ## The "gitmerge" task
