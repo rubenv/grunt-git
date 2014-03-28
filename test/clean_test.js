@@ -8,7 +8,7 @@ describe('clean', function () {
         var options = {};
 
         new Test(command, options)
-            .expect(['clean', '-f'])
+            .expect([void(0), 'clean', '-f'])
             .run(done);
     });
 
@@ -18,7 +18,7 @@ describe('clean', function () {
 		};
 
         new Test(command, options)
-            .expect(['clean', '-f', '-d'])
+            .expect([void(0), 'clean', '-f', '-d'])
             .run(done);
     });
 
@@ -28,7 +28,7 @@ describe('clean', function () {
         };
 
         new Test(command, options)
-            .expect(['clean', '-n'])
+            .expect([void(0), 'clean', '-n'])
             .run(done);
     });
 
@@ -38,7 +38,7 @@ describe('clean', function () {
         };
 
         new Test(command, options)
-            .expect(['clean', '-f', '-q'])
+            .expect([void(0), 'clean', '-f', '-q'])
             .run(done);
     });
 
@@ -48,7 +48,7 @@ describe('clean', function () {
         };
 
         new Test(command, options)
-            .expect(['clean', '-f', '-e *.log'])
+            .expect([void(0), 'clean', '-f', '-e *.log'])
             .run(done);
     });
 
@@ -58,7 +58,7 @@ describe('clean', function () {
         };
 
         new Test(command, options)
-            .expect(['clean', '-f', '-x'])
+            .expect([void(0), 'clean', '-f', '-x'])
             .run(done);
     });
 
@@ -68,7 +68,7 @@ describe('clean', function () {
         };
 
         new Test(command, options)
-            .expect(['clean', '-f', '-X'])
+            .expect([void(0), 'clean', '-f', '-X'])
             .run(done);
     });
 
@@ -82,7 +82,7 @@ describe('clean', function () {
         ];
 
         new Test(command, options, files)
-            .expect(['clean', '-f', '-d', 'test.txt', 'build'])
+            .expect([void(0), 'clean', '-f', '-d', 'test.txt', 'build'])
             .run(done);
     });
 });

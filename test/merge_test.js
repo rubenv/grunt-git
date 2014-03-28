@@ -10,7 +10,7 @@ describe('merge', function () {
         };
 
         new Test(command, options)
-            .expect(["merge", "origin/master"])
+            .expect([void(0), "merge", "origin/master"])
             .run(done);
     });
 
@@ -21,7 +21,7 @@ describe('merge', function () {
         };
 
         new Test(command, options)
-            .expect(["merge", "origin/master", "--ff-only"])
+            .expect([void(0), "merge", "origin/master", "--ff-only"])
             .run(done);
     });
 
@@ -32,7 +32,7 @@ describe('merge', function () {
         };
 
         new Test(command, options)
-            .expect(["merge", "origin/master", "--squash"])
+            .expect([void(0), "merge", "origin/master", "--squash"])
             .run(done);
     });
 });

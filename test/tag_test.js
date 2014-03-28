@@ -10,7 +10,7 @@ describe('tag', function () {
         };
 
         new Test(command, options)
-            .expect(["tag", "0.0.1"])
+            .expect([void(0), "tag", "0.0.1"])
             .run(done);
     });
 
@@ -21,7 +21,7 @@ describe('tag', function () {
         };
 
         new Test(command, options)
-            .expect(["tag", "-m", "Test", "0.0.1"])
+            .expect([void(0), "tag", "-m", "Test", "0.0.1"])
             .run(done);
     });
 });
