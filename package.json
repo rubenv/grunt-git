@@ -45,6 +45,9 @@
   "peerDependencies": {
     "grunt": "~0.4.0"
   },
+  "dependencies": {
+    "rimraf": "~2.2.1"
+  },
   "keywords": [
     "gruntplugin"
   ]
