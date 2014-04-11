@@ -318,6 +318,12 @@ Default value: none
 
 Clone the repo into a specific directory instead of the one git decides.
 
+#### options.overwrite
+Type: `Boolean`
+Default value: false
+
+If the destination directory specified by `options.directory` already exists delete it before attempting to clone.
+
 ### Usage Examples
 
 ```js
