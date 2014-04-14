@@ -11,13 +11,14 @@
 var commands = require('../lib/commands');
 
 module.exports = function (grunt) {
-    function exec() {
+    function exec(command) {
         var args = Array.prototype.slice.call(arguments);
         var callback = args.pop();
 
         grunt.util.spawn({
             cmd: 'git',
-            args: args
+            args: args,
+            opts: this.data.options && this.data.options.stdio ? {stdio: 'inherit'} : {}
         }, function () {
             callback.apply(this, arguments);
         });
@@ -26,7 +27,7 @@ module.exports = function (grunt) {
     function wrapCommand(fn) {
         return function () {
             var done = this.async();
-            fn(this, exec, done);
+            fn(this, exec.bind(this), done);
         };
     }
 
