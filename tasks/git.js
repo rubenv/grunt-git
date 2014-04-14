@@ -18,7 +18,7 @@ module.exports = function (grunt) {
         grunt.util.spawn({
             cmd: 'git',
             args: args,
-            opts: this.data.options && this.data.options.stdio ? {stdio: 'inherit'} : {}
+            opts: command.data.options && command.data.options.stdio ? {stdio: 'inherit'} : {}
         }, function () {
             callback.apply(this, arguments);
         });
@@ -27,7 +27,7 @@ module.exports = function (grunt) {
     function wrapCommand(fn) {
         return function () {
             var done = this.async();
-            fn(this, exec.bind(this), done);
+            fn(this, function () { exec(this); }, done);
         };
     }
 
