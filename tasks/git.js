@@ -11,8 +11,9 @@
 var commands = require('../lib/commands');
 
 module.exports = function (grunt) {
-    function exec(task) {
+    function exec() {
         var args = Array.prototype.slice.call(arguments);
+        var task = args.shift();
         var callback = args.pop();
 
         grunt.util.spawn({
@@ -27,8 +28,13 @@ module.exports = function (grunt) {
     function wrapCommand(fn) {
         return function () {
             var task = this;
+            var _exec = function () {
+                var args = Array.prototype.slice.call(arguments);
+                args.unshift(task);
+                exec.apply(this, args);
+            };
             var done = task.async();
-            fn(this, function () { exec(task); }, done);
+            fn(task, _exec, done);
         };
     }
 
