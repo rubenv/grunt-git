@@ -43,7 +43,7 @@ grunt.initConfig({
 
 Each target defines a specific git task that can be run. The different available tasks are listed below.
 
-To enable console output for any command, add `stdio: true` to its options.
+To enable console output for any command, add `verbose: true` to its options.
 
 ### Options
 

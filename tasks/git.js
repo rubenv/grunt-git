@@ -19,11 +19,13 @@ module.exports = function (grunt) {
             function exec() {
                 var args = Array.prototype.slice.call(arguments);
                 var callback = args.pop();
-
+                var options = task.options({
+                    verbose: false
+                });
                 grunt.util.spawn({
                     cmd: 'git',
                     args: args,
-                    opts: task.data.options && task.data.options.stdio ? {stdio: 'inherit'} : {}
+                    opts: options.verbose ? {stdio: 'inherit'} : {}
                 }, function () {
                     callback.apply(this, arguments);
                 });
