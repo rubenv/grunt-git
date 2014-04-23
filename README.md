@@ -571,6 +571,12 @@ Default value: `false`
 
 Will add the `--ff-only` flag to the merge.
 
+#### options.noff
+Type: `Boolean`
+Default value: `false`
+
+Will add the `--no-ff` flag to the merge.
+
 #### options.squash
 Type: `Boolean`
 Default value: `false`
