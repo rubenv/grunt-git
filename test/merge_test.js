@@ -28,7 +28,7 @@ describe('merge', function () {
     it('should accept --no-ff option', function (done) {
         var options = {
             branch: 'origin/master',
-            ffOnly: true
+            noff: true
         };
 
         new Test(command, options)
