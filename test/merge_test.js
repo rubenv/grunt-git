@@ -25,6 +25,17 @@ describe('merge', function () {
             .run(done);
     });
 
+    it('should accept --no-ff option', function (done) {
+        var options = {
+            branch: 'origin/master',
+            noff: true
+        };
+
+        new Test(command, options)
+            .expect(["merge", "origin/master", "--no-ff"])
+            .run(done);
+    });
+
     it('should accept --squash option', function (done) {
         var options = {
             branch: 'origin/master',
