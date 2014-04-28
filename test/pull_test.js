@@ -9,7 +9,7 @@ describe('pull', function () {
         };
 
         new Test(command, options)
-            .expect(["pull", "origin"])
+            .expect(['pull', 'origin'])
             .run(done);
     });
 
@@ -19,8 +19,7 @@ describe('pull', function () {
         };
 
         new Test(command, options)
-            .expect(["pull", "origin", "master"])
+            .expect(['pull', 'origin', 'master'])
             .run(done);
     });
-    
 });

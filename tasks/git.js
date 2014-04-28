@@ -14,30 +14,30 @@ module.exports = function (grunt) {
 
     function wrapCommand(fn) {
         return function () {
-            var task = this;
+            var self = this;
 
             function exec() {
                 var args = Array.prototype.slice.call(arguments);
                 var callback = args.pop();
-                var options = task.options({
+                var options = self.options({
                     verbose: false
                 });
                 grunt.util.spawn({
                     cmd: 'git',
                     args: args,
-                    opts: options.verbose ? {stdio: 'inherit'} : {}
+                    opts: options.verbose ? { stdio: 'inherit' } : {}
                 }, function () {
                     callback.apply(this, arguments);
                 });
             }
 
-            var done = task.async();
-            fn(task, exec, done);
+            var done = self.async();
+            fn(self, exec, done);
         };
     }
 
     for (var command in commands) {
         var fn = commands[command];
-        grunt.registerMultiTask("git" + command, fn.description || "", wrapCommand(fn));
+        grunt.registerMultiTask('git' + command, fn.description || '', wrapCommand(fn));
     }
 };

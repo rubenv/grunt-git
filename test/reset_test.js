@@ -9,7 +9,7 @@ describe('reset', function () {
         };
 
         new Test(command, options)
-            .expect(["reset", "HEAD"])
+            .expect(['reset', 'HEAD'])
             .run(done);
     });
 
@@ -20,7 +20,7 @@ describe('reset', function () {
         };
 
         new Test(command, options)
-            .expect(["reset", "--hard", "HEAD~1"])
+            .expect(['reset', '--hard', 'HEAD~1'])
             .run(done);
     });
 
@@ -34,7 +34,7 @@ describe('reset', function () {
         ];
 
         new Test(command, options, files)
-            .expect(["reset", "HEAD", "a.txt", "b.txt"])
+            .expect(['reset', 'HEAD', 'a.txt', 'b.txt'])
             .run(done);
     });
 });

@@ -9,7 +9,7 @@ describe('push', function () {
         };
 
         new Test(command, options)
-            .expect(["push", "origin"])
+            .expect(['push', 'origin'])
             .run(done);
     });
 
@@ -19,7 +19,7 @@ describe('push', function () {
         };
 
         new Test(command, options)
-            .expect(["push", "--tags", "origin"])
+            .expect(['push', '--tags', 'origin'])
             .run(done);
     });
 
@@ -29,7 +29,7 @@ describe('push', function () {
         };
 
         new Test(command, options)
-            .expect(["push", "--all", "origin"])
+            .expect(['push', '--all', 'origin'])
             .run(done);
     });
 
@@ -39,7 +39,7 @@ describe('push', function () {
         };
 
         new Test(command, options)
-            .expect(["push", "origin", "master"])
+            .expect(['push', 'origin', 'master'])
             .run(done);
     });
 
@@ -50,7 +50,7 @@ describe('push', function () {
         };
 
         new Test(command, options)
-            .expect(["push", "--set-upstream", "origin", "master"])
+            .expect(['push', '--set-upstream', 'origin', 'master'])
             .run(done);
     });
 });

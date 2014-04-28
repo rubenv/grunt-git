@@ -13,9 +13,9 @@ describe('clean', function () {
     });
 
     it('should remove untracked directories', function (done) {
-		var options = {
-			directories: true
-		};
+        var options = {
+            directories: true
+        };
 
         new Test(command, options)
             .expect(['clean', '-f', '-d'])

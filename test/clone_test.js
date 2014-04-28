@@ -10,7 +10,7 @@ describe('clone', function () {
         };
 
         new Test(command, options)
-            .expect(["clone", "https://github.com/rubenv/gitclone-test.git"])
+            .expect(['clone', 'https://github.com/rubenv/gitclone-test.git'])
             .run(done);
     });
 
@@ -21,7 +21,7 @@ describe('clone', function () {
         };
 
         new Test(command, options)
-            .expect(["clone", "--branch", "test", "https://github.com/rubenv/gitclone-test.git"])
+            .expect(['clone', '--branch', 'test', 'https://github.com/rubenv/gitclone-test.git'])
             .run(done);
     });
 
@@ -32,7 +32,7 @@ describe('clone', function () {
         };
 
         new Test(command, options)
-            .expect(["clone", "https://github.com/rubenv/gitclone-test.git", "out"])
+            .expect(['clone', 'https://github.com/rubenv/gitclone-test.git', 'out'])
             .run(done);
     });
 
@@ -43,7 +43,7 @@ describe('clone', function () {
         };
 
         new Test(command, options)
-            .expect(["clone", "--bare", "https://github.com/rubenv/gitclone-test.git"])
+            .expect(['clone', '--bare', 'https://github.com/rubenv/gitclone-test.git'])
             .run(done);
     });
 });

@@ -10,7 +10,7 @@ describe('rebase', function () {
         };
 
         new Test(command, options)
-            .expect(["rebase", "origin/master"])
+            .expect(['rebase', 'origin/master'])
             .run(done);
     });
 
@@ -21,7 +21,7 @@ describe('rebase', function () {
         };
 
         new Test(command, options)
-            .expect(["rebase", "--strategy=recursive", "-Xtheirs", "master"])
+            .expect(['rebase', '--strategy=recursive', '-Xtheirs', 'master'])
             .run(done);
     });
 });
