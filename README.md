@@ -513,6 +513,12 @@ Default value: `false`
 
 Will add the `--set-upstream` flag to the push.
 
+#### options.force
+Type: `Boolean`
+Default value: `false`
+
+Will add the `--force` flag to the push.
+
 ## The "gitpull" task
 
 Pulls from a remote.
