@@ -24,4 +24,27 @@ describe('checkout', function () {
             .expect(['checkout', 'test'])
             .run(done);
     });
+
+    it('should create branch if it doesn\'t exist', function (done) {
+        var options = {
+            branch: 'test2',
+            overwrite: true
+        };
+
+        new Test(command, options)
+            .expect(['checkout', '-B', 'test2'])
+            .run(done);
+    });
+
+    it('should overwrite branch', function (done) {
+        var options = {
+            branch: 'test2',
+            overwrite: true
+        };
+
+        new Test(command, options)
+          .expect(['checkout', '-B', 'test2'])
+          .run(done);
+    });
+
 });

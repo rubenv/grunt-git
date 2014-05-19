@@ -53,4 +53,15 @@ describe('push', function () {
             .expect(['push', '--set-upstream', 'origin', 'master'])
             .run(done);
     });
+
+    it('should accept --force option', function (done) {
+        var options = {
+            force: true,
+            branch: 'master'
+        };
+
+        new Test(command, options)
+            .expect(['push', '--force', 'origin', 'master'])
+            .run(done);
+    });
 });
