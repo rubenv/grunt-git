@@ -66,4 +66,15 @@ describe('archive', function () {
             .run(done);
     });
 
+    it('should only archive defined files', function (done) {
+        var options = {
+            treeIsh: 'master',
+            path: ['README', 'LICENSE']
+        };
+
+        new Test(command, options)
+            .expect(['archive', 'master', 'README', 'LICENSE'])
+            .run(done);
+    });
+
 });

@@ -599,7 +599,8 @@ grunt.initConfig({
         format: 'tar.gz',
         prefix: 'your-project-name/',
         treeIsh: 'master',
-        output: '/tmp/your-project-name.tar.gz'
+        output: '/tmp/your-project-name.tar.gz',
+        path: ['README', 'LICENSE']
       }
     }
   }
@@ -639,7 +640,7 @@ Default value: none.
 Adds the `--remote` flag. Instead of making a tar archive from the local repository, retrieve a tar archive from a remote repository.
 
 #### options.path
-Type: `String`
+Type: `Array`
 Default value: none.
 
 Without an optional `path` parameter, all files and subdirectories of the current working directory are included in the archive. If one or more paths are specified, only these are included.
