@@ -477,6 +477,7 @@ grunt.initConfig({
       options: {
         // Target-specific options go here.
       }
+    }
   },
 })
 ```
@@ -534,6 +535,7 @@ grunt.initConfig({
       options: {
 
       }
+    }
   },
 })
 ```
@@ -567,6 +569,7 @@ grunt.initConfig({
       options: {
         // Target-specific options go here.
       }
+    }
   },
 })
 ```
