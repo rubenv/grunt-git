@@ -316,6 +316,12 @@ Default value: none
 
 Clone the repo with a specific branch checked out. (Cannot be used in conjunction with 'bare')
 
+#### options.depth
+Type: `Integer`
+Default value: none
+
+Clone the repo with a limited revision history. (Such clones cannot be pushed from or pulled to.)
+
 #### options.repository (required)
 Type: `String`
 Default value: none

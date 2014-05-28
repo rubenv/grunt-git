@@ -25,6 +25,17 @@ describe('clone', function () {
             .run(done);
     });
 
+    it('should have checked out only the last revision', function (done) {
+        var options = {
+            repository: 'https://github.com/rubenv/gitclone-test.git',
+            depth: 1
+        };
+
+        new Test(command, options)
+            .expect(['clone', '--depth', 1, 'https://github.com/rubenv/gitclone-test.git'])
+            .run(done);
+    });
+
     it('should clone in the chose directory', function (done) {
         var options = {
             repository: 'https://github.com/rubenv/gitclone-test.git',
