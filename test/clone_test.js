@@ -36,6 +36,17 @@ describe('clone', function () {
             .run(done);
     });
 
+    it('should allow depth 0', function (done) {
+        var options = {
+            repository: 'https://github.com/rubenv/gitclone-test.git',
+            depth: 0
+        };
+
+        new Test(command, options)
+            .expect(['clone', '--depth', 0, 'https://github.com/rubenv/gitclone-test.git'])
+            .run(done);
+    });
+
     it('should clone in the chose directory', function (done) {
         var options = {
             repository: 'https://github.com/rubenv/gitclone-test.git',
