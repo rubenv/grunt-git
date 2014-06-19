@@ -59,4 +59,36 @@ describe('commit', function () {
             .expect(['diff', '--cached', '--exit-code'], [null, '', 0])
             .run(done);
     });
+
+    it('should add --no-verify arg when noVerify is true', function (done) {
+        var options = {
+            noVerify: true
+        };
+
+        var files = [
+            'test.txt'
+        ];
+
+        new Test(command, options, files)
+            .expect(['add', 'test.txt'])
+            .expect(['diff', '--cached', '--exit-code'], [null, 'diff', 1])
+            .expect(['commit', '-m', 'Commit', '--no-verify'])
+            .run(done);
+    });
+
+    it('should add --no-status arg when noStatus is true', function (done) {
+        var options = {
+            noStatus: true
+        };
+
+        var files = [
+            'test.txt'
+        ];
+
+        new Test(command, options, files)
+            .expect(['add', 'test.txt'])
+            .expect(['diff', '--cached', '--exit-code'], [null, 'diff', 1])
+            .expect(['commit', '-m', 'Commit', '--no-status'])
+            .run(done);
+    });
 });

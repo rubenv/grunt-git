@@ -59,19 +59,35 @@ Default value: `false`
 
 When `true`, the task will not fail when there are no staged changes (optional).
 
+#### options.noVerify
+Type: `Boolean`
+Default value: `false`
+
+When `true`, the task will commit the changes with the `--no-verify` flag.
+
+#### options.noStatus
+Type: `Boolean`
+Default value: `false`
+
+When `true`, the task will commit the changes with the `--no-status` flag.
+
 ### Usage Examples
 
 Commit options:
 
 * `message`: Commit message
 * `files`: Files to commit
+* `noVerify`: Bypass the pre-commit and commit-msg hooks when committing changes
+* `noStatus`: Do not include the output of `git-status` in the commit message
 
 ```js
 grunt.initConfig({
     gitcommit: {
         task: {
             options: {
-                message: 'Testing'
+                message: 'Testing',
+                noVerify: true,
+                noStatus: false
             },
             files: {
                 src: ['test.txt']
@@ -80,6 +96,7 @@ grunt.initConfig({
     },
 });
 ```
+
 
 ## The "gitrebase" task
 
