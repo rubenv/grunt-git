@@ -1,7 +1,7 @@
 {
   "name": "grunt-git",
   "description": "Git commands for grunt.",
-  "version": "0.2.11",
+  "version": "0.2.12",
   "homepage": "https://github.com/rubenv/grunt-git",
   "author": {
     "name": "Ruben Vermeersch",
