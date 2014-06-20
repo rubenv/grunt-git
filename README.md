@@ -19,6 +19,21 @@ One the plugin has been installed, it may be enabled inside your Gruntfile with 
 grunt.loadNpmTasks('grunt-git');
 ```
 
+## Universal options
+The following options may be applied to any task
+
+#### options.verbose
+Type: `boolean`
+Default value: `none`
+
+Console output from the git task will be piped to the output of the grunt script. Useful for debugging.
+
+#### options.cwd
+Type: `string`
+Default value: `none`
+
+Change the current working directory before executing the git call. Useful for performing operations on repositories that are located in subdirectories.
+
 ## The "gitcommit" task
 
 Commits the working directory.
@@ -42,8 +57,6 @@ grunt.initConfig({
 ```
 
 Each target defines a specific git task that can be run. The different available tasks are listed below.
-
-To enable console output for any command, add `verbose: true` to its options.
 
 ### Options
 
