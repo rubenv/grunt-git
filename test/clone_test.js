@@ -68,4 +68,14 @@ describe('clone', function () {
             .expect(['clone', '--bare', 'https://github.com/rubenv/gitclone-test.git'])
             .run(done);
     });
+    it('should recursively clone repo and all submodules', function (done) {
+        var options = {
+            repository: 'https://github.com/rubenv/gitclone-test.git',
+            recursive: true
+        };
+
+        new Test(command, options)
+            .expect(['clone', '--recursive', 'https://github.com/rubenv/gitclone-test.git'])
+            .run(done);
+    });
 });

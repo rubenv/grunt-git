@@ -351,6 +351,12 @@ Default value: none
 
 Clone the repo into a specific directory instead of the one git decides.
 
+#### options.recursive
+Type: `boolean`
+Default value: none
+
+Pass the --recursive flag to the git clone command. This is equivalent to running git submodule update --init --recursive immediately after the clone is finished.
+
 ### Usage Examples
 
 ```js
