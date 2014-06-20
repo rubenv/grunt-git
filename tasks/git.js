@@ -22,10 +22,23 @@ module.exports = function (grunt) {
                 var options = self.options({
                     verbose: false
                 });
+                var spawnOpts = {};
+
+                //build spawn options based on task options
+                if (options.cwd) {
+                    //verify that the specified cwd exists
+                    if (grunt.file.isDir(options.cwd)) {
+                        spawnOpts.cwd = options.cwd;
+                    } else {
+                        throw new Error('The specified cwd does not exist: "' + options.cwd  + '"');
+                    }
+                }
+                if (options.verbose) { spawnOpts.stdio = 'inherit'; }
+
                 grunt.util.spawn({
                     cmd: 'git',
                     args: args,
-                    opts: options.verbose ? { stdio: 'inherit' } : {}
+                    opts: spawnOpts
                 }, function () {
                     callback.apply(this, arguments);
                 });
