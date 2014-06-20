@@ -25,7 +25,14 @@ module.exports = function (grunt) {
                 var spawnOpts = {};
 
                 //build spawn options based on task options
-                if (options.cwd) { spawnOpts.cwd = options.cwd; }
+                if (options.cwd) {
+                    //verify that the specified cwd exists
+                    if (grunt.file.isDir(options.cwd)) {
+                        spawnOpts.cwd = options.cwd;
+                    } else {
+                        throw new Error('The specified cwd does not exist: "' + options.cwd  + '"');
+                    }
+                }
                 if (options.verbose) { spawnOpts.stdio = 'inherit'; }
 
                 grunt.util.spawn({
