@@ -45,7 +45,7 @@ grunt.initConfig({
       },
       files: [
         {
-          src: [fileone.txt, filetwo.js],
+          src: ["fileone.txt", "filetwo.js"],
           expand: true,
           cwd: "/path/to/repo"
         }
