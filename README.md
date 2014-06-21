@@ -33,6 +33,27 @@ Type: `string`
 Default value: `none`
 
 Change the current working directory before executing the git call. Useful for performing operations on repositories that are located in subdirectories.
+**Note:** When performing commands that provide files (e.g. gruntcommit), it is also necessary to specify the cwd for the files explicitly.
+
+#### Example:
+```js
+grunt.initConfig({
+  gitcommit: {
+    your_target: {
+      options: {
+        cwd: "/path/to/repo"
+      },
+      files: [
+        {
+          src: [fileone.txt, filetwo.js],
+          expand: true,
+          cwd: "/path/to/repo"
+        }
+      ]
+    }
+  },
+})
+```
 
 ## The "gitcommit" task
 
