@@ -704,5 +704,106 @@ Default value: none.
 
 Without an optional `path` parameter, all files and subdirectories of the current working directory are included in the archive. If one or more paths are specified, only these are included.
 
+
+
+## The "gitsubmoduleupdate" task
+
+Commits the working directory.
+
+### Overview
+In your project's Gruntfile, add a section named `gitsubmoduleupdate` to the data object passed into `grunt.initConfig()`.
+
+```js
+grunt.initConfig({
+  gitsubmoduleupdate: {
+    your_target: {
+      options: {
+        // Target-specific options go here.
+      }
+    }
+  }
+})
+```
+
+### Options
+
+More detailed descriptions of these options are available at http://git-scm.com/docs/git-submodule.
+
+#### options.init
+Type: `boolean`
+Default value: `false`
+
+Initialize all submodules for which "git submodule init" has not been called so far before updating.
+
+#### options.remote
+Type: `Boolean`
+Default value: `false`
+
+Instead of using the superproject's recorded SHA-1 to update the submodule, use the status of the submodule's remote-tracking branch.
+
+#### options.force
+Type: `Boolean`
+Default value: `false`
+
+Throw away local changes in submodules when switching to a different commit.
+
+#### options.rebase
+Type: `Boolean`
+Default value: `false`
+
+Rebase the current branch onto the commit recorded in the superproject.
+
+#### options.merge
+Type: `Boolean`
+Default value: `false`
+
+Merge the commit recorded in the superproject into the current branch of the submodule.
+
+#### options.reference
+Type: `String`
+Default value: `null`
+
+This option will be passed to the ``git-clone()`` command used during an *update --init*
+
+#### options.recursive
+Type: `Boolean`
+Default value: `false`
+
+Traverse submodules recursively.
+
+#### options.depth
+Type: `Integer`
+Default value: `null`
+
+Create a 'shallow' clone with a history truncated to the specified number of revisions.
+
+#### options.path
+Type: `String`
+Default value: `null`
+
+path to the submodule to be updated. All submodules will be updated if path is not specified.
+
+#### options.noFetch
+Type: `Boolean`
+Default value: `false`
+
+Don't fetch new objects from the remote site.
+
+### Usage Examples
+
+```js
+grunt.initConfig({
+    gitsubmoduleupdate: {
+        task: {
+            options: {
+                init: true,
+                recursive: true
+            }
+        }
+    }
+});
+```
+
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
