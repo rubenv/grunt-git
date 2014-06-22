@@ -708,7 +708,7 @@ Without an optional `path` parameter, all files and subdirectories of the curren
 
 ## The "gitsubmoduleupdate" task
 
-Commits the working directory.
+Updates submodules in the repository (via git submodule update).
 
 ### Overview
 In your project's Gruntfile, add a section named `gitsubmoduleupdate` to the data object passed into `grunt.initConfig()`.
