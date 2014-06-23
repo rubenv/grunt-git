@@ -642,6 +642,37 @@ Default value: `false`
 
 Will add the `--squash` flag to the merge.
 
+#### options.edit
+Type: `Boolean`
+Default value: `false`
+
+Will add the `--edit` flag to the merge: this forces an editor to appear before committing the successful merge.
+
+#### options.noEdit
+Type: `Boolean`
+Default value: `false`
+
+Will add the `--no-edit` flag to the merge: this bypasses the editor from appearing before committing a successful merge.
+
+#### options.message
+Type: `String`
+Default value: `null`
+
+Will add the `-m` flag followed by the value of this option to the merge: this string will be used as the commit message for the merge.
+
+#### options.commit
+Type: `Boolean`
+Default value: `false`
+
+Will add the `--commit` flag to the merge: this option can be used to override ``-no-commit`` in the git config.
+
+#### options.noCommit
+Type: `Boolean`
+Default value: `false`
+
+Will add the `--no-commit` flag to the merge: do not commit the merge.
+
+
 ## The "gitarchive" task
 
 Archives a branch.
