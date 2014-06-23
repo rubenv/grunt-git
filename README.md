@@ -33,7 +33,7 @@ Type: `string`
 Default value: `none`
 
 Change the current working directory before executing the git call. Useful for performing operations on repositories that are located in subdirectories.
-**Note:** When performing commands that provide files (e.g. gitcommit), it is also necessary to specify the cwd for the files explicitly.
+**Note:** When performing commands that provide files (e.g. gitcommit), it is also necessary to specify the ``cwd`` for the files explicitly.
 
 #### Example:
 ```js
