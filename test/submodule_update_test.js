@@ -85,11 +85,11 @@ describe('submodule update', function () {
 
     it('should accept depth option', function (done) {
         var options = {
-            depth: 10
+            depth: 0
         };
 
         new Test(command, options)
-            .expect(['submodule', 'update', '--depth', '10'])
+            .expect(['submodule', 'update', '--depth', '0'])
             .run(done);
     });
 
