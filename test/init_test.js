@@ -32,4 +32,14 @@ describe('init', function () {
             .expect(['init', '--separate-git-dir=newDir'])
             .run(done);
     });
+
+    it('should init a in a specified git directory', function (done) {
+        var options = {
+            directory: 'newDir'
+        };
+
+        new Test(command, options)
+            .expect(['init', 'newDir'])
+            .run(done);
+    });
 });
