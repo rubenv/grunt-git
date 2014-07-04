@@ -99,6 +99,12 @@ Default value: `false`
 
 When `true`, the task will commit the changes with the `--no-verify` flag.
 
+#### options.force
+Type: `Boolean`
+Default value: `false`
+
+When `true`, files will be added with the --force flag. This allows adding otherwise ignored files.  
+
 #### options.noStatus
 Type: `Boolean`
 Default value: `false`
