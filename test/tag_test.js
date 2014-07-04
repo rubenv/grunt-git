@@ -24,4 +24,15 @@ describe('tag', function () {
             .expect(['tag', '-m', 'Test', '0.0.1'])
             .run(done);
     });
+
+    it('should remove a tag', function (done) {
+        var options = {
+            tag: '0.0.1',
+            remove: true
+        };
+
+        new Test(command, options)
+            .expect(['tag', '-d', '0.0.1'])
+            .run(done);
+    });
 });
