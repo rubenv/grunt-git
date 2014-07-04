@@ -33,6 +33,27 @@ Type: `string`
 Default value: `none`
 
 Change the current working directory before executing the git call. Useful for performing operations on repositories that are located in subdirectories.
+**Note:** When performing commands that provide files (e.g. gitcommit), it is also necessary to specify the ``cwd`` for the files explicitly.
+
+#### Example:
+```js
+grunt.initConfig({
+  gitcommit: {
+    your_target: {
+      options: {
+        cwd: "/path/to/repo"
+      },
+      files: [
+        {
+          src: ["fileone.txt", "filetwo.js"],
+          expand: true,
+          cwd: "/path/to/repo"
+        }
+      ]
+    }
+  },
+})
+```
 
 ## The "gitcommit" task
 
@@ -143,7 +164,7 @@ grunt.initConfig({
 
 ## The "gittag" task
 
-Creates a git tag.
+Creates (or deletes) a git tag.
 
 ### Overview
 In your project's Gruntfile, add a section named `gittag` to the data object passed into `grunt.initConfig()`.
@@ -176,15 +197,27 @@ Default value: `''`
 
 The tag message (optional).
 
+#### options.remove
+Type: `Boolean`
+Default value: `false`
+
+Whether to delete the tag (optional).
+
 ### Usage Examples
 
 ```js
 grunt.initConfig({
     gittag: {
-        task: {
+        addtag: {
             options: {
                 tag: '0.0.1',
                 message: 'Testing'
+            }
+        },
+        deletetag: {
+            options: {
+                tag: '0.0.1',
+                remove: true
             }
         }
     },
