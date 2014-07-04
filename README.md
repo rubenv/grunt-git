@@ -164,7 +164,7 @@ grunt.initConfig({
 
 ## The "gittag" task
 
-Creates a git tag.
+Creates (or deletes) a git tag.
 
 ### Overview
 In your project's Gruntfile, add a section named `gittag` to the data object passed into `grunt.initConfig()`.
@@ -197,15 +197,27 @@ Default value: `''`
 
 The tag message (optional).
 
+#### options.remove
+Type: `Boolean`
+Default value: `false`
+
+Whether to delete the tag (optional).
+
 ### Usage Examples
 
 ```js
 grunt.initConfig({
     gittag: {
-        task: {
+        addtag: {
             options: {
                 tag: '0.0.1',
                 message: 'Testing'
+            }
+        },
+        deletetag: {
+            options: {
+                tag: '0.0.1',
+                remove: true
             }
         }
     },
