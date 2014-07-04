@@ -39,6 +39,24 @@ describe('commit', function () {
             .run(done);
     });
 
+    it('should add files with the force flag', function (done) {
+        var options = {
+            force: true
+        };
+
+        var files = [
+            'test.txt',
+            'test2.txt'
+        ];
+
+        new Test(command, options, files)
+            .expect(['add', '--force', 'test.txt'])
+            .expect(['add', '--force', 'test2.txt'])
+            .expect(['diff', '--cached', '--exit-code'], [null, 'diff', 1])
+            .expect(['commit', '-m', 'Commit'])
+            .run(done);
+    });
+
     it('should not fail when there are no unstaged changes', function (done) {
         var options = {
             ignoreEmpty: false
