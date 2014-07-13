@@ -28,7 +28,7 @@ describe('clean', function () {
         };
 
         new Test(command, options)
-            .expect(['clean', '-n'])
+            .expect(['clean', '-f', '-n'])
             .run(done);
     });
 
@@ -48,7 +48,7 @@ describe('clean', function () {
         };
 
         new Test(command, options)
-            .expect(['clean', '-f', '-e *.log'])
+            .expect(['clean', '-f', '-e', '*.log'])
             .run(done);
     });
 
