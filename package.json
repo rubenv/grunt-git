@@ -42,5 +42,8 @@
   },
   "keywords": [
     "gruntplugin"
-  ]
+  ],
+  "dependencies": {
+    "flopmang": "^0.0.1"
+  }
 }
