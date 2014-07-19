@@ -19,21 +19,21 @@ describe('init', function () {
         };
 
         new Test(command, options)
-            .expect(['init', '--template=testTemplate'])
+            .expect(['init', '--template', 'testTemplate'])
             .run(done);
     });
 
-    it('should init a with separate git directory', function (done) {
+    it('should init a with separate git directory (1)', function (done) {
         var options = {
             separateGitDir: 'newDir'
         };
 
         new Test(command, options)
-            .expect(['init', '--separate-git-dir=newDir'])
+            .expect(['init', '--separate-git-dir', 'newDir'])
             .run(done);
     });
 
-    it('should init a in a specified git directory', function (done) {
+    it('should init a in a specified git directory (2)', function (done) {
         var options = {
             directory: 'newDir'
         };
