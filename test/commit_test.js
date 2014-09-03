@@ -7,7 +7,6 @@ var Test = require('./_common');
 describe('commit', function () {
     it('should commit', function (done) {
         var options = {
-            ignoreEmpty: true
         };
 
         var files = [
@@ -16,10 +15,7 @@ describe('commit', function () {
         ];
 
         new Test(command, options, files)
-            .expect(['add', 'test.txt'])
-            .expect(['add', 'test2.txt'])
-            .expect(['diff', '--cached', '--exit-code'], [null, 'diff', 1])
-            .expect(['commit', '-m', 'Commit'])
+            .expect(['commit', '-m', 'Commit', 'test.txt', 'test2.txt'])
             .run(done);
     });
 
@@ -33,30 +29,21 @@ describe('commit', function () {
         ];
 
         new Test(command, options, files)
-            .expect(['add', 'test.txt'])
-            .expect(['diff', '--cached', '--exit-code'], [null, 'diff', 1])
-            .expect(['commit', '-m', 'Testing!'])
+            .expect(['commit', '-m', 'Testing!', 'test.txt'])
             .run(done);
     });
 
-    it('should not fail when there are no unstaged changes', function (done) {
+    it('should add --allow-empty arg when allowEmpty is true', function (done) {
         var options = {
-            ignoreEmpty: false
+            allowEmpty: true
         };
 
-        new Test(command, options)
-            .expect(['diff', '--cached', '--exit-code'], [null, '', 0])
-            .expect(['commit', '-m', 'Commit'])
-            .run(done);
-    });
+        var files = [
+            'test.txt'
+        ];
 
-    it('should not commit when there are no unstaged changes', function (done) {
-        var options = {
-            ignoreEmpty: true
-        };
-
-        new Test(command, options)
-            .expect(['diff', '--cached', '--exit-code'], [null, '', 0])
+        new Test(command, options, files)
+            .expect(['commit', '-m', 'Commit', '--allow-empty', 'test.txt'])
             .run(done);
     });
 
@@ -70,9 +57,7 @@ describe('commit', function () {
         ];
 
         new Test(command, options, files)
-            .expect(['add', 'test.txt'])
-            .expect(['diff', '--cached', '--exit-code'], [null, 'diff', 1])
-            .expect(['commit', '-m', 'Commit', '--no-verify'])
+            .expect(['commit', '-m', 'Commit', '--no-verify', 'test.txt'])
             .run(done);
     });
 
@@ -86,9 +71,7 @@ describe('commit', function () {
         ];
 
         new Test(command, options, files)
-            .expect(['add', 'test.txt'])
-            .expect(['diff', '--cached', '--exit-code'], [null, 'diff', 1])
-            .expect(['commit', '-m', 'Commit', '--no-status'])
+            .expect(['commit', '-m', 'Commit', '--no-status', 'test.txt'])
             .run(done);
     });
 });

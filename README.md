@@ -20,7 +20,7 @@ grunt.loadNpmTasks('grunt-git');
 ```
 
 ### Upgrading from v0.2.x
-The `gitcommit` command used to call `git add` for you. This is no longer the case. Be sure to add a `gitadd` task whenever there might be new files to commit.
+The `gitcommit` command used to call `git add` for you. This is no longer the case. Be sure to add a `gitadd` task whenever there might be new files to commit. The `ignoreEmpty` option is no longer supported.
 
 ## Universal options
 The following options may be applied to any task
@@ -90,7 +90,7 @@ Default value: `'Commit'`
 
 The commit message.
 
-#### options.ignoreEmpty
+#### options.allowEmpty
 Type: `Boolean`
 Default value: `false`
 
