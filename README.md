@@ -19,6 +19,9 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-git');
 ```
 
+### Upgrading from v0.2.x
+The `gitcommit` command used to call `git add` for you. This is no longer the case. Be sure to add a `gitadd` task whenever there might be new files to commit.
+
 ## Universal options
 The following options may be applied to any task
 
