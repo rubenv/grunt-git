@@ -64,11 +64,18 @@ Add file contents to the index
 
 ### Options
 
+#### options.all
+Type: `Boolean`
+Default value: `false`
+
+Update the index not only where the working tree has a file matching <pathspec> but also where the
+index already has an entry. This adds, modifies, and removes index entries to match the working tree.
+
 #### options.force
 Type: `Boolean`
-  Default value: `false`
+Default value: `false`
 
-llow adding otherwise ignored files.
+Allow adding otherwise ignored files.
 
 ### Usage Examples
 

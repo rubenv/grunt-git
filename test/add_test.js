@@ -27,4 +27,18 @@ describe('add', function () {
             .expect(['add', '--force', 'test.txt'])
             .run(done);
     });
+
+    it('should add --all arg when all is true', function (done) {
+        var options = {
+            all: true
+        };
+
+        var files = [
+            '.'
+        ];
+
+        new Test(command, options, files)
+            .expect(['add', '--all', '.'])
+            .run(done);
+    });
 });
