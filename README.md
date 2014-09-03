@@ -58,6 +58,35 @@ grunt.initConfig({
 })
 ```
 
+## The "gitadd" task
+
+Add file contents to the index
+
+### Options
+
+#### options.force
+Type: `Boolean`
+  Default value: `false`
+
+llow adding otherwise ignored files.
+
+### Usage Examples
+
+```js
+grunt.initConfig({
+  gitadd: {
+    task: {
+      options: {
+        force: true
+      },
+      files: {
+        src: ['test.txt']
+      }
+    }
+  },
+});
+```
+
 ## The "gitcommit" task
 
 Commits the working directory.
