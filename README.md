@@ -668,6 +668,63 @@ Default value: `master`
 
 The branch to pull from. E.g.: `master`, `develop` (optional).
 
+## The "gitfetch" task
+
+Download objects and refs from a repo.
+
+### Overview
+
+In your project's Gruntfile, add a section named `gitfetch` to the data object passed into `grunt.initConfig()`.
+
+```js
+grunt.initConfig({
+  gitfetch: {
+    your_target: {
+      options: {
+        all: true
+      }
+    }
+  }
+})
+```
+
+### Options
+
+#### options.repository
+Type: `String`
+Default value: `null`
+
+The repository you want to fetch from. When no remote is specified, by default the origin remote will be used.
+
+#### options.all
+Type: `Boolean`
+Default value: `false`
+
+Adds the `--all` flag. Fetch all remotes.
+
+#### options.append
+Type: `Boolean`
+Default value: `false`
+
+Adds the `--append` flag. Append ref names and object names of fetched refs.
+
+#### options.prune
+Type: `Boolean`
+Default value: `false`
+
+Adds the `--prune` flag. After fetching, remove any remote-tracking references that no longer exist on the remote.
+
+#### options.notags
+Type: `Boolean`
+Default value: `false`
+
+Adds the `--no-tags` flag. Disables automatic tag following.
+
+#### options.tags
+Type: `Boolean`
+Default value: `false`
+
+Adds the `--tags` flag. Fetch all tags from the remote into local.
 
 ## The "gitmerge" task
 
