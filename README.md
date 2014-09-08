@@ -19,6 +19,9 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-git');
 ```
 
+### Upgrading from v0.2.x
+The `gitcommit` command used to call `git add` for you. This is no longer the case. Be sure to add a `gitadd` task whenever there might be new files to commit. The `ignoreEmpty` option is no longer supported.
+
 ## Universal options
 The following options may be applied to any task
 
@@ -55,6 +58,42 @@ grunt.initConfig({
 })
 ```
 
+## The "gitadd" task
+
+Add file contents to the index
+
+### Options
+
+#### options.all
+Type: `Boolean`
+Default value: `false`
+
+Update the index not only where the working tree has a file matching <pathspec> but also where the
+index already has an entry. This adds, modifies, and removes index entries to match the working tree.
+
+#### options.force
+Type: `Boolean`
+Default value: `false`
+
+Allow adding otherwise ignored files.
+
+### Usage Examples
+
+```js
+grunt.initConfig({
+  gitadd: {
+    task: {
+      options: {
+        force: true
+      },
+      files: {
+        src: ['test.txt']
+      }
+    }
+  },
+});
+```
+
 ## The "gitcommit" task
 
 Commits the working directory.
@@ -87,7 +126,7 @@ Default value: `'Commit'`
 
 The commit message.
 
-#### options.ignoreEmpty
+#### options.allowEmpty
 Type: `Boolean`
 Default value: `false`
 
