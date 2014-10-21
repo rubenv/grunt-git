@@ -24,7 +24,7 @@ module.exports = function (grunt) {
                 options: {
                     number: 5,
                     callback: function (logs) {
-                        console.log(logs);
+                        console.log(JSON.stringify(logs, true, 2));
                     }
                 }
             }
