@@ -47,4 +47,14 @@ describe('checkout', function () {
           .run(done);
     });
 
+    it('should force checkout', function (done) {
+        var options = {
+            branch: 'test2',
+            force: true
+        };
+
+        new Test(command, options)
+          .expect(['checkout', 'test2', '-f'])
+          .run(done);
+    });
 });
