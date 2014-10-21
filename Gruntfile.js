@@ -19,17 +19,6 @@ module.exports = function (grunt) {
             }
         },
 
-        gitlog: {
-            test: {
-                options: {
-                    number: 5,
-                    callback: function (logs) {
-                        console.log(JSON.stringify(logs, true, 2));
-                    }
-                }
-            }
-        },
-
         jshint: {
             all: [
                 'Gruntfile.js',
