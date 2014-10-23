@@ -298,6 +298,12 @@ Default value: `false`
 
 Whether the branch should be created (optional).
 
+#### options.create
+Type: `Boolean`
+Default value: `false`
+
+Whether the checkout should be forced in the case of git errors (optional)
+
 #### options.overwrite
 Type: `Boolean`
 Default value: `false`
