@@ -864,5 +864,78 @@ Default value: none.
 
 Without an optional `path` parameter, all files and subdirectories of the current working directory are included in the archive. If one or more paths are specified, only these are included.
 
+
+## The "gitlog" task
+
+Logs commit history and stores the result in a grunt property or calls a callback function with the result. The result is an array of objects with the following properties:
+
+* `hash` - the commit hash
+* `author` - an object with `name` and `email` properties
+* `date` - the date of the commit
+* `subject` - the subject string of the commit
+* `body` - the body string of the commit
+
+### Overview
+
+In your project's Gruntfile, add a section named `gitlog` to the data object passed into `grunt.initConfig()`.
+
+```js
+grunt.initConfig({
+  gitlog: {
+    mytarget: {
+      options: {
+        prop: 'gitlog.mytarget.result',
+        from: 'v0.2.0',
+        to: 'v0.2.2'
+      }
+    }
+  }
+})
+```
+
+### Options
+
+#### options.prop
+Type: `String`
+Default value: `'gitlog.<target name>.result'`.
+
+The grunt property in which to store the results.
+
+#### options.callback
+Type: `Function`
+Default value: none.
+
+A callback function to call with the log results.
+
+#### options.from
+Type: `String`
+Default value: none.
+
+A commit hash, tag, etc to start from.
+
+#### options.to
+Type: `String`
+Default value: none.
+
+A commit hash, tag, etc to end at. Defaults to `'HEAD'` if `from` is specified.
+
+#### options.after
+Type: `Date`
+Default value: none.
+
+A date to start from.
+
+#### options.before
+Type: `Date`
+Default value: none.
+
+A date to stop at.
+
+#### options.merges
+Type: `boolean`
+Default value: false.
+
+Whether or not to include merges in the logs.
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
