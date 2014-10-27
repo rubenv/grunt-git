@@ -7,7 +7,7 @@ var Test = require('./_common');
 describe('log', function () {
     it('should log', function (done) {
         var options = {
-            merges: true
+            noMerges: false
         };
         new Test(command, options)
             .expect(['log', '--pretty=format:' + command.format], [null, { stdout: '' }])
@@ -15,16 +15,16 @@ describe('log', function () {
     });
     it('should log the specified number of logs', function (done) {
         var options = {
-            merges: true,
+            noMerges: false,
             number: 10
         };
         new Test(command, options)
             .expect(['log', '--pretty=format:' + command.format, '-n', 10], [null, { stdout: '' }])
             .run(done);
     });
-    it('should not log merges if merges is false', function (done) {
+    it('should not log merges if noMerges is true', function (done) {
         var options = {
-            merges: false
+            noMerges: true
         };
         new Test(command, options)
             .expect(['log', '--pretty=format:' + command.format, '--no-merges'], [null, { stdout: '' }])
@@ -34,7 +34,7 @@ describe('log', function () {
         var before = new Date();
         var after = new Date();
         var options = {
-            merges: true,
+            noMerges: false,
             before: before,
             after: after
         };

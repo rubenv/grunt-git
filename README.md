@@ -931,9 +931,9 @@ Default value: none.
 
 A date to stop at.
 
-#### options.merges
+#### options.noMerges
 Type: `boolean`
-Default value: false.
+Default value: true.
 
 Whether or not to include merges in the logs.
 
