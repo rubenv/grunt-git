@@ -588,7 +588,7 @@ Remove untracked directories in addition to untracked files. If an untracked dir
 Pushes to a remote.
 
 ### Overview
-In your project's Gruntfile, add a section named `gitcommit` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `gitpush` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
