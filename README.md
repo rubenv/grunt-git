@@ -907,6 +907,32 @@ Default value: none.
 
 A callback function to call with the log results.
 
+#### options.pretty
+Type: `String`
+Default value: 
+```
+    'format:' + 
+    '{%n' +
+    '  "hash": "%H",%n' + // commit hash
+    '  "author": {%n' +
+    '    "name": "%an",%n' + // author
+    '    "email": "%ae"%n' + // email
+    '  },%n' +
+    '  "date": "%aD",%n' + // date
+    '  "subject": "%s",%n' + // subject
+    '  "body": "%b"%n' + // body
+    '}%n' +
+    '--grunt-gitlog-separator--' // separator
+```
+
+The format for the log output
+
+#### options.number
+Type: `Int`
+Default value: none.
+
+The number of logs entries to export
+
 #### options.from
 Type: `String`
 Default value: none.
@@ -919,17 +945,23 @@ Default value: none.
 
 A commit hash, tag, etc to end at. Defaults to `'HEAD'` if `from` is specified.
 
+#### options.dateOrder
+Type: `Boolean`
+Default value: none.
+
+Whether to order by date. Defaults to true when `options.after` or `options.before` are specified.
+
 #### options.after
 Type: `Date`
 Default value: none.
 
-A date to start from.
+A date to start from. Causes `options.dateOrder` to be true
 
 #### options.before
 Type: `Date`
 Default value: none.
 
-A date to stop at.
+A date to stop at. Causes `options.dateOrder` to be true
 
 #### options.noMerges
 Type: `boolean`
