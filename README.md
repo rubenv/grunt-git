@@ -58,6 +58,28 @@ grunt.initConfig({
 })
 ```
 
+#### options.callback
+Type: `function`
+Default value: `none`
+
+If defined, describe a function to be run after the async command has returned. The first argument is the `done` function to be called.
+
+#### Example:
+```js
+grunt.initConfig({
+  gitpull: {
+    your_target: {
+      options: {
+        callback: function(done){
+          myCustomFunction();
+          done();
+        }
+      }
+    }
+  },
+})
+```
+
 ## The "gitadd" task
 
 Add file contents to the index
