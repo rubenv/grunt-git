@@ -10,26 +10,26 @@
 
 var commands = require('../lib/commands');
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
     function wrapCommand(fn) {
-        return function() {
+        return function () {
             var self = this;
 
             function exec() {
                 var args = Array.prototype.slice.call(arguments);
-                var callback;
+                var callback = args.pop();
                 var options = self.options({
                     verbose: false
                 });
                 var spawnOpts = {};
 
-                //i can define a callback in my tasks. 
+                //i can define a callback in my tasks.
                 //  if so, done function is passed as arguments
                 //  otherwise is called after the execution of the task
                 if (options.callback) {
                     var cb = args.pop();
-                    callback = function() {
+                    callback = function () {
                         var args = Array.prototype.slice.call(arguments);
                         args = [cb].concat(args);
                         options.callback.apply(this, args);
@@ -45,18 +45,16 @@ module.exports = function(grunt) {
                     if (grunt.file.isDir(options.cwd)) {
                         spawnOpts.cwd = options.cwd;
                     } else {
-                        throw new Error('The specified cwd does not exist: "' + options.cwd + '"');
+                        throw new Error('The specified cwd does not exist: "' + options.cwd  + '"');
                     }
                 }
-                if (options.verbose) {
-                    spawnOpts.stdio = 'inherit';
-                }
+                if (options.verbose) { spawnOpts.stdio = 'inherit'; }
 
                 grunt.util.spawn({
                     cmd: 'git',
                     args: args,
                     opts: spawnOpts
-                }, function() {
+                }, function () {
                     callback.apply(this, arguments);
                 });
             }
