@@ -516,6 +516,54 @@ grunt.initConfig({
     },
 });
 ```
+## The "gitrm" task
+
+Removes files from git's working tree and index.
+
+### Overview
+In your project's Gruntfile, add a section named `gitrm` to the data object passed into `grunt.initConfig()`.
+
+```js
+grunt.initConfig({
+  gitrm: {
+    your_target: {
+      options: {
+        // Target-specific options go here.
+      },
+      files: {
+        src: // Target-specific files go here.
+      }
+    }
+  },
+})
+```
+
+Each target defines a specific git task that can be run. The different available tasks are listed below.
+
+### Options
+
+#### options.force
+Type: `boolean`
+Default value: `false`
+
+Will force a removal of the files listed in the configuration.
+
+### Usage Examples
+
+```js
+grunt.initConfig({
+    gitrm: {
+        task: {
+            options: {
+                force: 'true'
+            },
+            files: {
+                src: ['dist/test.min.js']
+            }
+        }
+    },
+});
+```
 
 ## The "gitclean" task
 
