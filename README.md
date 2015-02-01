@@ -548,6 +548,12 @@ Default value: `false`
 
 Will force a removal of the files listed in the configuration.
 
+#### options.recurse
+Type: `boolean`
+Default value: `false`
+
+Will recurse into subdirectories if specified in the configuration.
+
 ### Usage Examples
 
 ```js
