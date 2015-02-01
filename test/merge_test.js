@@ -101,4 +101,27 @@ describe('merge', function () {
             .expect(['merge', 'origin/master', '--no-commit'])
             .run(done);
     });
+
+    it('should accept --s option', function (done) {
+        var options = {
+            branch: 'origin/master',
+            strategy: 'subtree'
+        };
+
+        new Test(command, options)
+            .expect(['merge', 'origin/master', '-s', 'subtree'])
+            .run(done);
+    });
+
+    it('should accept --X option', function (done) {
+        var options = {
+            branch: 'origin/master',
+            strategyOption: 'subtree=path/to/file'
+        };
+
+        new Test(command, options)
+            .expect(['merge', 'origin/master', '-Xsubtree=path/to/file'])
+            .run(done);
+    });
+
 });

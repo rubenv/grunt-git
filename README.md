@@ -855,6 +855,17 @@ Default value: `false`
 
 Will add the `--no-commit` flag to the merge: do not commit the merge.
 
+#### options.strategy
+Type: `String`
+Default value: `null`
+
+Will add the `-s` flag followed by the value of this option to the merge: this string will be used to specify the strategy for the merge.
+
+#### options.strategyOption
+Type: `String`
+Default value: `null`
+
+Will add the `-X` flag followed by the value of this option to the merge: this string will be used to specify a strategy-specific option for the merge.
 
 ## The "gitarchive" task
 
