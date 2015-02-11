@@ -43,4 +43,15 @@ describe('rm', function () {
           .expect(['rm', '-f', 'foo', 'bar', 'baz', 'whiz'])
           .run(done);
     });
+
+    it('should allow the recursive flag', function (done) {
+        var options = {
+            recurse: true
+        };
+        var files = ['foo', 'bar', 'baz', 'whiz'];
+
+        new Test(command, options, files)
+          .expect(['rm', '-r', 'foo', 'bar', 'baz', 'whiz'])
+          .run(done);
+    });
 });
