@@ -3,7 +3,6 @@
 var command = require('../lib/commands').log;
 var Test = require('./_common');
 
-
 describe('log', function () {
     it('should log with default pretty format', function (done) {
         var options = {
@@ -77,6 +76,14 @@ describe('log', function () {
         };
         new Test(command, options)
             .expect(['log', '--pretty=format:' + command.format, '--no-merges', '1234..6789'], [null, { stdout: '' }])
+            .run(done);
+    });
+    it('should parse logs correctly when newlines exist in log body', function (done) {
+        var logs = '{ "hash": "hash", "author": { "name": "blah", "email": "blah@example.com" }, "date": "somedate", "subject": "thing", "body": "this\nhas\nnewlines\n:(" }--grunt-gitlog-separator--';
+        var options = {
+        };
+        new Test(command, options)
+            .expect(['log', '--pretty=format:' + command.format, '--no-merges'], [null, { stdout: logs }])
             .run(done);
     });
 });
