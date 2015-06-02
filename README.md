@@ -242,6 +242,18 @@ Default value: `false`
 
 Whether to delete the tag (optional).
 
+#### options.annotated
+Type: `Boolean`
+Default value: `false`
+
+Whether to create an annotated tag (optional).
+
+#### options.force
+Type: `Boolean`
+Default value: `false`
+
+Whether to force to create or update the tag (optional).
+
 ### Usage Examples
 
 ```js
