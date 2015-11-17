@@ -310,7 +310,7 @@ Default value: `false`
 
 Whether the branch should be created (optional).
 
-#### options.create
+#### options.force
 Type: `Boolean`
 Default value: `false`
 
