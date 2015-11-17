@@ -126,6 +126,12 @@ Default value: `'Commit'`
 
 The commit message.
 
+#### options.description
+Type: `String`
+Default value: `false`
+
+The commit description.
+
 #### options.allowEmpty
 Type: `Boolean`
 Default value: `false`
