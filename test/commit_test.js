@@ -33,6 +33,28 @@ describe('commit', function () {
             .run(done);
     });
 
+    it('should use the specified commit message', function (done) {
+        var options = {
+            message: 'Testing!',
+            description: 'Moar testing!'
+        };
+
+        var files = [
+            'test.txt'
+        ];
+
+        new Test(command, options, files)
+            .expect([
+                'commit',
+                '-m',
+                'Testing!',
+                '-m',
+                'Moar testing!',
+                'test.txt'
+            ])
+            .run(done);
+    });
+
     it('should add --allow-empty arg when allowEmpty is true', function (done) {
         var options = {
             allowEmpty: true
