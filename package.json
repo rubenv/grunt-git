@@ -32,13 +32,13 @@
     "grunt": "~0.4.0",
     "grunt-bump": "0.0.13",
     "grunt-contrib-clean": "~0.4.0",
-    "grunt-contrib-jshint": "~0.1.1",
+    "grunt-contrib-jshint": "~0.11.3",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-jscs-checker": "~0.4.1",
     "grunt-mocha-cli": "~1.0.1"
   },
   "peerDependencies": {
-    "grunt": "~0.4.0"
+    "grunt": "~0.4.5"
   },
   "keywords": [
     "gruntplugin"
