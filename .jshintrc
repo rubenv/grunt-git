@@ -11,6 +11,7 @@
   "eqnull": true,
   "node": true,
   "white": true,
+  "es5": true,
   "predef": [
     "describe",
     "it",
