@@ -1,7 +1,7 @@
 {
   "name": "grunt-git",
   "description": "Git commands for grunt.",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "homepage": "https://github.com/rubenv/grunt-git",
   "author": {
     "name": "Ruben Vermeersch",
@@ -23,22 +23,22 @@
   ],
   "main": "Gruntfile.js",
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 0.12.2"
   },
   "scripts": {
     "test": "grunt test"
   },
   "devDependencies": {
-    "grunt": "~0.4.0",
-    "grunt-bump": "0.0.13",
-    "grunt-contrib-clean": "~0.4.0",
-    "grunt-contrib-jshint": "~0.11.3",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-jscs": "~2.3.0",
-    "grunt-mocha-cli": "~1.0.1"
+    "grunt": "~1.0.1",
+    "grunt-bump": "0.7.0",
+    "grunt-contrib-clean": "~1.0.0",
+    "grunt-contrib-jshint": "~1.0.0",
+    "grunt-contrib-watch": "~1.0.0",
+    "grunt-jscs": "~2.8.0",
+    "grunt-mocha-cli": "~2.1.0"
   },
   "peerDependencies": {
-    "grunt": ">=0.4.0"
+    "grunt": "~1.0.1"
   },
   "keywords": [
     "gruntplugin"
