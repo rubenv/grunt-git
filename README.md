@@ -803,6 +803,63 @@ Default value: `false`
 
 Adds the `--tags` flag. Fetch all tags from the remote into local.
 
+## The "gitrevParse" task
+
+Pick out and massage parameters.
+
+### Overview
+
+In your project's Gruntfile, add a section named `gitrevParse` to the data object passed into `grunt.initConfig()`.
+
+```js
+grunt.initConfig({
+  gitrevParse: {
+    your_target: {
+      options: {
+        short: 7,
+        treeIsh: 'master',
+        prop: 'gitrevParse.your_target.result',
+        callback: function(result) {
+          grunt.gitrevParse.your_target.result = result;
+        }
+      }
+    }
+  }
+})
+```
+
+### Options
+
+#### options.short
+Type: `Integer`
+Default value: none.
+
+Adds the `--short=` option, set to the specified number of characters.
+
+#### options.treeIsh
+Type: `String`
+Default value: `'head'`
+
+The tree or commit object to examine.
+
+#### options.abbrevRef
+Type: `Boolean`
+Default value: `false`
+
+Adds the `--abbrev-ref` flag. Try and output the abbreviated reference for the tree-ish object instead of the SHA-1 checksum.
+
+#### options.prop
+Type: `String`
+Default value: `'gitrevParse.<target name>.result'`.
+
+The grunt property in which to store the results.
+
+#### options.callback
+Type: `Function`
+Default value: none.
+
+A callback function that is called with the rev-parse results provided as the sole parameter.
+
 ## The "gitmerge" task
 
 Merges another branch into the current branch.
