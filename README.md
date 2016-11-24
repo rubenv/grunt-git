@@ -1114,7 +1114,6 @@ Default value: true.
 
 Whether or not to include merges in the logs.
 
-
 ## The "gitapply" task
 
 Applies a patch (or a series of patches) to your cwd
@@ -1306,5 +1305,17 @@ default value: none.
 
 a callback function to call with the log results.
 
+#### options.noWalk
+Type: `Boolean`
+Default value: false.
+
+Only show the given commits, and do no traverse their ancestors. Has NO effect if `to` or `from` is also specified.
+
+#### options.tags
+Type: `Boolean`
+Default value: false.
+
+Only list all tagged commits
+
 ## contributing
-in lieu of a formal styleguide, take care to maintain the existing coding style. add unit tests for any new or changed functionality. lint and test your code using [grunt](http://gruntjs.com/).
+In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
