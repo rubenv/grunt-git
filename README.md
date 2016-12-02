@@ -25,7 +25,7 @@ The `gitcommit` command used to call `git add` for you. This is no longer the ca
 The following options may be applied to any task
 
 #### options.verbose
-Type: `boolean`
+Type: `Boolean`
 Default value: `none`
 
 Console output from the git task will be piped to the output of the grunt script. Useful for debugging.
@@ -460,7 +460,7 @@ Default value: none
 Clone the repo into a specific directory instead of the one git decides.
 
 #### options.recursive
-Type: `boolean`
+Type: `Boolean`
 Default value: none
 
 Pass the --recursive flag to the git clone command. This is equivalent to running git submodule update --init --recursive immediately after the clone is finished.
@@ -560,13 +560,13 @@ Each target defines a specific git task that can be run. The different available
 ### Options
 
 #### options.force
-Type: `boolean`
+Type: `Boolean`
 Default value: `false`
 
 Will force a removal of the files listed in the configuration.
 
 #### options.recurse
-Type: `boolean`
+Type: `Boolean`
 Default value: `false`
 
 Will recurse into subdirectories if specified in the configuration.
@@ -1054,9 +1054,9 @@ A callback function to call with the log results.
 
 #### options.pretty
 Type: `String`
-Default value: 
+Default value:
 ```
-    'format:' + 
+    'format:' +
     '{%n' +
     '  "hash": "%H",%n' + // commit hash
     '  "author": {%n' +
@@ -1109,10 +1109,202 @@ Default value: none.
 A date to stop at. Causes `options.dateOrder` to be true
 
 #### options.noMerges
-Type: `boolean`
+Type: `Boolean`
 Default value: true.
 
 Whether or not to include merges in the logs.
 
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+
+## The "gitapply" task
+
+Applies a patch (or a series of patches) to your cwd
+
+### Overview
+
+In your project's Gruntfile, add a section named `gitapply` to the data object passed into `grunt.initConfig()`.
+
+```js
+grunt.initConfig({
+  gitapply: {
+    mytarget: {
+      options: {
+        patchFiles: './myFile.patch',
+      }
+    }
+  }
+})
+```
+
+### Options
+
+#### options.patchFiles
+type: `String`
+default value: none.
+
+String (can be a glob), representing the path to the patch files you want to apply
+
+#### options.stat
+Type: `Boolean`
+Default value: none
+
+Rather than actually applying the patch, outputs a diffstat to your optional `callback`.
+Will not apply your patch by default - override by setting `options.apply` to true
+
+#### options.numstat
+Type: `Boolean`
+Default value: none
+
+Similar to `options.stat`, but shows the number of added and deleted lines in decimal notation and the pathname without abbreviation, to make it more machine friendly. For binary files, outputs two - instead of saying 0 0.
+Will not apply your patch by default - override by setting `options.apply` to true
+
+#### options.summary
+Type: `Boolean`
+Default value: none
+
+Instead of applying the patch, output a condensed summary of information obtained from git diff extended headers, such as creations, renames and mode changes.
+Will not apply your patch by default - override by setting `options.apply` to true
+
+#### options.check
+Type: `Boolean`
+Default value: none
+
+Instead of applying the patch, see if the patch is applicable to the current working tree and/or the index file and detects errors.
+Will not apply your patch by default - override by setting `options.apply` to true
+
+#### options.index
+type: `Boolean`
+default value: none
+
+when `options.check` is in effect, or when applying the patch (which is the default when none of the options that disables it is in effect), make sure the patch is applicable to what the current index file records. if the file to be patched in the working tree is not up-to-date, it is flagged as an error. this flag also causes the index file to be updated.
+
+#### options.threeway
+type: `Boolean`
+default value: none
+
+When the patch does not apply cleanly, fall back on 3-way merge if the patch records the identity of blobs it is supposed to apply to, and we have those blobs available locally, possibly leaving the conflict markers in the files in the working tree for the user to resolve. This option implies `options.index`, and is incompatible with `options.reject` and `options.cached`.
+
+#### options.reverse
+type: `Boolean`
+default value: none
+
+Apply the patch in reverse.
+
+#### options.reject
+type: `Boolean`
+default value: none
+
+For atomicity, git apply by default fails the whole patch and does not touch the working tree when some of the hunks do not apply. This option makes it apply the parts of the patch that are applicable, and leave the rejected hunks in corresponding `*.rej` files.
+
+### options.numStatKeepPathNames
+type: `Boolean`
+default value: none
+
+When `options.numstat` has been given, do not munge pathnames, but use a NUL-terminated machine-readable format.
+Without this option, each pathname output will have TAB, LF, double quotes, and backslash characters replaced with `\t`, `\n`, `\"`, and `\\`, respectively, and the pathname will be enclosed in double quotes if any of those replacements occurred.
+
+### options.removeLeadingSlashes
+type: `int`
+default value: none
+
+Removes the number of leading slashes from traditional diff paths as you give in the options (e.g. `{p: 10}` means remove 10).
+
+### options.ensureContextMatch
+type: `int`
+default value: none
+
+Ensure at least the number of lines given in the config of surrounding context match before and after each change. When fewer lines of surrounding context exist they all must match. By default no context is ever ignored.
+
+### options.unidiffZero
+type: `Boolean`
+default value: none
+
+By default, git apply expects that the patch being applied is a unified diff with at least one line of context. This provides good safety measures, but breaks down when applying a diff generated with --unified=0. To bypass these checks use `options.unidiffZero`.
+
+### options.apply
+type: `Boolean`
+default value: none
+
+If you use any of the options marked "Turns off apply" above, git apply reads and outputs the requested information without actually applying the patch. Give this flag after those flags to also apply the patch.
+
+### options.noAdd
+type: `Boolean`
+default value: none
+
+When applying a patch, ignore additions made by the patch. This can be used to extract the common part between two files by first running diff on them and applying the result with this option, which would apply the deletion part but not the addition part.
+
+### options.exclude
+type: `String`
+default value: none
+
+Don’t apply changes to files matching the given path pattern. This can be useful when importing patchsets, where you want to exclude certain files or directories.
+
+### options.include
+type: `String`
+default value: none
+
+Apply changes to files matching the given path pattern. This can be useful when importing patchsets, where you want to include certain files or directories.
+
+### options.ignoreSpaceChange
+type: `Boolean`
+default value: none
+
+When applying a patch, ignore changes in whitespace in context lines if necessary. Context lines will preserve their whitespace, and they will not undergo whitespace fixing regardless of the value of this option. New lines will still be fixed, though.
+
+### options.ignoreWhitespace
+type: `Boolean`
+default value: none
+
+Alias value for `options.ignoreSpaceChang`
+
+### options.whitespace
+type: `String`
+default value: none
+
+When applying a patch, detect a new or modified line that has whitespace errors. What are considered whitespace errors is controlled by `core.whitespace` configuration. By default, trailing whitespaces (including lines that solely consist of whitespaces) and a space character that is immediately followed by a tab character inside the initial indent of the line are considered whitespace errors.
+
+By default, the command outputs warning messages but applies the patch. When git-apply is used for statistics and not applying a patch, it defaults to nowarn.
+
+You can use different values to control this behavior:
+
+- `nowarn` turns off the trailing whitespace warning.
+- `warn` outputs warnings for a few such errors, but applies the patch as-is (default).
+- `fix` outputs warnings for a few such errors, and applies the patch after fixing them (strip is a synonym --- the tool used to consider only trailing whitespace characters as errors, and the fix involved stripping them, but modern Gits do more).
+- `error` outputs warnings for a few such errors, and refuses to apply the patch.
+- `error-all` is similar to error but shows all errors.
+
+The output is made available via `options.callback`
+
+### options.inaccurateEOF
+type: `Boolean`
+default value: none
+
+Under certain circumstances, some versions of diff do not correctly detect a missing new-line at the end of the file. As a result, patches created by such diff programs do not record incomplete lines correctly. This option adds support for applying such patches by working around this bug.
+
+### options.recount
+type: `Boolean`
+default value: none
+
+Do not trust the line counts in the hunk headers, but infer them by inspecting the patch (e.g. after editing the patch without adjusting the hunk headers appropriately).
+
+### options.directory
+type: `String`
+default value: none
+
+Prepend the value you assign to `options.directory` to all filenames. If a `options.removeLeadingSlashes`  also set, it is applied before prepending the new root.
+
+For example, a patch that talks about updating `a/git-gui.sh` to `b/git-gui.sh` can be applied to the file in the working tree `modules/git-gui/git-gui.sh` by setting `{ directory: "modules/git-gui" }`.
+
+### options.unsafePaths
+type: `Boolean`
+default value: none
+
+By default, a patch that affects outside the working area (either a Git controlled working tree, or the current working directory when "git apply" is used as a replacement of GNU patch) is rejected as a mistake (or a mischief).
+
+#### options.callback
+type: `function`
+default value: none.
+
+a callback function to call with the log results.
+
+## contributing
+in lieu of a formal styleguide, take care to maintain the existing coding style. add unit tests for any new or changed functionality. lint and test your code using [grunt](http://gruntjs.com/).
