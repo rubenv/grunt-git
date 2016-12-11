@@ -1064,8 +1064,7 @@ Default value:
     '    "email": "%ae"%n' + // email
     '  },%n' +
     '  "date": "%aD",%n' + // date
-    '  "subject": "%s",%n' + // subject
-    '  "body": "%b"%n' + // body
+    '  "subject": "%f"%n' + // subject
     '}%n' +
     '--grunt-gitlog-separator--' // separator
 ```
