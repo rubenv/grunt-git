@@ -4,11 +4,11 @@ var command = require('../lib/commands').revParse;
 var Test = require('./_common');
 
 describe('rev-parse', function () {
-    it('should print the full SHA-1 checksum of head by default', function (done) {
+    it('should print the full SHA-1 checksum of HEAD by default', function (done) {
         var options = {};
 
         new Test(command, options)
-            .expect(['rev-parse', 'head'])
+            .expect(['rev-parse', 'HEAD'])
             .run(done);
     });
 
@@ -18,7 +18,7 @@ describe('rev-parse', function () {
         };
 
         new Test(command, options)
-            .expect(['rev-parse', '--short=7', 'head'])
+            .expect(['rev-parse', '--short=7', 'HEAD'])
             .run(done);
     });
 
@@ -38,7 +38,7 @@ describe('rev-parse', function () {
         };
 
         new Test(command, options)
-            .expect(['rev-parse', '--abbrev-ref', 'head'])
+            .expect(['rev-parse', '--abbrev-ref', 'HEAD'])
             .run(done);
     });
 });
