@@ -838,7 +838,7 @@ Adds the `--short=` option, set to the specified number of characters.
 
 #### options.treeIsh
 Type: `String`
-Default value: `'head'`
+Default value: `'HEAD'`
 
 The tree or commit object to examine.
 
