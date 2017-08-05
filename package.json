@@ -21,7 +21,7 @@
       "url": "https://github.com/rubenv/grunt-git/blob/master/LICENSE"
     }
   ],
-  "main": "Gruntfile.js",
+  "main": "lib/commands.js",
   "engines": {
     "node": ">= 0.12.2"
   },
