@@ -1317,5 +1317,74 @@ Default value: false.
 
 Only list all tagged commits
 
+## The "gitstatus" task
+
+Fetches the git status, storing the result in a grunt property, and/or calling a callback function with the result.
+
+The result is a list of objects, each with the following properties:
+
+* `file` - the indicated filename.
+* `code` - a two letter code indicating the status of the file.
+* `descr` - a short description of the status.
+
+In some cases there is an additional property, `alt_file`, for example if the file has been renamed.
+
+Here's an example result:
+
+```js
+[ { code: 'R ', file: 'from',                descr: 'renamed in index',
+        alt_file: 'to'
+        },
+  { code: '??', file: 'untracked_file.txt',  descr: 'untracked' },
+  { code: 'A ', file: 'new_file.txt',        descr: 'added to index' },
+  { code: 'D ', file: 'deprecated_file.txt', descr: 'deleted from index' },
+  { code: 'AA', file: 'popular_file.txt',    descr: 'unmerged, both added' },
+  { code: '!!', file: 'node_modules/',       descr: 'ignored' }
+]
+```
+
+Note that ignored files will only be included if the `includeIgnored` option is set (see below).
+
+For full details on all the possible codes, please see the [git status documentation](https://git-scm.com/docs/git-status#_output).
+
+### Overview
+
+In your project's Gruntfile, add a section named `gitstatus` to the data object passed into `grunt.initConfig()`.
+
+Properties `prop` and `callback` are both optional, though not using at least one is pointless.
+
+```js
+grunt.initConfig({
+    gitstatus: {
+        mytarget: {
+            options: {
+                prop:     'gitstatus.mytarget.result',
+                callback: function (result) { ... },
+            },
+        },
+    },
+})
+```
+
+### Options
+
+#### options.prop
+Type: `String`
+Default value: `'gitstatus.<target name>.result'`.
+
+The grunt property in which the result is stored.
+
+#### options.callback
+Type: `Function`
+Default value: none
+
+A callback function to call with the result.
+
+#### options.includeIgnored
+Type: `Boolean`
+Default value: `false`
+
+If set to true, files ignored by git (in .gitignore for example) are included in the results with a code of "!!".
+
 ## contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
