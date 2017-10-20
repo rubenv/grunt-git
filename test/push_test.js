@@ -43,6 +43,16 @@ describe('push', function () {
             .run(done);
     });
 
+    it('should accept --follow-tags option', function (done) {
+        var options = {
+            followTags: true
+        };
+
+        new Test(command, options)
+            .expect(['push', '--follow-tags', 'origin'])
+            .run(done);
+    });
+
     it('should accept --set-upstream option', function (done) {
         var options = {
             upstream: true,
