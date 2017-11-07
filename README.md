@@ -899,7 +899,7 @@ Default value: `false`
 
 Will add the `--no-ff` flag to the merge.
 
-#### options.noff
+#### options.nolog
 Type: `Boolean`
 Default value: `false`
 
