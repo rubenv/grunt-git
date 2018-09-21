@@ -52,6 +52,16 @@ describe('clean', function () {
             .run(done);
     });
 
+    it('should support multiple exclude patterns', function (done) {
+        var options = {
+            exclude: ['*.log', 'local.env']
+        };
+
+        new Test(command, options)
+            .expect(['clean', '-f', '-e', '*.log', '-e', 'local.env'])
+            .run(done);
+    });
+
     it('should have use a non-standard matching pattern', function (done) {
         var options = {
             nonstandard: true

@@ -631,10 +631,25 @@ Default value: `false`
 Be quiet, only report errors, but not the files that are successfully removed (optional).
 
 #### options.exclude
-Type: `String`
+Type: `String`/`Array`
 Default value: `false`
 
 In addition to those found in .gitignore (per directory) and $GIT_DIR/info/exclude, also consider the given patterns to be in the set of the ignore rules in effect (optional).
+
+In case it's needed to provide multiple patterns one should use an array:
+
+```js
+grunt.initConfig({
+  gitclean: {
+    your_target: {
+      options: {
+        exclude: ['.env', 'config.php']
+      },
+      ...
+    }
+  },
+})
+```
 
 #### options.onlyignorefiles
 Type: `Boolean`
