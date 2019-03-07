@@ -1368,6 +1368,8 @@ Note that ignored files will only be included if the `includeIgnored` option is 
 
 For full details on all the possible codes, please see the [git status documentation](https://git-scm.com/docs/git-status#_output).
 
+
+
 ### Overview
 
 In your project's Gruntfile, add a section named `gitstatus` to the data object passed into `grunt.initConfig()`.
@@ -1406,6 +1408,70 @@ Type: `Boolean`
 Default value: `false`
 
 If set to true, files ignored by git (in .gitignore for example) are included in the results with a code of "!!".
+
+## The "gitdescribe" task
+
+The command finds the most recent tag that is reachable from a commit. If the tag points to the commit, then only the tag is shown. Otherwise, it suffixes the tag name with the number of additional commits on top of the tagged object and the abbreviated object name of the most recent commit. The result is a "human-readable" object name which can also be used to identify the commit to other git commands.
+
+#### options.all
+Type: `Boolean`  
+Default value: false
+
+Instead of using only the annotated tags, use any ref found in refs/ namespace. This option enables matching any known branch, remote-tracking branch, or lightweight tag.
+
+#### options.tags
+Type: `Boolean`  
+Default value: false
+
+Instead of using only the annotated tags, use any tag found in refs/tags namespace. This option enables matching a lightweight (non-annotated) tag.
+
+#### options.contains
+Type: `Boolean`  
+Default value: false
+
+Instead of finding the tag that predates the commit, find the tag that comes after the commit, and thus contains it. Automatically implies --tags.
+
+#### options.abbrev
+Type: `Integer`  
+Default value: 7
+
+Instead of using the default 7 hexadecimal digits as the abbreviated object name, use <n> digits, or as many digits as needed to form a unique object name. An <n> of 0 will suppress long format, only showing the closest tag.
+
+#### options.candidates
+Type: `Integer`  
+Default value: 10
+
+Instead of considering only the 10 most recent tags as candidates to describe the input commit-ish consider up to <n> candidates. Increasing <n> above 10 will take slightly longer but may produce a more accurate result. An <n> of 0 will cause only exact matches to be output.
+
+#### options.commit-ish
+Type: `String`  
+Default value: "HEAD"
+
+Commit-ish object names to describe. Defaults to HEAD if omitted.
+
+#### options.callback
+Type: `Function`
+Default value: none
+
+A callback function to call with the result.
+
+### Usage Examples
+
+```js
+grunt.initConfig({
+    gitdescribe: {
+        latest: {
+            options: {
+                abbrev: 0,
+                callback: function (result) { ... },
+            }
+        }
+    },
+});
+```
+
+For full details on all the possible codes, please see the [git describe documentation](https://git-scm.com/docs/git-describe).
+
 
 ## contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
