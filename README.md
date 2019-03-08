@@ -1799,7 +1799,7 @@ grunt.initConfig({
 });
 ```
 
-For full details on all the possible codes, please see the [git describe documentation](https://git-scm.com/docs/git-describe).
+For full details on all the possible codes, please see the [git remote documentation](https://git-scm.com/docs/git-remote).
 
 ## contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
