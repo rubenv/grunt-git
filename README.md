@@ -1474,7 +1474,7 @@ For full details on all the possible codes, please see the [git describe documen
 
 ## The "gitremote" task
 
-The command finds the most recent tag that is reachable from a commit. If the tag points to the commit, then only the tag is shown. Otherwise, it suffixes the tag name with the number of additional commits on top of the tagged object and the abbreviated object name of the most recent commit. The result is a "human-readable" object name which can also be used to identify the commit to other git commands.
+Manage the set of repositories ("remotes") whose branches you track.
 
 #### options.verbose
 Type: `Boolean`  
