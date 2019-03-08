@@ -1472,6 +1472,334 @@ grunt.initConfig({
 
 For full details on all the possible codes, please see the [git describe documentation](https://git-scm.com/docs/git-describe).
 
+## The "gitremote" task
+
+The command finds the most recent tag that is reachable from a commit. If the tag points to the commit, then only the tag is shown. Otherwise, it suffixes the tag name with the number of additional commits on top of the tagged object and the abbreviated object name of the most recent commit. The result is a "human-readable" object name which can also be used to identify the commit to other git commands.
+
+#### options.verbose
+Type: `Boolean`  
+Default value: false
+
+Be a little more verbose and show remote url after name.
+
+#### options.add
+Type: `Object`  
+Default value: undefined
+
+Adds a remote named \<name> for the repository at \<url>.
+
+Example:
+```js
+grunt.initConfig({
+    gitremote: {
+        mytargat: {
+            options: {
+                add: { name: 'upstream', url: 'remote_uri' }
+            }
+        }
+    },
+});
+```
+##### suboptions for add
+
+###### options.t
+Type: `String`  
+Default value: undefined
+
+###### options.f
+Type: `Boolean`  
+Default value: undefined
+
+###### options.tags
+Type: `Boolean`  
+Default value: undefined
+
+Set the --tags or --no-tags flag
+
+###### options.mirror
+Type: `String`  
+Default value: undefined
+
+Example:
+```js
+grunt.initConfig({
+    gitremote: {
+        mytargat: {
+            options: {
+                add: { name: 'upstream', url: 'remote_uri' }
+                t: 'branch',
+                f: true,
+                tags: true, //true => --tags, false => --no-tags
+                mirror: 'fetch'  //<fetch | push>
+            }
+        }
+    },
+});
+```
+
+
+#### options.rename
+Type: `Object`  
+Default value: undefined
+
+Rename the remote named \<old> to \<new>.
+
+Example:
+```js
+grunt.initConfig({
+    gitremote: {
+        mytargat: {
+            options: {
+                rename: { old: 'origin', new : 'upstream' }
+            }
+        }
+    },
+});
+```
+
+#### options.remove
+Type: `String`  
+Default value: undefined
+
+Remove the remote named \<name>.
+
+#### options.sethead
+Type: `String`  
+Default value: undefined
+
+Sets or deletes the default branch (i.e. the target of the symbolic-ref refs/remotes/<name>/HEAD) for the named remote.
+
+##### suboptions for sethead
+
+###### options.auto
+Type: `Boolean`  
+Default value: undefined
+
+###### options.delete
+Type: `Boolean`  
+Default value: undefined
+
+###### options.branch
+Type: `String`  
+Default value: undefined
+
+Example:
+```js
+grunt.initConfig({
+    gitremote: {
+        mytargat: {
+            options: {
+                sethead: 'name',
+                branch: 'branch'
+            }
+        },
+        mytargat2: {
+            options: {
+                sethead: 'name',
+                auto: true
+             }
+        },
+        mytargat3: {
+            options: {
+                sethead: 'name',
+                delete: true
+            }
+        }
+    },
+});
+```
+
+#### options.setbranches
+Type: `Object`  
+Default value: undefined
+
+Changes the list of branches tracked by the named remote.
+
+Example:
+```js
+grunt.initConfig({
+    gitremote: {
+        mytargat: {
+            options: {
+                setbranches: { name: 'name', branch: 'branch' }
+            }
+        }
+    },
+});
+```
+
+##### suboptions for setbranches
+
+###### options.add
+Type: `Boolean`  
+Default value: undefined
+
+Instead of replacing the list of currently tracked branches, adds to that list.
+
+Example:
+```js
+grunt.initConfig({
+    gitremote: {
+        mytargat: {
+            options: {
+                setbranches: { name: 'name', branch: 'branch' }
+                add: true
+            }
+        }
+    },
+});
+```
+
+#### options.geturl
+Type: `String`  
+Default value: undefined
+
+Retrieves the URLs for a remote.
+
+##### suboptions for geturl
+
+###### options.push
+Type: `Boolean`  
+Default value: undefined
+
+###### options.all
+Type: `Boolean`  
+Default value: undefined
+
+#### options.seturl
+Type: `Object`  
+Default value: undefined
+
+Changes URLs for the remote.
+
+Example:
+```js
+grunt.initConfig({
+    gitremote: {
+        mytargat: {
+            options: {
+                seturl: { name: 'name', url: 'newurl', oldurl: 'oldurl' }
+            }
+        }
+    },
+});
+```
+
+##### suboptions for seturl
+
+###### options.push
+Type: `Boolean`  
+Default value: undefined
+
+Push URLs are manipulated instead of fetch URLs.
+
+###### options.add
+Type: `Boolean`  
+Default value: undefined
+
+Instead of changing existing URLs, new URL is added.
+
+###### options.delete
+Type: `Boolean`  
+Default value: undefined
+
+Instead of changing existing URLs, all URLs matching regex <url> are deleted for remote <name>. Trying to delete all non-push URLs is an error.
+
+Example:
+```js
+grunt.initConfig({
+    gitremote: {
+        mytargat: {
+            options: {
+                seturl: { name: 'name', url: 'newurl' },
+                push: true
+            }
+        },
+        mytargat2: {
+            options: {
+                seturl: { name: 'name', url: 'newurl' },
+                add: true
+            }
+        },
+        mytargat3: {
+            options: {
+                seturl: { name: 'name', url: 'newurl' },
+                delete: true
+            }
+        }
+    },
+});
+```
+
+#### options.show
+Type: `String`  
+Default value: undefined
+
+Gives some information about the remote \<name>.
+
+##### suboptions for show
+
+###### options.n
+Type: `Boolean`  
+Default value: undefined
+
+The remote heads are not queried first with git ls-remote <name>; cached information is used instead.
+
+#### options.prune
+Type: `String`  
+Default value: undefined
+
+Deletes stale references associated with \<name>.
+
+#### options.update
+Type: `Array`  
+Default value: undefined
+
+Fetch updates for remotes or remote groups in the repository as defined by remotes.\<group>. 
+
+Example:
+```js
+grunt.initConfig({
+    gitremote: {
+        mytargat: {
+            options: {
+                update: ['origin', 'upstream']
+            }
+        }
+    },
+});
+```
+
+##### suboptions for update
+
+###### options.prune
+Type: `Boolean`  
+Default value: undefined
+
+Run pruning against all the remotes that are updated.
+
+#### options.callback
+Type: `Function`
+Default value: none
+
+A callback function to call with the result.
+
+### Usage Examples
+
+```js
+grunt.initConfig({
+    gitremote: {
+        mytarget: {
+            options: {
+                geturl: 'origin',
+                callback: function (result) { ... },
+            }
+        }
+    },
+});
+```
+
+For full details on all the possible codes, please see the [git describe documentation](https://git-scm.com/docs/git-describe).
 
 ## contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
