@@ -20,7 +20,7 @@ describe('remote', function () {
         };
 
         new Test(command, options)
-            .expect(['remote', 'add', 'upstream remote_uri'])
+            .expect(['remote', 'add', 'upstream', 'remote_uri'])
             .run(done);
     });
 
@@ -34,7 +34,7 @@ describe('remote', function () {
         };
 
         new Test(command, options)
-            .expect(['remote', 'add', '-t master -f --tags --mirror=fetch upstream remote_uri'])
+            .expect(['remote', 'add', '-t', 'master', '-f', '--tags', '--mirror=fetch', 'upstream', 'remote_uri'])
             .run(done);
     });
 
@@ -44,7 +44,7 @@ describe('remote', function () {
         };
 
         new Test(command, options)
-            .expect(['remote', 'rename', 'oldremote newremote'])
+            .expect(['remote', 'rename', 'oldremote', 'newremote'])
             .run(done);
     });
 
@@ -75,7 +75,7 @@ describe('remote', function () {
         };
 
         new Test(command, options)
-            .expect(['remote', 'set-head', 'name --auto'])
+            .expect(['remote', 'set-head', 'name', '--auto'])
             .run(done);
     });
 
@@ -86,7 +86,7 @@ describe('remote', function () {
         };
 
         new Test(command, options)
-            .expect(['remote', 'set-head', 'name --delete'])
+            .expect(['remote', 'set-head', 'name', '--delete'])
             .run(done);
     });
 
@@ -97,7 +97,7 @@ describe('remote', function () {
         };
 
         new Test(command, options)
-            .expect(['remote', 'set-head', 'name branch'])
+            .expect(['remote', 'set-head', 'name', 'branch'])
             .run(done);
     });
 
@@ -107,7 +107,7 @@ describe('remote', function () {
         };
 
         new Test(command, options)
-            .expect(['remote', 'set-branches', 'name branch'])
+            .expect(['remote', 'set-branches', 'name', 'branch'])
             .run(done);
     });
 
@@ -118,7 +118,7 @@ describe('remote', function () {
         };
 
         new Test(command, options)
-            .expect(['remote', 'set-branches', '--add name branch'])
+            .expect(['remote', 'set-branches', '--add', 'name', 'branch'])
             .run(done);
     });
 
@@ -140,7 +140,7 @@ describe('remote', function () {
         };
 
         new Test(command, options)
-            .expect(['remote', 'get-url', '--push --all upstream'])
+            .expect(['remote', 'get-url', '--push', '--all', 'upstream'])
             .run(done);
     });
 
@@ -150,7 +150,7 @@ describe('remote', function () {
         };
 
         new Test(command, options)
-            .expect(['remote', 'set-url', 'name newurl'])
+            .expect(['remote', 'set-url', 'name', 'newurl'])
             .run(done);
     });
 
@@ -160,7 +160,7 @@ describe('remote', function () {
         };
 
         new Test(command, options)
-            .expect(['remote', 'set-url', 'name newurl oldurl'])
+            .expect(['remote', 'set-url', 'name', 'newurl', 'oldurl'])
             .run(done);
     });
 
@@ -171,7 +171,7 @@ describe('remote', function () {
         };
 
         new Test(command, options)
-            .expect(['remote', 'set-url', '--push name newurl oldurl'])
+            .expect(['remote', 'set-url', '--push', 'name', 'newurl', 'oldurl'])
             .run(done);
     });
 
@@ -182,7 +182,7 @@ describe('remote', function () {
         };
 
         new Test(command, options)
-            .expect(['remote', 'set-url', '--add name newurl'])
+            .expect(['remote', 'set-url', '--add', 'name', 'newurl'])
             .run(done);
     });
 
@@ -193,7 +193,7 @@ describe('remote', function () {
         };
 
         new Test(command, options)
-            .expect(['remote', 'set-url', '--delete name newurl'])
+            .expect(['remote', 'set-url', '--delete', 'name', 'newurl'])
             .run(done);
     });
 
@@ -214,7 +214,7 @@ describe('remote', function () {
         };
 
         new Test(command, options)
-            .expect(['remote', 'show', '-n name'])
+            .expect(['remote', 'show', '-n', 'name'])
             .run(done);
     });
 
@@ -234,7 +234,7 @@ describe('remote', function () {
         };
 
         new Test(command, options)
-            .expect(['remote', 'update', 'origin upstream'])
+            .expect(['remote', 'update', 'origin', 'upstream'])
             .run(done);
     });
 
@@ -245,7 +245,7 @@ describe('remote', function () {
         };
 
         new Test(command, options)
-            .expect(['remote', 'update', '--prune origin upstream'])
+            .expect(['remote', 'update', '--prune', 'origin', 'upstream'])
             .run(done);
     });
 });
