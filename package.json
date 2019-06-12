@@ -45,6 +45,6 @@
     "gruntplugin"
   ],
   "dependencies": {
-    "flopmang": "^0.0.1"
+    "flopmang": "^1.0.0"
   }
 }
