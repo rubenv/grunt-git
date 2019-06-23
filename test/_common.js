@@ -12,13 +12,13 @@ var Task = (function () {
         return _.defaults(this.test.options, defaults);
     };
 
-    Object.defineProperty(Task.prototype, 'files', {
+    Object.defineProperty(Task.prototype, 'data', {
         get: function () {
-            return [
-                {
+            return {
+                files: {
                     src: this.test.files
                 }
-            ];
+            };
         }
     });
 
