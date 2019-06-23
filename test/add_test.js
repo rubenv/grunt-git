@@ -41,4 +41,17 @@ describe('add', function () {
             .expect(['add', '--all', '.'])
             .run(done);
     });
+
+    it('should add git pathspec format arg when pathspec is specified', function (done) {
+        var options = {
+            pathSpec: ['a/*', 'b/*']
+        };
+
+        var files = [
+        ];
+
+        new Test(command, options, files)
+            .expect(['add', 'a/*', 'b/*'])
+            .run(done);
+    });
 });
