@@ -29,14 +29,14 @@
     "test": "grunt test"
   },
   "devDependencies": {
-    "grunt": "~1.0.1",
+    "grunt": "^1.4.1",
     "grunt-bump": "0.7.0",
     "grunt-contrib-clean": "~1.0.0",
     "grunt-contrib-jshint": "~1.0.0",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-jscs": "^3.0.1",
-    "grunt-mocha-cli": "^4.0.0",
-    "mocha": "^6.1.4"
+    "grunt-mocha-cli": "^7.0.0",
+    "mocha": "^9.0.3"
   },
   "peerDependencies": {
     "grunt": "~1.0.1"
