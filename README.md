@@ -4,7 +4,9 @@
 
 [![npm version](https://img.shields.io/npm/v/grunt-jsonfile?color=blue)](https://www.npmjs.com/package/grunt-git)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.svg)](https://gruntjs.com/)
 [![Build Status](https://travis-ci.org/rubenv/grunt-git.png?branch=master)](https://travis-ci.org/rubenv/grunt-git)
+[![dependencies](https://david-dm.org/rubenv/grunt-git.svg)](https://david-dm.org/)
 
 ## Getting Started
 
@@ -1757,7 +1759,7 @@ Deletes stale references associated with \<name>.
 Type: `Array`  
 Default value: undefined
 
-Fetch updates for remotes or remote groups in the repository as defined by remotes.\<group>. 
+Fetch updates for remotes or remote groups in the repository as defined by remotes.\<group>.
 
 Example:
 ```js
