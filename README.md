@@ -2,7 +2,7 @@
 
 > Git commands for grunt.
 
-[![npm version](https://img.shields.io/npm/v/grunt-jsonfile?color=blue)](https://www.npmjs.com/package/grunt-git)
+[![npm version](https://img.shields.io/npm/v/grunt-git?color=blue)](https://www.npmjs.com/package/grunt-git)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.svg)](https://gruntjs.com/)
 [![Build Status](https://travis-ci.org/rubenv/grunt-git.png?branch=master)](https://travis-ci.org/rubenv/grunt-git)
