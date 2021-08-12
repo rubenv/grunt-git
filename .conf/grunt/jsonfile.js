@@ -3,7 +3,7 @@
  *  https://github.com/rubenv/grunt-git
  *
  *  © 2020, db developer.
- *    https://www.npmjs.com/package/grunt-nyc-mocha
+ *    https://www.npmjs.com/package/grunt-jsonfile
  *
  *  Licensed under the MIT license.
  *
