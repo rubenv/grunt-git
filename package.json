@@ -27,14 +27,20 @@
     "node": ">= 0.12.2"
   },
   "scripts": {
+    "build": "grunt build",
     "test": "grunt test"
   },
   "devDependencies": {
     "grunt": "^1.4.1",
     "grunt-bump": "0.7.0",
     "grunt-contrib-clean": "~1.0.0",
+    "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-jshint": "~1.0.0",
     "grunt-contrib-watch": "^1.1.0",
+    "grunt-jsonfile": "^1.0.0",
+    "grunt-mkdir": "^1.1.0",
+    "grunt-nyc-mocha": "^1.0.0",
+    "grunt-shell": "^3.0.1",
     "load-grunt-config": "^4.0.0",
     "load-grunt-tasks": "^5.1.0"
   },
@@ -42,10 +48,9 @@
     "grunt": "^1.4.0"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin git"
   ],
   "dependencies": {
-    "flopmang": "^1.0.0",
-    "grunt-nyc-mocha": "^1.0.0"
+    "flopmang": "^1.0.0"
   }
 }
