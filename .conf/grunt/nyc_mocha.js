@@ -3,6 +3,8 @@
  *  https://github.com/rubenv/grunt-git
  *
  *  © 2020, db developer.
+ *    https://www.npmjs.com/package/grunt-nyc-mocha
+ *
  *  Licensed under the MIT license.
  *
  *//* jshint esversion: 6 */
@@ -21,10 +23,10 @@ module.exports = function ( grunt, options ) {
                           ],
             check:        true,
             perfile:      true,
-            branches:     100,
-            functions:    100,
-            lines:        100,
-            statements:   100
+            branches:     10,
+            functions:    50,
+            lines:        50,
+            statements:   50
           },
           excludes:       [ "gruntfile.js", ".conf/**/*.js", "test/**/*.js" ],
           requires:       [ "grunt-nyc-mocha/scripts/sourcemapsupport" ]
