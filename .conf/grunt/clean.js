@@ -9,6 +9,11 @@
 
 module.exports = function ( grunt, options ) {
   return {
-    tests: ['tmp'],
+    build: {
+      src: [options.BUILDDIR, options.TMPDIR]
+    },
+    tests: {
+      src: [options.DISTDIR,  options.TMPDIR]
+    }
   };
 };
