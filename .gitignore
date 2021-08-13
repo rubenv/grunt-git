@@ -1,6 +1,9 @@
+build
+dist
 node_modules
 npm-debug.log
 tmp
 .*.swp
 .idea
+.nyc_output
 package-lock.json
