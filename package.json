@@ -48,7 +48,8 @@
     "grunt": "^1.4.0"
   },
   "keywords": [
-    "gruntplugin git"
+    "gruntplugin",
+    "git"
   ],
   "dependencies": {
     "flopmang": "^1.0.0"
