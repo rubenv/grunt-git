@@ -20,11 +20,11 @@ describe('add', function () {
         };
 
         var files = [
-            'test.txt'
+            'test.txt', 'b.txt'
         ];
 
         new Test(command, options, files)
-            .expect(['add', '--force', 'test.txt'])
+            .expect(['add', '--force', 'test.txt', 'b.txt'])
             .run(done);
     });
 
