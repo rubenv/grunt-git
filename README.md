@@ -764,6 +764,12 @@ Default value: `master`
 
 The branch to pull from. E.g.: `master`, `develop` (optional).
 
+#### options.rebase
+Type: `Mixed`,
+Default value: `false`
+
+Will set the rebase option. You can set it to `true` (Boolean) or 'preserve' (String).
+
 ## The "gitfetch" task
 
 Download objects and refs from a repo.
